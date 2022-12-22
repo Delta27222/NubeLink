@@ -88,14 +88,14 @@ public class FTPConnection {
         }
     }
     
-    public void descargarArchivo(){
+    public void descargarArchivo(String remoteFile1, String localFilePath){
         try {
             client.enterLocalPassiveMode();
             client.setFileType(FTP.BINARY_FILE_TYPE);
  
              //APPROACH #1: using retrieveFile(String, OutputStream)
-            String remoteFile1 = "presupuesto.docx"; //Solo se coloca el nombre del archivo, no hace falta con la ruta completa
-            File downloadFile1 = new File("C:\\Users\\Ricardo Fanghella\\Documents\\Proyecto\\presupuesto.docx"); //Donde voy a guardar el archivo
+            //String remoteFile1 = "presupuesto.docx"; //Solo se coloca el nombre del archivo, no hace falta con la ruta completa
+            File downloadFile1 = new File(localFilePath); //Donde voy a guardar el archivo
             OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
             boolean success = client.retrieveFile(remoteFile1, outputStream1);
             outputStream1.close();
