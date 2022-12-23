@@ -6,12 +6,15 @@ import java.io.IOException;
 import java.io.FileInputStream; // Abrir y leer el fichero
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;  
+import org.apache.commons.net.ftp.FTPFile;
 
 public class FTPConnection {
     
@@ -130,4 +133,21 @@ public class FTPConnection {
         }
     }
     
+    public ArrayList<Object[]> llenar_array_archivos_raiz(){
+        ArrayList<Object[]> lista_archivos = new ArrayList<Object[]>();
+        try {
+                client.enterLocalPassiveMode();
+                client.setFileType(FTP.BINARY_FILE_TYPE);
+
+                FTPFile[] archivos = client.listFiles();
+                for (FTPFile archivo : archivos) {
+                    Object[]info = new Object[]{archivo.getName(),String.valueOf(archivo.getSize())};     
+                    lista_archivos.add(info);
+                }
+                return lista_archivos;
+        } catch (IOException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        return lista_archivos;
+    } 
 }
