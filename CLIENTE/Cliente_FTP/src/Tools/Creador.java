@@ -21,7 +21,7 @@ public class Creador {
     Buscador bus = new Buscador();
     
     public ArrayList<Object[]> create_ArrayList_Table_Menu(){
-        FTPConnection nuevo = new FTPConnection(new FTPClient(), "192.168.0.103", "Angel", "redes");
+        FTPConnection nuevo = new FTPConnection(new FTPClient(), "192.168.0.104", "Angel", "redes");
         nuevo.conectar();
         //ArrayList de los Archivos en la nube
         ArrayList<Object[]> lista_archivos = new ArrayList<Object[]>();

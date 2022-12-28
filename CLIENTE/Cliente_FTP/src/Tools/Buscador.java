@@ -17,7 +17,7 @@ public class Buscador {
         
     public ArrayList<Object[]> create_ArrayList_Table_Menu(String nombre_Nube){
         //El nombre de la nube puede ser el usuario como tal
-        FTPConnection nuevo = new FTPConnection(new FTPClient(), "192.168.0.103", "Angel", "redes");
+        FTPConnection nuevo = new FTPConnection(new FTPClient(), "192.168.0.104", "Angel", "redes");
         nuevo.conectar();
         //ArrayList de los Archivos en la nube
         ArrayList<Object[]> lista_archivos = new ArrayList<Object[]>();

@@ -19,6 +19,7 @@ public class Menu extends javax.swing.JFrame {
     
     Creador crea = new Creador();
     DefaultTableModel model;
+    String nombre_nube;
     
     /**
      * Creates new form Menu
@@ -50,6 +51,12 @@ public class Menu extends javax.swing.JFrame {
         for (int i=0; i<lista_nubes.size();i++){            
             jComboBoxNubes.addItem(lista_nubes.get(i));
         }
+        
+        //Info de lo que hace el boton
+        btn_upload.setToolTipText("Cargar archivo");
+        btn_add_folder.setToolTipText("Crear carpeta");
+        Atras.setToolTipText("Cerrar sesión");
+        
     }
     
     
@@ -64,13 +71,14 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         Atras = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         Logo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         btn_upload = new javax.swing.JButton();
-        btn_option = new javax.swing.JButton();
+        btn_add_folder = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_Archivos = new javax.swing.JTable();
         boton_AggPersona = new javax.swing.JButton();
@@ -99,6 +107,21 @@ public class Menu extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 40, 30));
+
+        jPanel5.setBackground(new java.awt.Color(205, 205, 205));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 660, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 660, 20));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -137,24 +160,24 @@ public class Menu extends javax.swing.JFrame {
                 btn_uploadActionPerformed(evt);
             }
         });
-        jPanel3.add(btn_upload, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 10, 100, 60));
+        jPanel3.add(btn_upload, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, -10, 100, 70));
 
-        btn_option.setBackground(new java.awt.Color(10, 144, 203));
-        btn_option.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btn_option.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/options_icon.png"))); // NOI18N
-        btn_option.setBorder(null);
-        btn_option.setBorderPainted(false);
-        btn_option.setContentAreaFilled(false);
-        btn_option.setFocusPainted(false);
-        btn_option.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/options_icon_G.png"))); // NOI18N
-        btn_option.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/options_icon_G.png"))); // NOI18N
-        btn_option.setVerifyInputWhenFocusTarget(false);
-        btn_option.addActionListener(new java.awt.event.ActionListener() {
+        btn_add_folder.setBackground(new java.awt.Color(10, 144, 203));
+        btn_add_folder.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btn_add_folder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/add_folder.png"))); // NOI18N
+        btn_add_folder.setBorder(null);
+        btn_add_folder.setBorderPainted(false);
+        btn_add_folder.setContentAreaFilled(false);
+        btn_add_folder.setFocusPainted(false);
+        btn_add_folder.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/add_folder_G.png"))); // NOI18N
+        btn_add_folder.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/add_folder_G.png"))); // NOI18N
+        btn_add_folder.setVerifyInputWhenFocusTarget(false);
+        btn_add_folder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_optionActionPerformed(evt);
+                btn_add_folderActionPerformed(evt);
             }
         });
-        jPanel3.add(btn_option, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 110, 70));
+        jPanel3.add(btn_add_folder, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, -10, 110, 70));
 
         jTable_Archivos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -179,7 +202,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTable_Archivos);
 
-        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 530, 140));
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 530, 140));
 
         boton_AggPersona.setBackground(new java.awt.Color(235, 235, 235));
         boton_AggPersona.setFont(new java.awt.Font("Cooper Black", 0, 12)); // NOI18N
@@ -193,7 +216,7 @@ public class Menu extends javax.swing.JFrame {
                 jComboBoxNubesItemStateChanged(evt);
             }
         });
-        jPanel3.add(jComboBoxNubes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 160, -1));
+        jPanel3.add(jComboBoxNubes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 160, -1));
 
         jTextFieldNube.setText("jTextField1");
         jPanel3.add(jTextFieldNube, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, 120, -1));
@@ -201,7 +224,7 @@ public class Menu extends javax.swing.JFrame {
         jTextFieldNube1.setText("jTextField1");
         jPanel3.add(jTextFieldNube1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 120, -1));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 660, 430));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 660, 430));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -230,10 +253,9 @@ public class Menu extends javax.swing.JFrame {
     private void btn_uploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_uploadActionPerformed
         
         if (jComboBoxNubes.getSelectedIndex() != 0){
-            JFileChooserMain open = null;
-            open = new JFileChooserMain();
+            Load_file open = null;
+            open = new Load_file(this,true);
             open.setVisible(true);
-            this.dispose();
         }else{
             JOptionPane.showMessageDialog(null, "Para poder CARGAR, primero debe seleccionar la nube.", "Precaución 👀",JOptionPane.WARNING_MESSAGE);
         }
@@ -241,26 +263,33 @@ public class Menu extends javax.swing.JFrame {
        
     }//GEN-LAST:event_btn_uploadActionPerformed
 
-    private void btn_optionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_optionActionPerformed
+    private void btn_add_folderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_add_folderActionPerformed
 //        crearConexionFTP open = null;
 //        open = new crearConexionFTP();
 //        open.setVisible(true);
 //        this.dispose();
-    }//GEN-LAST:event_btn_optionActionPerformed
+    }//GEN-LAST:event_btn_add_folderActionPerformed
 
     private void jTable_ArchivosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_ArchivosMouseClicked
         StringHandling localFile = new StringHandling();
         
         model = (DefaultTableModel) jTable_Archivos.getModel();
-        String nombre_File = model.getValueAt(jTable_Archivos.getSelectedRow(), 0).toString();
-        String peso_File = model.getValueAt(jTable_Archivos.getSelectedRow(), 1).toString();
+        String nombre_file = model.getValueAt(jTable_Archivos.getSelectedRow(), 0).toString();
+        String peso_file = model.getValueAt(jTable_Archivos.getSelectedRow(), 1).toString();        
+        String type_file = model.getValueAt(jTable_Archivos.getSelectedRow(), 2).toString();
 
-        jTextFieldNube.setText(localFile.getFileName_OR_Type(nombre_File,1));           
-        jTextFieldNube1.setText(peso_File);
+
+        jTextFieldNube.setText(localFile.getFileName_OR_Type(nombre_file,1));           
+        jTextFieldNube1.setText(type_file);
         
+ 
         
-        String file_type = localFile.getFileName_OR_Type(nombre_File,0);
-        jTextFieldNube1.setText(file_type);  
+ 
+        Modal_file_options open = null;
+        open = new Modal_file_options(this,true,nombre_file+type_file,nombre_nube);
+        open.setVisible(true);
+
+        
 
     }//GEN-LAST:event_jTable_ArchivosMouseClicked
 
@@ -269,9 +298,9 @@ public class Menu extends javax.swing.JFrame {
         if (jComboBoxNubes.getSelectedIndex() > 0){
             
             //Aca llanaremos la Tabla con los archivos de la nube que el usuario selecciono
-            String obtener =  jComboBoxNubes.getSelectedItem().toString();
+            nombre_nube =  jComboBoxNubes.getSelectedItem().toString();
             
-            crea.add_Info_Table_Menu(model,jTable_Archivos, obtener);
+            crea.add_Info_Table_Menu(model,jTable_Archivos, nombre_nube);
             
             
 //            jTextFieldNube.setText(obtener);
@@ -318,7 +347,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton Atras;
     private javax.swing.JLabel Logo;
     private javax.swing.JButton boton_AggPersona;
-    private javax.swing.JButton btn_option;
+    private javax.swing.JButton btn_add_folder;
     private javax.swing.JButton btn_upload;
     private javax.swing.JComboBox<String> jComboBoxNubes;
     private javax.swing.JLabel jLabel1;
@@ -326,6 +355,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable_Archivos;
     private javax.swing.JTextField jTextFieldNube;

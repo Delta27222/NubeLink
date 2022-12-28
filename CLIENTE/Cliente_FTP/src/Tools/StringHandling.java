@@ -65,7 +65,7 @@ public class StringHandling {
             return fileName;
         }else{
             for (int i = 0; i <file.length (); i++) { 
-                char c = file.charAt(i); System.out.println (c);
+                char c = file.charAt(i); 
 
                 if (String.valueOf(c).equals(".")){
                     break;

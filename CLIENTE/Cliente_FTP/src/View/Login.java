@@ -6,6 +6,7 @@
 package View;
 
 import Tools.FTPConnection;
+import java.awt.Color;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import org.apache.commons.net.ftp.FTPClient;
@@ -23,6 +24,9 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
+                
+        //Info de lo que hace el boton
+        Atras.setToolTipText("Cerrar aplicación");
     }
    
     /**
@@ -47,7 +51,7 @@ public class Login extends javax.swing.JFrame {
         Salir = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         Salir2 = new javax.swing.JLabel();
-        btnACEPTAR = new javax.swing.JButton();
+        btn_login = new javax.swing.JButton();
         Atras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -197,25 +201,33 @@ public class Login extends javax.swing.JFrame {
 
         jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 40, 40));
 
-        btnACEPTAR.setBackground(new java.awt.Color(10, 130, 203));
-        btnACEPTAR.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btnACEPTAR.setForeground(new java.awt.Color(0, 0, 0));
-        btnACEPTAR.setText("LOGIN");
-        btnACEPTAR.setToolTipText("");
-        btnACEPTAR.setBorderPainted(false);
-        btnACEPTAR.setContentAreaFilled(false);
-        btnACEPTAR.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnACEPTAR.setFocusPainted(false);
-        btnACEPTAR.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnACEPTAR.setName(""); // NOI18N
-        btnACEPTAR.setOpaque(true);
-        btnACEPTAR.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnACEPTAR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnACEPTARActionPerformed(evt);
+        btn_login.setBackground(new java.awt.Color(10, 130, 203));
+        btn_login.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btn_login.setForeground(new java.awt.Color(0, 0, 0));
+        btn_login.setText("LOGIN");
+        btn_login.setToolTipText("");
+        btn_login.setBorderPainted(false);
+        btn_login.setContentAreaFilled(false);
+        btn_login.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_login.setFocusPainted(false);
+        btn_login.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_login.setName(""); // NOI18N
+        btn_login.setOpaque(true);
+        btn_login.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_login.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btn_loginMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btn_loginMouseExited(evt);
             }
         });
-        jPanel2.add(btnACEPTAR, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 260, 50));
+        btn_login.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_loginActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btn_login, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 260, 50));
 
         Atras.setBackground(new java.awt.Color(10, 144, 203));
         Atras.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -258,7 +270,7 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Password_fieldActionPerformed
 
-    private void btnACEPTARActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnACEPTARActionPerformed
+    private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
         // TODO add your handling code here:
         String username_field_string = this.Username_field.getText();
         String password_field_string = this.Password_field.getText();
@@ -271,7 +283,7 @@ public class Login extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "No se encuentra registrado en el sistema", "mensaje",JOptionPane.INFORMATION_MESSAGE);
         }
-    }//GEN-LAST:event_btnACEPTARActionPerformed
+    }//GEN-LAST:event_btn_loginActionPerformed
 
     private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
         int respuesta= JOptionPane.showConfirmDialog(null,"Seguro quiere salir del sistema?","Salir",JOptionPane.YES_NO_OPTION);
@@ -279,6 +291,14 @@ public class Login extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_AtrasActionPerformed
+
+    private void btn_loginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_loginMouseEntered
+        btn_login.setBackground(new Color(8,105,165));
+    }//GEN-LAST:event_btn_loginMouseEntered
+
+    private void btn_loginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_loginMouseExited
+        btn_login.setBackground(new Color(10,130,203));
+    }//GEN-LAST:event_btn_loginMouseExited
 
     /**
      * @param args the command line arguments
@@ -321,7 +341,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel Salir;
     private javax.swing.JLabel Salir2;
     private LIB.JTexfieldPH_FielTex Username_field;
-    private javax.swing.JButton btnACEPTAR;
+    private javax.swing.JButton btn_login;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
