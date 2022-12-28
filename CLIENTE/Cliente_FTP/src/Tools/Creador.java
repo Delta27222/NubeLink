@@ -21,7 +21,7 @@ public class Creador {
     Buscador bus = new Buscador();
     
     public ArrayList<Object[]> create_ArrayList_Table_Menu(){
-        FTPConnection nuevo = new FTPConnection(new FTPClient(), "192.168.0.102", "Angel", "redes");
+        FTPConnection nuevo = new FTPConnection(new FTPClient(), "192.168.0.103", "Angel", "redes");
         nuevo.conectar();
         //ArrayList de los Archivos en la nube
         ArrayList<Object[]> lista_archivos = new ArrayList<Object[]>();
@@ -33,9 +33,9 @@ public class Creador {
         return lista_archivos;
     }
     
-    public void add_Info_Table_Menu(DefaultTableModel model,JTable Table){
+    public void add_Info_Table_Menu(DefaultTableModel model,JTable Table, String nombre_Nube){
         model = (DefaultTableModel) Table.getModel();
-        Object[] newIdentifiers = new Object[]{"Nombre Archivo","Peso"};
+        Object[] newIdentifiers = new Object[]{"Nombre Archivo","Peso", "Type"};
         model.setColumnIdentifiers(newIdentifiers);
         Table.setFillsViewportHeight(true);
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -45,7 +45,7 @@ public class Creador {
         }        
         
         ArrayList<Object[]> archivos = new  ArrayList<Object[]>();
-        archivos = bus.create_ArrayList_Table_Menu();
+        archivos = bus.create_ArrayList_Table_Menu(nombre_Nube);
         
         for (Object []archivo : archivos) {
             model.addRow(archivo);

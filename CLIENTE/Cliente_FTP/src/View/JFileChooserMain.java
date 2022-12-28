@@ -6,7 +6,7 @@
 package View;
 
 
-import Model.ManejoString;
+import Tools.StringHandling;
 import Tools.FTPConnection;
 import java.io.File;
 import javax.swing.JFileChooser;
@@ -176,7 +176,7 @@ public class JFileChooserMain extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_abrirActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        ManejoString localFile = new ManejoString();
+        StringHandling localFile = new StringHandling();
         String file_dir = this.ruta.getText();
         String file_name = localFile.getFileName(file_dir);
 

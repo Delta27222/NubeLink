@@ -6,6 +6,7 @@
 package View;
 
 import Tools.Creador;
+import Tools.StringHandling;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -26,9 +27,32 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         this.setLocationRelativeTo(null);
-        
-        crea.add_Info_Table_Menu(model,jTable_Archivos);
+        llenando_JComboBox();
     }
+    
+    
+    public void llenando_JComboBox(){
+        ArrayList<String> lista_nubes = new ArrayList<String>();
+
+        //crea.add_Info_Table_Menu(model,jTable_Archivos);
+        String info1 = new String("UCAB");             
+        String info2 = new String("UCV");     
+        String info3 = new String("UBV");     
+        String info4 = new String("UNIMET");     
+              
+        //Sacar de algun lugar los nombres de las nubes que se encuentran disponibles
+        lista_nubes.add(info1);        
+        lista_nubes.add(info2);
+        lista_nubes.add(info3);
+        lista_nubes.add(info4);
+        
+        //Para poder hacer el llenado del combo box
+        for (int i=0; i<lista_nubes.size();i++){            
+            jComboBoxNubes.addItem(lista_nubes.get(i));
+        }
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -50,6 +74,9 @@ public class Menu extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_Archivos = new javax.swing.JTable();
         boton_AggPersona = new javax.swing.JButton();
+        jComboBoxNubes = new javax.swing.JComboBox<>();
+        jTextFieldNube = new javax.swing.JTextField();
+        jTextFieldNube1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -127,7 +154,7 @@ public class Menu extends javax.swing.JFrame {
                 btn_optionActionPerformed(evt);
             }
         });
-        jPanel3.add(btn_option, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 0, 110, 70));
+        jPanel3.add(btn_option, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 110, 70));
 
         jTable_Archivos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -136,7 +163,15 @@ public class Menu extends javax.swing.JFrame {
             new String [] {
                 "Nombre Archivo", "Peso"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTable_Archivos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable_ArchivosMouseClicked(evt);
@@ -144,18 +179,27 @@ public class Menu extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTable_Archivos);
 
-        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 530, 140));
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 530, 140));
 
         boton_AggPersona.setBackground(new java.awt.Color(235, 235, 235));
         boton_AggPersona.setFont(new java.awt.Font("Cooper Black", 0, 12)); // NOI18N
         boton_AggPersona.setText("Agregar");
         boton_AggPersona.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        boton_AggPersona.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                boton_AggPersonaActionPerformed(evt);
+        jPanel3.add(boton_AggPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, 90, 27));
+
+        jComboBoxNubes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione la Nube" }));
+        jComboBoxNubes.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxNubesItemStateChanged(evt);
             }
         });
-        jPanel3.add(boton_AggPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 90, 27));
+        jPanel3.add(jComboBoxNubes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, 160, -1));
+
+        jTextFieldNube.setText("jTextField1");
+        jPanel3.add(jTextFieldNube, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, 120, -1));
+
+        jTextFieldNube1.setText("jTextField1");
+        jPanel3.add(jTextFieldNube1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 120, -1));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 660, 430));
 
@@ -184,10 +228,17 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_AtrasActionPerformed
 
     private void btn_uploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_uploadActionPerformed
-        JFileChooserMain open = null;
-        open = new JFileChooserMain();
-        open.setVisible(true);
-        this.dispose();
+        
+        if (jComboBoxNubes.getSelectedIndex() != 0){
+            JFileChooserMain open = null;
+            open = new JFileChooserMain();
+            open.setVisible(true);
+            this.dispose();
+        }else{
+            JOptionPane.showMessageDialog(null, "Para poder CARGAR, primero debe seleccionar la nube.", "Precaución 👀",JOptionPane.WARNING_MESSAGE);
+        }
+        
+       
     }//GEN-LAST:event_btn_uploadActionPerformed
 
     private void btn_optionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_optionActionPerformed
@@ -198,14 +249,35 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_optionActionPerformed
 
     private void jTable_ArchivosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_ArchivosMouseClicked
+        StringHandling localFile = new StringHandling();
+        
         model = (DefaultTableModel) jTable_Archivos.getModel();
-        String CI = model.getValueAt(jTable_Archivos.getSelectedRow(), 0).toString();
+        String nombre_File = model.getValueAt(jTable_Archivos.getSelectedRow(), 0).toString();
+        String peso_File = model.getValueAt(jTable_Archivos.getSelectedRow(), 1).toString();
+
+        jTextFieldNube.setText(localFile.getFileName_OR_Type(nombre_File,1));           
+        jTextFieldNube1.setText(peso_File);
+        
+        
+        String file_type = localFile.getFileName_OR_Type(nombre_File,0);
+        jTextFieldNube1.setText(file_type);  
 
     }//GEN-LAST:event_jTable_ArchivosMouseClicked
 
-    private void boton_AggPersonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_AggPersonaActionPerformed
-
-    }//GEN-LAST:event_boton_AggPersonaActionPerformed
+    private void jComboBoxNubesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxNubesItemStateChanged
+        // TODO add your handling code here:
+        if (jComboBoxNubes.getSelectedIndex() > 0){
+            
+            //Aca llanaremos la Tabla con los archivos de la nube que el usuario selecciono
+            String obtener =  jComboBoxNubes.getSelectedItem().toString();
+            
+            crea.add_Info_Table_Menu(model,jTable_Archivos, obtener);
+            
+            
+//            jTextFieldNube.setText(obtener);
+//            System.out.println(jComboBoxNubes.getSelectedIndex());
+        }
+    }//GEN-LAST:event_jComboBoxNubesItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -248,6 +320,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton boton_AggPersona;
     private javax.swing.JButton btn_option;
     private javax.swing.JButton btn_upload;
+    private javax.swing.JComboBox<String> jComboBoxNubes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -255,5 +328,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable_Archivos;
+    private javax.swing.JTextField jTextFieldNube;
+    private javax.swing.JTextField jTextFieldNube1;
     // End of variables declaration//GEN-END:variables
 }

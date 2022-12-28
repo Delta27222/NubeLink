@@ -135,13 +135,17 @@ public class FTPConnection {
     
     public ArrayList<Object[]> llenar_array_archivos_raiz(){
         ArrayList<Object[]> lista_archivos = new ArrayList<Object[]>();
+        StringHandling localFile = new StringHandling();
+        
         try {
                 client.enterLocalPassiveMode();
                 client.setFileType(FTP.BINARY_FILE_TYPE);
 
                 FTPFile[] archivos = client.listFiles();
                 for (FTPFile archivo : archivos) {
-                    Object[]info = new Object[]{archivo.getName(),String.valueOf(archivo.getSize())};     
+                    
+                    String file_type = localFile.getFileName_OR_Type(archivo.getName(),0);
+                    Object[]info = new Object[]{localFile.getFileName_OR_Type(archivo.getName(), 1),String.valueOf(archivo.getSize()),"."+file_type};     
                     lista_archivos.add(info);
                 }
                 return lista_archivos;
