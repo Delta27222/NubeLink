@@ -3,14 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Angel/Desktop/PROYECTO_REDES/NubeLink/CLIENTE/Cliente_FTP/src/View/Modal_file_options.java</file>
             <file>file:/C:/Users/Angel/Desktop/PROYECTO_REDES/NubeLink/CLIENTE/Cliente_FTP/src/View/Load_file.java</file>
-            <file>file:/C:/Users/Angel/Desktop/PROYECTO_REDES/NubeLink/CLIENTE/Cliente_FTP/src/Tools/StringHandling.java</file>
+            <file>file:/C:/Users/Angel/Desktop/PROYECTO_REDES/NubeLink/CLIENTE/Cliente_FTP/src/View/Download_file.java</file>
             <file>file:/C:/Users/Angel/Desktop/PROYECTO_REDES/NubeLink/CLIENTE/Cliente_FTP/src/View/Menu.java</file>
-            <file>file:/C:/Users/Angel/Desktop/PROYECTO_REDES/NubeLink/CLIENTE/Cliente_FTP/src/Model/main.java</file>
-            <file>file:/C:/Users/Angel/Desktop/PROYECTO_REDES/NubeLink/CLIENTE/Cliente_FTP/src/Tools/Buscador.java</file>
-            <file>file:/C:/Users/Angel/Desktop/PROYECTO_REDES/NubeLink/CLIENTE/Cliente_FTP/src/Tools/Creador.java</file>
-            <file>file:/C:/Users/Angel/Desktop/PROYECTO_REDES/NubeLink/CLIENTE/Cliente_FTP/src/View/Login.java</file>
+            <file>file:/C:/Users/Angel/Desktop/PROYECTO_REDES/NubeLink/CLIENTE/Cliente_FTP/src/View/Create_folder.java</file>
         </group>
     </open-files>
 </project-private>

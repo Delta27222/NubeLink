@@ -297,6 +297,16 @@ public class Create_folder extends javax.swing.JDialog {
                 //Tambien hay que verificar si ya existe una carpeta con ese nombre
                 //DUDA-> Donde se esta creando la carpeta? En el servidor o en la maquina del cliente?? Lo estoy haciendo para que se pueda crear desde la maquina del CLIENTE
                 
+                //Me imagino que es que se cree una carpeta en el servidor, pero que ladilla xd
+                
+                File directorio = new File(fRuta+"/"+folder_Name);
+                if (!directorio.exists()) {
+                    if (directorio.mkdirs()) {
+                        JOptionPane.showMessageDialog(null, "Directorio creado.", "Exito",JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error al crear el directorio.", "Error 👀",JOptionPane.ERROR_MESSAGE);
+                    }
+                }
                 this.dispose();
             }else{
                 JOptionPane.showMessageDialog(null, "La ruta especificada no es permitida.", "Precaución 👀",JOptionPane.WARNING_MESSAGE);
