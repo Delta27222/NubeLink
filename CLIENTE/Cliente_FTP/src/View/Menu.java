@@ -28,37 +28,13 @@ public class Menu extends javax.swing.JFrame {
     public Menu() {
         initComponents();
         this.setLocationRelativeTo(null);
-        llenando_JComboBox();
-    }
-    
-    
-    public void llenando_JComboBox(){
-        ArrayList<String> lista_nubes = new ArrayList<String>();
-
-        //crea.add_Info_Table_Menu(model,jTable_Archivos);
-        String info1 = new String("UCAB");             
-        String info2 = new String("UCV");     
-        String info3 = new String("UBV");     
-        String info4 = new String("UNIMET");     
-              
-        //Sacar de algun lugar los nombres de las nubes que se encuentran disponibles
-        lista_nubes.add(info1);        
-        lista_nubes.add(info2);
-        lista_nubes.add(info3);
-        lista_nubes.add(info4);
-        
-        //Para poder hacer el llenado del combo box
-        for (int i=0; i<lista_nubes.size();i++){            
-            jComboBoxNubes.addItem(lista_nubes.get(i));
-        }
+        crea.llenando_JComboBox_Nubes(jComboBoxNubes);
         
         //Info de lo que hace el boton
         btn_upload.setToolTipText("Cargar archivo");
         btn_add_folder.setToolTipText("Crear carpeta");
         Atras.setToolTipText("Cerrar sesión");
-        
     }
-    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -81,10 +57,7 @@ public class Menu extends javax.swing.JFrame {
         btn_add_folder = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_Archivos = new javax.swing.JTable();
-        boton_AggPersona = new javax.swing.JButton();
         jComboBoxNubes = new javax.swing.JComboBox<>();
-        jTextFieldNube = new javax.swing.JTextField();
-        jTextFieldNube1 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -204,27 +177,21 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 530, 140));
 
-        boton_AggPersona.setBackground(new java.awt.Color(235, 235, 235));
-        boton_AggPersona.setFont(new java.awt.Font("Cooper Black", 0, 12)); // NOI18N
-        boton_AggPersona.setText("Agregar");
-        boton_AggPersona.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel3.add(boton_AggPersona, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 360, 90, 27));
-
+        jComboBoxNubes.setBackground(new java.awt.Color(205, 205, 205));
         jComboBoxNubes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione la Nube" }));
         jComboBoxNubes.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 jComboBoxNubesItemStateChanged(evt);
             }
         });
+        jComboBoxNubes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxNubesActionPerformed(evt);
+            }
+        });
         jPanel3.add(jComboBoxNubes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 160, -1));
 
-        jTextFieldNube.setText("jTextField1");
-        jPanel3.add(jTextFieldNube, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, 120, -1));
-
-        jTextFieldNube1.setText("jTextField1");
-        jPanel3.add(jTextFieldNube1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 390, 120, -1));
-
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 660, 430));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 660, 310));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -264,10 +231,9 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_uploadActionPerformed
 
     private void btn_add_folderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_add_folderActionPerformed
-//        crearConexionFTP open = null;
-//        open = new crearConexionFTP();
-//        open.setVisible(true);
-//        this.dispose();
+        Create_folder open = null;
+        open = new Create_folder(this,true);
+        open.setVisible(true);
     }//GEN-LAST:event_btn_add_folderActionPerformed
 
     private void jTable_ArchivosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_ArchivosMouseClicked
@@ -278,19 +244,13 @@ public class Menu extends javax.swing.JFrame {
         String peso_file = model.getValueAt(jTable_Archivos.getSelectedRow(), 1).toString();        
         String type_file = model.getValueAt(jTable_Archivos.getSelectedRow(), 2).toString();
 
-
-        jTextFieldNube.setText(localFile.getFileName_OR_Type(nombre_file,1));           
-        jTextFieldNube1.setText(type_file);
-        
- 
-        
- 
+//
+//        jTextFieldNube.setText(localFile.getFileName_OR_Type(nombre_file,1));           
+//        jTextFieldNube1.setText(type_file);
+//        
         Modal_file_options open = null;
         open = new Modal_file_options(this,true,nombre_file+type_file,nombre_nube);
         open.setVisible(true);
-
-        
-
     }//GEN-LAST:event_jTable_ArchivosMouseClicked
 
     private void jComboBoxNubesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxNubesItemStateChanged
@@ -307,6 +267,10 @@ public class Menu extends javax.swing.JFrame {
 //            System.out.println(jComboBoxNubes.getSelectedIndex());
         }
     }//GEN-LAST:event_jComboBoxNubesItemStateChanged
+
+    private void jComboBoxNubesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxNubesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxNubesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -346,7 +310,6 @@ public class Menu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Atras;
     private javax.swing.JLabel Logo;
-    private javax.swing.JButton boton_AggPersona;
     private javax.swing.JButton btn_add_folder;
     private javax.swing.JButton btn_upload;
     private javax.swing.JComboBox<String> jComboBoxNubes;
@@ -358,7 +321,5 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable_Archivos;
-    private javax.swing.JTextField jTextFieldNube;
-    private javax.swing.JTextField jTextFieldNube1;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,12 +7,16 @@ package View;
 
 import java.awt.Color;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Angel
  */
 public class Modal_file_options extends javax.swing.JDialog {
+    
+    String file_Name;
+    String nube_Name;
 
     /**
      * Creates new form 
@@ -21,21 +25,24 @@ public class Modal_file_options extends javax.swing.JDialog {
     public Modal_file_options(JFrame padre, boolean modo) {
         super(padre,modo);
         initComponents();
-        
+        this.setLocationRelativeTo(null);
                 
         btn_download.setToolTipText("Descargar");
         btn_delete.setToolTipText("Eliminar");
         btn_share.setToolTipText("Compartir");
     }
     
-    public Modal_file_options(JFrame padre, boolean modo, String nombre_file, String nombre_nube) {
+    public Modal_file_options(JFrame padre, boolean modo, String fileName, String nubeName) {
         super(padre,modo);
         initComponents();
         this.setLocationRelativeTo(null);
         
+        this.file_Name = fileName;
+        this.nube_Name = nubeName;
+        
         //Colocamos el nombre del Archivo y de la Nube
-        jLabel_NameFile.setText("Archivo: "+nombre_file);
-        jLabel_NameNube.setText("Nube: "+nombre_nube);
+        jLabel_NameFile.setText("Archivo: "+file_Name);
+        jLabel_NameNube.setText("Nube: "+nube_Name);
         
         //Info de lo que hace el boton
         btn_download.setToolTipText("Descargar");
@@ -218,16 +225,27 @@ public class Modal_file_options extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_AtrasActionPerformed
 
-    private void btn_downloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_downloadActionPerformed
-    }//GEN-LAST:event_btn_downloadActionPerformed
-
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
-        // TODO add your handling code here:
+        int respuesta= JOptionPane.showConfirmDialog(null,"Seguro desea borrar el archivo de nombre '"+file_Name+"' de esta nube?","Borrar archivo",JOptionPane.YES_NO_OPTION);
+        if (respuesta == 0){
+
+            //Aca va la logica para eliminar el archivo, y luego se cierra esta pantalla
+            
+            this.dispose();
+        }
     }//GEN-LAST:event_btn_deleteActionPerformed
 
     private void btn_shareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_shareActionPerformed
-        // TODO add your handling code here:
+        Share_file open = null;
+        open = new Share_file(this,true,this.file_Name,this.nube_Name);
+        open.setVisible(true);
     }//GEN-LAST:event_btn_shareActionPerformed
+
+    private void btn_downloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_downloadActionPerformed
+        Download_file open = null;
+        open = new Download_file(this,true,this.file_Name,this.nube_Name);
+        open.setVisible(true);
+    }//GEN-LAST:event_btn_downloadActionPerformed
 
     /**
      * @param args the command line arguments

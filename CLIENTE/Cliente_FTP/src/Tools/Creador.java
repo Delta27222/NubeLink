@@ -6,6 +6,7 @@
 package Tools;
 
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -51,5 +52,47 @@ public class Creador {
             model.addRow(archivo);
         }
        Table.setModel(model);
+    }
+    
+    public void llenando_JComboBox_Nubes(JComboBox jComboBoxNubes){
+        ArrayList<String> lista_nubes = new ArrayList<String>();
+
+        //crea.add_Info_Table_Menu(model,jTable_Archivos);
+        String info1 = new String("UCAB");             
+        String info2 = new String("UCV");     
+        String info3 = new String("UBV");     
+        String info4 = new String("UNIMET");     
+              
+        //Sacar de algun lugar los nombres de las nubes que se encuentran disponibles
+        lista_nubes.add(info1);        
+        lista_nubes.add(info2);
+        lista_nubes.add(info3);
+        lista_nubes.add(info4);
+        
+        //Para poder hacer el llenado del combo box
+        for (int i=0; i<lista_nubes.size();i++){            
+            jComboBoxNubes.addItem(lista_nubes.get(i));
+        }
+    }
+    
+    public void llenando_JComboBox_Users(JComboBox jComboBoxUser){
+        ArrayList<String> lista_users = new ArrayList<String>();
+
+        //crea.add_Info_Table_Menu(model,jTable_Archivos);
+        String info1 = new String("Angel");             
+        String info2 = new String("Javier");     
+        String info3 = new String("Carlos");     
+        String info4 = new String("Miguel");     
+              
+        //Sacar de algun lugar los nombres de las nubes que se encuentran disponibles
+        lista_users.add(info1);        
+        lista_users.add(info2);
+        lista_users.add(info3);
+        lista_users.add(info4);
+        
+        //Para poder hacer el llenado del combo box
+        for (int i=0; i<lista_users.size();i++){            
+            jComboBoxUser.addItem(lista_users.get(i));
+        }
     }
 }

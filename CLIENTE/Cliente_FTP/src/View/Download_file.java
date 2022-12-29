@@ -5,10 +5,9 @@
  */
 package View;
 
-import Tools.FTPConnection;
-import Tools.StringHandling;
 import java.awt.Color;
 import java.io.File;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -17,20 +16,29 @@ import javax.swing.JOptionPane;
  *
  * @author Angel
  */
-public class Load_file extends javax.swing.JDialog {
+public class Download_file extends javax.swing.JDialog {
+    
+    String file_Name;
+    String nube_Name;
 
     /**
-     * Creates new form Load_file
+     * Creates new form Download_file
      */
-    public Load_file(JFrame padre, boolean modo) {
+    public Download_file(JFrame padre, boolean modo) {
+        super(padre, modo);
+        initComponents();
+    }
+    
+    public Download_file(JDialog padre, boolean modo, String fileName, String nubeName) {
         super(padre, modo);
         initComponents();
         this.setLocationRelativeTo(null);
         
+        this.file_Name = fileName;
+        this.nube_Name = nubeName;
         
-        btn_abrir.setToolTipText("Explorador de archivos");
-        btn_cargar.setToolTipText("Cargar archivo");
-        Atras.setToolTipText("Volver");
+        jLabel_NameFile.setText("Archivo: "+file_Name);        
+        jLabel_NameNube.setText("Nube: "+nube_Name);
     }
 
     /**
@@ -47,9 +55,11 @@ public class Load_file extends javax.swing.JDialog {
         jPanel5 = new javax.swing.JPanel();
         ruta = new LIB.JTexfieldPH_FielTex();
         btn_abrir = new javax.swing.JButton();
-        btn_cargar = new javax.swing.JButton();
+        btn_descargar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         Atras = new javax.swing.JButton();
+        jLabel_NameFile = new javax.swing.JLabel();
+        jLabel_NameNube = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -71,7 +81,7 @@ public class Load_file extends javax.swing.JDialog {
         ruta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         ruta.setOpaque(false);
         ruta.setPhColor(new java.awt.Color(10, 144, 203));
-        ruta.setPlaceholder("Ruta de archivo");
+        ruta.setPlaceholder("Ruta descarga");
         ruta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rutaActionPerformed(evt);
@@ -90,9 +100,9 @@ public class Load_file extends javax.swing.JDialog {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addContainerGap()
                 .addComponent(ruta, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(10, 10, 10))
         );
 
         jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 220, 40));
@@ -125,33 +135,33 @@ public class Load_file extends javax.swing.JDialog {
         });
         jPanel3.add(btn_abrir, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 90, 40));
 
-        btn_cargar.setBackground(new java.awt.Color(10, 130, 203));
-        btn_cargar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btn_cargar.setForeground(new java.awt.Color(0, 0, 0));
-        btn_cargar.setText("Cargar");
-        btn_cargar.setToolTipText("");
-        btn_cargar.setBorderPainted(false);
-        btn_cargar.setContentAreaFilled(false);
-        btn_cargar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btn_cargar.setFocusPainted(false);
-        btn_cargar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_cargar.setName(""); // NOI18N
-        btn_cargar.setOpaque(true);
-        btn_cargar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btn_cargar.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_descargar.setBackground(new java.awt.Color(10, 130, 203));
+        btn_descargar.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        btn_descargar.setForeground(new java.awt.Color(0, 0, 0));
+        btn_descargar.setText("Descargar");
+        btn_descargar.setToolTipText("");
+        btn_descargar.setBorderPainted(false);
+        btn_descargar.setContentAreaFilled(false);
+        btn_descargar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_descargar.setFocusPainted(false);
+        btn_descargar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_descargar.setName(""); // NOI18N
+        btn_descargar.setOpaque(true);
+        btn_descargar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_descargar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_cargarMouseEntered(evt);
+                btn_descargarMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_cargarMouseExited(evt);
+                btn_descargarMouseExited(evt);
             }
         });
-        btn_cargar.addActionListener(new java.awt.event.ActionListener() {
+        btn_descargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_cargarActionPerformed(evt);
+                btn_descargarActionPerformed(evt);
             }
         });
-        jPanel3.add(btn_cargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 90, 40));
+        jPanel3.add(btn_descargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 120, 40));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 400, 140));
 
@@ -187,6 +197,16 @@ public class Load_file extends javax.swing.JDialog {
         });
         jPanel1.add(Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 30, 30));
 
+        jLabel_NameFile.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        jLabel_NameFile.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_NameFile.setText("FileName");
+        jPanel1.add(jLabel_NameFile, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 210, -1));
+
+        jLabel_NameNube.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        jLabel_NameNube.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_NameNube.setText("NubeName");
+        jPanel1.add(jLabel_NameNube, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 210, -1));
+
         jLabel4.setBackground(new java.awt.Color(10, 144, 203));
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -195,10 +215,11 @@ public class Load_file extends javax.swing.JDialog {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 400, 10));
 
         jLabel3.setBackground(new java.awt.Color(10, 144, 203));
-        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setText("  Carga de nuevo archivo:");
+        jLabel3.setText("    Descargar archivo:");
+        jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel3.setOpaque(true);
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 400, 80));
 
@@ -207,34 +228,25 @@ public class Load_file extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_AtrasActionPerformed
-
     private void rutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rutaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_rutaActionPerformed
+
+    private void btn_abrirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_abrirMouseEntered
+        btn_abrir.setBackground(Color.gray);
+    }//GEN-LAST:event_btn_abrirMouseEntered
+
+    private void btn_abrirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_abrirMouseExited
+        btn_abrir.setBackground(new Color(158,163,165));
+    }//GEN-LAST:event_btn_abrirMouseExited
 
     private void btn_abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_abrirActionPerformed
         //Creamos el objeto JFileChooser
         JFileChooser fc = new JFileChooser();
 
         //-------------------------------------------
-        //Podemos poner filtros
-        //FileNameExtensionFilter filtro = new FileNameExtensionFilter(".TXT",".txt");
-
-        //Le indicamos el filtro
-        //fc.setFileFilter(filtro);
-        //-------------------------------------------
-
-        //-------------------------------------------
         //Podemos seleccionar SOLO DIRECTORIOS
-        //fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        //Podemos seleccionar SOLO ARCHIVOS
-        fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        //Podemos seleccionar AMBOS DIRECORIOS Y ARCHIVOS
-        //fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         //-------------------------------------------
 
         //Abrimos la ventana, guardamos la opcion seleccionada por el usuario
@@ -251,45 +263,38 @@ public class Load_file extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btn_abrirActionPerformed
 
-    private void btn_cargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_cargarActionPerformed
-        StringHandling localFile = new StringHandling();
+    private void btn_descargarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_descargarMouseEntered
+        btn_descargar.setBackground(new Color(8,105,165));
+    }//GEN-LAST:event_btn_descargarMouseEntered
+
+    private void btn_descargarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_descargarMouseExited
+        btn_descargar.setBackground(new Color(10,130,203));
+    }//GEN-LAST:event_btn_descargarMouseExited
+
+    private void btn_descargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_descargarActionPerformed
         String file_dir = this.ruta.getText();
         File fRuta = new File(file_dir);
         
         //Verifica que es un directorio
         //if(fRuta.isDirectory()){
-        if(fRuta.exists()){    
+        if(fRuta.exists()){   
+            int respuesta= JOptionPane.showConfirmDialog(null,"Seguro quere descargar el archivo de nombre"+file_Name+"?","Descargar",JOptionPane.YES_NO_OPTION);
+            if (respuesta == 0){
 
-             String file_name = localFile.getFileName(file_dir);
+                //Aca vala logica para hacer la descarga del archivo
 
-            //JOptionPane.showMessageDialog(null, localFile.getFileName(file_dir), "mensaje",JOptionPane.INFORMATION_MESSAGE);
-            //JOptionPane.showMessageDialog(null, file_dir, "mensaje",JOptionPane.INFORMATION_MESSAGE);
-            //JOptionPane.showMessageDialog(null, file_name, "mensaje",JOptionPane.INFORMATION_MESSAGE);
-
-            FTPConnection nuevo = new FTPConnection();
-
-            nuevo.subirArchivo(file_dir, file_name);
+                this.dispose();
+            }   
         }else{
             this.ruta.setText("");
-             JOptionPane.showMessageDialog(null, "Esta ruta no existe, intentelo de nuevo.", "Error",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "La ruta especificada no es permitida.", "Precaución 👀",JOptionPane.WARNING_MESSAGE);
         }
-    }//GEN-LAST:event_btn_cargarActionPerformed
+    }//GEN-LAST:event_btn_descargarActionPerformed
 
-    private void btn_abrirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_abrirMouseEntered
-        btn_abrir.setBackground(Color.gray);
-    }//GEN-LAST:event_btn_abrirMouseEntered
+    private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_AtrasActionPerformed
 
-    private void btn_abrirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_abrirMouseExited
-        btn_abrir.setBackground(new Color(158,163,165));
-    }//GEN-LAST:event_btn_abrirMouseExited
-
-    private void btn_cargarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cargarMouseExited
-        btn_cargar.setBackground(new Color(10,130,203));
-    }//GEN-LAST:event_btn_cargarMouseExited
-
-    private void btn_cargarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_cargarMouseEntered
-        btn_cargar.setBackground(new Color(8,105,165));
-    }//GEN-LAST:event_btn_cargarMouseEntered
     /**
      * @param args the command line arguments
      */
@@ -307,20 +312,20 @@ public class Load_file extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Load_file.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Download_file.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Load_file.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Download_file.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Load_file.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Download_file.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Load_file.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Download_file.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Load_file dialog = new Load_file(new javax.swing.JFrame(), true);
+                Download_file dialog = new Download_file(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -335,9 +340,11 @@ public class Load_file extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Atras;
     private javax.swing.JButton btn_abrir;
-    private javax.swing.JButton btn_cargar;
+    private javax.swing.JButton btn_descargar;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel_NameFile;
+    private javax.swing.JLabel jLabel_NameNube;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
