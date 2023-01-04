@@ -7,6 +7,8 @@ package View;
 
 import java.awt.Color;
 import java.io.File;
+import java.util.Scanner;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -15,16 +17,41 @@ import javax.swing.JOptionPane;
  *
  * @author Angel
  */
-public class Create_folder extends javax.swing.JDialog {
+public class Edit_user extends javax.swing.JDialog {
+    
+    String username2;
 
     /**
      * Creates new form Create_folder
      */
-    public Create_folder(JFrame padre, boolean modo){
+    public Edit_user(JDialog padre, boolean modo){
         super(padre, modo);
         initComponents();
         this.setLocationRelativeTo(null);
     }
+    
+    public Edit_user(JDialog  padre, boolean modo,String username){
+        super(padre, modo);
+        initComponents();
+        
+        this.username2 = username;
+        
+        
+        //Aca llenamos los Jtextfield, con los datos que buscamos en la base de datos
+        name_user.setText(username);
+        espacio_nube.setText("22");
+        
+        this.setLocationRelativeTo(null);
+    }
+    
+    private static boolean isNumeric(String cadena){
+	try {
+            Integer.parseInt(cadena);
+            return true;
+	} catch (NumberFormatException nfe){
+            return false;
+	}
+}
     
 
     /**
@@ -40,10 +67,11 @@ public class Create_folder extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         btn_create = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
-        name_folder = new LIB.JTexfieldPH_FielTex();
+        name_user = new LIB.JTexfieldPH_FielTex();
         jPanel5 = new javax.swing.JPanel();
-        ruta = new LIB.JTexfieldPH_FielTex();
-        btn_abrir = new javax.swing.JButton();
+        espacio_nube = new LIB.JTexfieldPH_FielTex();
+        nombre = new javax.swing.JLabel();
+        nombre1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         Atras = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -62,7 +90,7 @@ public class Create_folder extends javax.swing.JDialog {
         btn_create.setBackground(new java.awt.Color(10, 130, 203));
         btn_create.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         btn_create.setForeground(new java.awt.Color(0, 0, 0));
-        btn_create.setText("Cargar");
+        btn_create.setText("Editar");
         btn_create.setToolTipText("");
         btn_create.setBorderPainted(false);
         btn_create.setContentAreaFilled(false);
@@ -85,20 +113,20 @@ public class Create_folder extends javax.swing.JDialog {
                 btn_createActionPerformed(evt);
             }
         });
-        jPanel3.add(btn_create, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 90, 40));
+        jPanel3.add(btn_create, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 90, 40));
 
         jPanel6.setBackground(new java.awt.Color(230, 230, 230));
 
-        name_folder.setBackground(new java.awt.Color(230, 230, 230));
-        name_folder.setBorder(null);
-        name_folder.setToolTipText("");
-        name_folder.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        name_folder.setOpaque(false);
-        name_folder.setPhColor(new java.awt.Color(10, 144, 203));
-        name_folder.setPlaceholder("Nombre carpeta");
-        name_folder.addActionListener(new java.awt.event.ActionListener() {
+        name_user.setBackground(new java.awt.Color(230, 230, 230));
+        name_user.setBorder(null);
+        name_user.setToolTipText("");
+        name_user.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        name_user.setOpaque(false);
+        name_user.setPhColor(new java.awt.Color(10, 144, 203));
+        name_user.setPlaceholder("Nombre usuario");
+        name_user.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                name_folderActionPerformed(evt);
+                name_userActionPerformed(evt);
             }
         });
 
@@ -108,31 +136,31 @@ public class Create_folder extends javax.swing.JDialog {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(name_folder, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                .addComponent(name_user, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
                 .addGap(16, 16, 16))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(name_folder, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addComponent(name_user, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
         );
 
-        jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, 40));
+        jPanel3.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, 40));
 
         jPanel5.setBackground(new java.awt.Color(230, 230, 230));
 
-        ruta.setBackground(new java.awt.Color(230, 230, 230));
-        ruta.setBorder(null);
-        ruta.setToolTipText("");
-        ruta.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        ruta.setOpaque(false);
-        ruta.setPhColor(new java.awt.Color(10, 144, 203));
-        ruta.setPlaceholder("Ruta destino");
-        ruta.addActionListener(new java.awt.event.ActionListener() {
+        espacio_nube.setBackground(new java.awt.Color(230, 230, 230));
+        espacio_nube.setBorder(null);
+        espacio_nube.setToolTipText("");
+        espacio_nube.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        espacio_nube.setOpaque(false);
+        espacio_nube.setPhColor(new java.awt.Color(10, 144, 203));
+        espacio_nube.setPlaceholder("Espacio en nube");
+        espacio_nube.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rutaActionPerformed(evt);
+                espacio_nubeActionPerformed(evt);
             }
         });
 
@@ -142,48 +170,26 @@ public class Create_folder extends javax.swing.JDialog {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ruta, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                .addComponent(espacio_nube, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
                 .addGap(16, 16, 16))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ruta, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addComponent(espacio_nube, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
         );
 
-        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+        jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 330, -1));
 
-        btn_abrir.setBackground(new java.awt.Color(158, 163, 165));
-        btn_abrir.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btn_abrir.setForeground(new java.awt.Color(0, 0, 0));
-        btn_abrir.setText("Abrir");
-        btn_abrir.setToolTipText("");
-        btn_abrir.setBorderPainted(false);
-        btn_abrir.setContentAreaFilled(false);
-        btn_abrir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btn_abrir.setFocusPainted(false);
-        btn_abrir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_abrir.setName(""); // NOI18N
-        btn_abrir.setOpaque(true);
-        btn_abrir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btn_abrir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                btn_abrirMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                btn_abrirMouseExited(evt);
-            }
-        });
-        btn_abrir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_abrirActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btn_abrir, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 90, 40));
+        nombre.setText("Espacio en nube");
+        jPanel3.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 400, 200));
+        nombre1.setText("Nombre de usuario");
+        jPanel3.add(nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 400, 250));
 
         jPanel4.setBackground(new java.awt.Color(205, 205, 205));
 
@@ -228,53 +234,22 @@ public class Create_folder extends javax.swing.JDialog {
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setText("  Creación de carpeta:");
+        jLabel3.setText("  Edición de usuario:");
         jLabel3.setOpaque(true);
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 400, 80));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 330));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 380));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void rutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rutaActionPerformed
+    private void espacio_nubeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_espacio_nubeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_rutaActionPerformed
+    }//GEN-LAST:event_espacio_nubeActionPerformed
 
-    private void btn_abrirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_abrirMouseEntered
-        btn_abrir.setBackground(Color.gray);
-    }//GEN-LAST:event_btn_abrirMouseEntered
-
-    private void btn_abrirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_abrirMouseExited
-        btn_abrir.setBackground(new Color(158,163,165));
-    }//GEN-LAST:event_btn_abrirMouseExited
-
-    private void btn_abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_abrirActionPerformed
-        //Creamos el objeto JFileChooser
-        JFileChooser fc = new JFileChooser();
-
-        //-------------------------------------------
-        //Podemos seleccionar SOLO DIRECTORIOS
-        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        //-------------------------------------------
-
-        //Abrimos la ventana, guardamos la opcion seleccionada por el usuario
-        int seleccion = fc.showOpenDialog(this);
-
-        //Si el usuario, pincha aceptar
-        if(seleccion == JFileChooser.APPROVE_OPTION){
-            //Seleccionamos el fichero
-            File fichero = fc.getSelectedFile();
-
-            //Escribe la ruta del fichero seleccionado en el campo de texto
-            this.ruta.setText(fichero.getAbsolutePath());
-
-        }
-    }//GEN-LAST:event_btn_abrirActionPerformed
-
-    private void name_folderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_folderActionPerformed
+    private void name_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_userActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_name_folderActionPerformed
+    }//GEN-LAST:event_name_userActionPerformed
 
     private void btn_createMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_createMouseEntered
         btn_create.setBackground(new Color(8,105,165));
@@ -285,38 +260,23 @@ public class Create_folder extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_createMouseExited
 
     private void btn_createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_createActionPerformed
-        String file_dir = this.ruta.getText();
-        File fRuta = new File(file_dir);
-        
-        String folder_Name = this.name_folder.getText();
-        
-        if(!folder_Name.equals("")){
-            if(fRuta.exists()){  
-                
-                //Logica para la creacion de la nueva carpeta
-                //Tambien hay que verificar si ya existe una carpeta con ese nombre
-                //DUDA-> Donde se esta creando la carpeta? En el servidor o en la maquina del cliente?? Lo estoy haciendo para que se pueda crear desde la maquina del CLIENTE
-                
-                //Me imagino que es que se cree una carpeta en el servidor, pero que ladilla xd
-                
-                File directorio = new File(fRuta+"/"+folder_Name);
-                if (!directorio.exists()) {
-                    if (directorio.mkdirs()) {
-                        JOptionPane.showMessageDialog(null, "Directorio creado.", "Exito",JOptionPane.INFORMATION_MESSAGE);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Error al crear el directorio.", "Error 👀",JOptionPane.ERROR_MESSAGE);
-                    }
-                }
+        String username1 = this.name_user.getText();
+        String espacio_nube1 = this.espacio_nube.getText();
+        if (username1.length()>=5){
+            if (this.isNumeric(espacio_nube1)){
+            
+                //Aca va la logica para agregar a los usuarios
+
+
+                JOptionPane.showMessageDialog(null, "Se ha agregado el usuario en el sistema", "mensaje",JOptionPane.INFORMATION_MESSAGE);
                 this.dispose();
             }else{
-                JOptionPane.showMessageDialog(null, "La ruta especificada no es permitida.", "Precaución 👀",JOptionPane.WARNING_MESSAGE);
-            }  
+                JOptionPane.showMessageDialog(null, "El espacio en la nube debe ser un NUMERO", "mensaje",JOptionPane.INFORMATION_MESSAGE);
+                espacio_nube.setText("");
+            }
         }else{
-            JOptionPane.showMessageDialog(null, "Coloque un nombre a su nueva carptea.", "Precaución 👀",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El username debe contener al menos 5 caracteres", "mensaje",JOptionPane.INFORMATION_MESSAGE);
         }
-        
-        
-       
     }//GEN-LAST:event_btn_createActionPerformed
 
     private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
@@ -340,20 +300,27 @@ public class Create_folder extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Create_folder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Edit_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Create_folder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Edit_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Create_folder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Edit_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Create_folder.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Edit_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Create_folder dialog = new Create_folder(new javax.swing.JFrame(), true);
+                Edit_user dialog = new Edit_user(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -367,8 +334,8 @@ public class Create_folder extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Atras;
-    private javax.swing.JButton btn_abrir;
     private javax.swing.JButton btn_create;
+    private LIB.JTexfieldPH_FielTex espacio_nube;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
@@ -376,7 +343,8 @@ public class Create_folder extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private LIB.JTexfieldPH_FielTex name_folder;
-    private LIB.JTexfieldPH_FielTex ruta;
+    private LIB.JTexfieldPH_FielTex name_user;
+    private javax.swing.JLabel nombre;
+    private javax.swing.JLabel nombre1;
     // End of variables declaration//GEN-END:variables
 }

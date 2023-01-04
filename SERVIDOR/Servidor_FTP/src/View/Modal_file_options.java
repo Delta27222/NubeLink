@@ -15,8 +15,8 @@ import javax.swing.JOptionPane;
  */
 public class Modal_file_options extends javax.swing.JDialog {
     
-    String file_Name;
-    String nube_Name;
+    String username;
+    String ultima_conexion;
 
     /**
      * Creates new form 
@@ -27,27 +27,24 @@ public class Modal_file_options extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
                 
-        btn_download.setToolTipText("Descargar");
         btn_delete.setToolTipText("Eliminar");
-        btn_share.setToolTipText("Compartir");
     }
     
-    public Modal_file_options(JFrame padre, boolean modo, String fileName, String nubeName) {
+    public Modal_file_options(JFrame padre, boolean modo, String username, String ultima_conexion) {
         super(padre,modo);
         initComponents();
         this.setLocationRelativeTo(null);
         
-        this.file_Name = fileName;
-        this.nube_Name = nubeName;
+        this.username = username;
+        this.ultima_conexion = ultima_conexion;
         
         //Colocamos el nombre del Archivo y de la Nube
-        jLabel_NameFile.setText("Archivo: "+file_Name);
-        jLabel_NameNube.setText("Nube: "+nube_Name);
+        jLabel_Username.setText("Username: "+username);
+        jLabel_ultima_conexion.setText("Última conexión: "+ultima_conexion);
         
         //Info de lo que hace el boton
-        btn_download.setToolTipText("Descargar");
         btn_delete.setToolTipText("Eliminar");
-        btn_share.setToolTipText("Compartir");
+        btn_edit.setToolTipText("Editar");
         Atras.setToolTipText("Volver");
 
     }
@@ -63,11 +60,10 @@ public class Modal_file_options extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        btn_download = new javax.swing.JButton();
         btn_delete = new javax.swing.JButton();
-        btn_share = new javax.swing.JButton();
-        jLabel_NameNube = new javax.swing.JLabel();
-        jLabel_NameFile = new javax.swing.JLabel();
+        btn_edit = new javax.swing.JButton();
+        jLabel_ultima_conexion = new javax.swing.JLabel();
+        jLabel_Username = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         Atras = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -81,22 +77,6 @@ public class Modal_file_options extends javax.swing.JDialog {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        btn_download.setBackground(new java.awt.Color(10, 144, 203));
-        btn_download.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btn_download.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/download_icon.png"))); // NOI18N
-        btn_download.setBorder(null);
-        btn_download.setBorderPainted(false);
-        btn_download.setContentAreaFilled(false);
-        btn_download.setFocusPainted(false);
-        btn_download.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/download_icon_G.png"))); // NOI18N
-        btn_download.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/download_icon_G.png"))); // NOI18N
-        btn_download.setVerifyInputWhenFocusTarget(false);
-        btn_download.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_downloadActionPerformed(evt);
-            }
-        });
 
         btn_delete.setBackground(new java.awt.Color(10, 144, 203));
         btn_delete.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -114,19 +94,19 @@ public class Modal_file_options extends javax.swing.JDialog {
             }
         });
 
-        btn_share.setBackground(new java.awt.Color(10, 144, 203));
-        btn_share.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btn_share.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/share_icon.png"))); // NOI18N
-        btn_share.setBorder(null);
-        btn_share.setBorderPainted(false);
-        btn_share.setContentAreaFilled(false);
-        btn_share.setFocusPainted(false);
-        btn_share.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/share_icon_G.png"))); // NOI18N
-        btn_share.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/share_icon_G.png"))); // NOI18N
-        btn_share.setVerifyInputWhenFocusTarget(false);
-        btn_share.addActionListener(new java.awt.event.ActionListener() {
+        btn_edit.setBackground(new java.awt.Color(10, 144, 203));
+        btn_edit.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btn_edit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/edit_user.png"))); // NOI18N
+        btn_edit.setBorder(null);
+        btn_edit.setBorderPainted(false);
+        btn_edit.setContentAreaFilled(false);
+        btn_edit.setFocusPainted(false);
+        btn_edit.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/edit_user_G.png"))); // NOI18N
+        btn_edit.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/edit_user_G.png"))); // NOI18N
+        btn_edit.setVerifyInputWhenFocusTarget(false);
+        btn_edit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_shareActionPerformed(evt);
+                btn_editActionPerformed(evt);
             }
         });
 
@@ -135,38 +115,33 @@ public class Modal_file_options extends javax.swing.JDialog {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(btn_download, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(95, 95, 95)
+                .addComponent(btn_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
-                .addComponent(btn_share, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(104, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(7, 7, 7)
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_share, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(btn_download, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 400, 110));
 
-        jLabel_NameNube.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabel_NameNube.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel_NameNube.setText("NubeName");
-        jPanel1.add(jLabel_NameNube, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 210, -1));
+        jLabel_ultima_conexion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        jLabel_ultima_conexion.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_ultima_conexion.setText("ultima_conexion");
+        jPanel1.add(jLabel_ultima_conexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 210, -1));
 
-        jLabel_NameFile.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabel_NameFile.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel_NameFile.setText("FileName");
-        jPanel1.add(jLabel_NameFile, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 210, -1));
+        jLabel_Username.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        jLabel_Username.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel_Username.setText("UserName");
+        jPanel1.add(jLabel_Username, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 210, -1));
 
         jPanel4.setBackground(new java.awt.Color(205, 205, 205));
 
@@ -226,7 +201,7 @@ public class Modal_file_options extends javax.swing.JDialog {
     }//GEN-LAST:event_AtrasActionPerformed
 
     private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
-        int respuesta= JOptionPane.showConfirmDialog(null,"Seguro desea borrar el archivo de nombre '"+file_Name+"' de esta nube?","Borrar archivo",JOptionPane.YES_NO_OPTION);
+        int respuesta= JOptionPane.showConfirmDialog(null,"Seguro desea borrar a el usuario de nombre '"+username+" para no dar mas acceso a la nube?","Borrar archivo",JOptionPane.YES_NO_OPTION);
         if (respuesta == 0){
 
             //Aca va la logica para eliminar el archivo, y luego se cierra esta pantalla
@@ -235,17 +210,11 @@ public class Modal_file_options extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btn_deleteActionPerformed
 
-    private void btn_shareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_shareActionPerformed
-        Share_file open = null;
-        open = new Share_file(this,true,this.file_Name,this.nube_Name);
+    private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
+        Edit_user open = null;
+        open = new Edit_user(this,true,username);
         open.setVisible(true);
-    }//GEN-LAST:event_btn_shareActionPerformed
-
-    private void btn_downloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_downloadActionPerformed
-        Download_file open = null;
-        open = new Download_file(this,true,this.file_Name,this.nube_Name);
-        open.setVisible(true);
-    }//GEN-LAST:event_btn_downloadActionPerformed
+    }//GEN-LAST:event_btn_editActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,6 +243,8 @@ public class Modal_file_options extends javax.swing.JDialog {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -293,12 +264,11 @@ public class Modal_file_options extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Atras;
     private javax.swing.JButton btn_delete;
-    private javax.swing.JButton btn_download;
-    private javax.swing.JButton btn_share;
+    private javax.swing.JButton btn_edit;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel_NameFile;
-    private javax.swing.JLabel jLabel_NameNube;
+    private javax.swing.JLabel jLabel_Username;
+    private javax.swing.JLabel jLabel_ultima_conexion;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

@@ -20,23 +20,10 @@ import org.apache.commons.net.ftp.FTPClient;
 public class Creador {
     
     Buscador bus = new Buscador();
-    
-    public ArrayList<Object[]> create_ArrayList_Table_Menu(){
-        FTPConnection nuevo = new FTPConnection(new FTPClient(), "192.168.0.104", "Angel", "redes");
-        nuevo.conectar();
-        //ArrayList de los Archivos en la nube
-        ArrayList<Object[]> lista_archivos = new ArrayList<Object[]>();
-            //Inserta Nombre y peso de los archivos en el arrayList
-            lista_archivos = nuevo.llenar_array_archivos_raiz();
-        
-        nuevo.desconectar();
-        
-        return lista_archivos;
-    }
-    
-    public void add_Info_Table_Menu(DefaultTableModel model,JTable Table, String nombre_Nube){
+
+    public void add_Info_Table_Menu(DefaultTableModel model,JTable Table){
         model = (DefaultTableModel) Table.getModel();
-        Object[] newIdentifiers = new Object[]{"Nombre Archivo","Peso", "Type"};
+        Object[] newIdentifiers = new Object[]{"Username","Ultima Conexión"};
         model.setColumnIdentifiers(newIdentifiers);
         Table.setFillsViewportHeight(true);
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -45,8 +32,18 @@ public class Creador {
             Table.getColumnModel().getColumn(x).setCellRenderer(centerRenderer);            
         }        
         
+        Object[]info1 = new Object[]{"ANGEL1","v12","123"};     
+        Object[]info2 = new Object[]{"MIGUEL1","22","234"};                 
+        Object[]info3 = new Object[]{"SAMUEL","32",".345"};     
+        Object[]info4 = new Object[]{"MILENA","42","456"};     
+        Object[]info5 = new Object[]{"CARLOS","52","567"};     
+
         ArrayList<Object[]> archivos = new  ArrayList<Object[]>();
-        archivos = bus.create_ArrayList_Table_Menu(nombre_Nube);
+        archivos.add(info1);
+        archivos.add(info2);
+        archivos.add(info3);
+        archivos.add(info4);
+        archivos.add(info5);
         
         for (Object []archivo : archivos) {
             model.addRow(archivo);
