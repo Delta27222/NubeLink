@@ -41,7 +41,6 @@ public class StringHandling {
     public String getFileName_OR_Type(String file, int num){
         String fileName =""; 
         int index;
-        //Aca me devuelve el tipo del archivo
         if(num == 0){
             // Esta será la cadena invertida, primero está vacía
             java.lang.String invertida = "";
@@ -64,7 +63,6 @@ public class StringHandling {
             }
 
             return fileName;
-        //Aca me devuelve el nombre del archivo
         }else{
             for (int i = 0; i <file.length (); i++) { 
                 char c = file.charAt(i); 
