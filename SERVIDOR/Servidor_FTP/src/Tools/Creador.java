@@ -32,11 +32,11 @@ public class Creador {
             Table.getColumnModel().getColumn(x).setCellRenderer(centerRenderer);            
         }        
         
-        Object[]info1 = new Object[]{"ANGEL1","v12","123"};     
-        Object[]info2 = new Object[]{"MIGUEL1","22","234"};                 
-        Object[]info3 = new Object[]{"SAMUEL","32",".345"};     
-        Object[]info4 = new Object[]{"MILENA","42","456"};     
-        Object[]info5 = new Object[]{"CARLOS","52","567"};     
+        Object[]info1 = new Object[]{"ANGEL1","fecha1"};     
+        Object[]info2 = new Object[]{"MIGUEL1","fecha 2"};                 
+        Object[]info3 = new Object[]{"SAMUEL","fecha 3"};     
+        Object[]info4 = new Object[]{"MILENA","fecha 4"};     
+        Object[]info5 = new Object[]{"CARLOS","fecha 5"};     
 
         ArrayList<Object[]> archivos = new  ArrayList<Object[]>();
         archivos.add(info1);

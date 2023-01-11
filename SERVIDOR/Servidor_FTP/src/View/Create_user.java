@@ -49,12 +49,15 @@ public class Create_user extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btn_create = new javax.swing.JButton();
-        jPanel7 = new javax.swing.JPanel();
-        espacio_nube = new LIB.JTexfieldPH_FielTex();
-        jPanel8 = new javax.swing.JPanel();
+        Jtext_nombre_user = new javax.swing.JLabel();
+        JPanel_users = new javax.swing.JPanel();
         name_user = new LIB.JTexfieldPH_FielTex();
-        nombre = new javax.swing.JLabel();
-        nombre1 = new javax.swing.JLabel();
+        Jtext_contraseña = new javax.swing.JLabel();
+        Jpanel_Contraseña = new javax.swing.JPanel();
+        name_user1 = new LIB.JTexfieldPH_FielTex();
+        Jtext_espacio_nube = new javax.swing.JLabel();
+        jPanel_espacio = new javax.swing.JPanel();
+        espacio_nube = new LIB.JTexfieldPH_FielTex();
         jPanel4 = new javax.swing.JPanel();
         Atras = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -96,43 +99,12 @@ public class Create_user extends javax.swing.JDialog {
                 btn_createActionPerformed(evt);
             }
         });
-        jPanel3.add(btn_create, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 90, 40));
+        jPanel3.add(btn_create, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 90, 40));
 
-        jPanel7.setBackground(new java.awt.Color(230, 230, 230));
+        Jtext_nombre_user.setText("Nombre de usuario");
+        jPanel3.add(Jtext_nombre_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        espacio_nube.setBackground(new java.awt.Color(230, 230, 230));
-        espacio_nube.setBorder(null);
-        espacio_nube.setToolTipText("");
-        espacio_nube.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        espacio_nube.setOpaque(false);
-        espacio_nube.setPhColor(new java.awt.Color(10, 144, 203));
-        espacio_nube.setPlaceholder("Espacio en nube");
-        espacio_nube.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                espacio_nubeActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(espacio_nube, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
-                .addGap(16, 16, 16))
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(espacio_nube, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
-        );
-
-        jPanel3.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 330, -1));
-
-        jPanel8.setBackground(new java.awt.Color(230, 230, 230));
+        JPanel_users.setBackground(new java.awt.Color(230, 230, 230));
 
         name_user.setBackground(new java.awt.Color(230, 230, 230));
         name_user.setBorder(null);
@@ -147,32 +119,100 @@ public class Create_user extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        javax.swing.GroupLayout JPanel_usersLayout = new javax.swing.GroupLayout(JPanel_users);
+        JPanel_users.setLayout(JPanel_usersLayout);
+        JPanel_usersLayout.setHorizontalGroup(
+            JPanel_usersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPanel_usersLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(name_user, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
                 .addGap(16, 16, 16))
         );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
+        JPanel_usersLayout.setVerticalGroup(
+            JPanel_usersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(JPanel_usersLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(name_user, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
         );
 
-        jPanel3.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, 40));
+        jPanel3.add(JPanel_users, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, 40));
 
-        nombre.setText("Espacio en nube");
-        jPanel3.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
+        Jtext_contraseña.setText("Contraseña");
+        jPanel3.add(Jtext_contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, -1, -1));
 
-        nombre1.setText("Nombre de usuario");
-        jPanel3.add(nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+        Jpanel_Contraseña.setBackground(new java.awt.Color(230, 230, 230));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 400, 250));
+        name_user1.setBackground(new java.awt.Color(230, 230, 230));
+        name_user1.setBorder(null);
+        name_user1.setToolTipText("");
+        name_user1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        name_user1.setOpaque(false);
+        name_user1.setPhColor(new java.awt.Color(10, 144, 203));
+        name_user1.setPlaceholder("Contraseña");
+        name_user1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                name_user1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout Jpanel_ContraseñaLayout = new javax.swing.GroupLayout(Jpanel_Contraseña);
+        Jpanel_Contraseña.setLayout(Jpanel_ContraseñaLayout);
+        Jpanel_ContraseñaLayout.setHorizontalGroup(
+            Jpanel_ContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Jpanel_ContraseñaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(name_user1, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                .addGap(16, 16, 16))
+        );
+        Jpanel_ContraseñaLayout.setVerticalGroup(
+            Jpanel_ContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Jpanel_ContraseñaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(name_user1, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
+        );
+
+        jPanel3.add(Jpanel_Contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, 40));
+
+        Jtext_espacio_nube.setText("Espacio en nube");
+        jPanel3.add(Jtext_espacio_nube, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
+
+        jPanel_espacio.setBackground(new java.awt.Color(230, 230, 230));
+
+        espacio_nube.setBackground(new java.awt.Color(230, 230, 230));
+        espacio_nube.setBorder(null);
+        espacio_nube.setToolTipText("");
+        espacio_nube.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        espacio_nube.setOpaque(false);
+        espacio_nube.setPhColor(new java.awt.Color(10, 144, 203));
+        espacio_nube.setPlaceholder("Espacio en nube");
+        espacio_nube.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                espacio_nubeActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel_espacioLayout = new javax.swing.GroupLayout(jPanel_espacio);
+        jPanel_espacio.setLayout(jPanel_espacioLayout);
+        jPanel_espacioLayout.setHorizontalGroup(
+            jPanel_espacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_espacioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(espacio_nube, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
+                .addGap(16, 16, 16))
+        );
+        jPanel_espacioLayout.setVerticalGroup(
+            jPanel_espacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_espacioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(espacio_nube, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
+        );
+
+        jPanel3.add(jPanel_espacio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 330, -1));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 400, 330));
 
         jPanel4.setBackground(new java.awt.Color(205, 205, 205));
 
@@ -221,7 +261,7 @@ public class Create_user extends javax.swing.JDialog {
         jLabel3.setOpaque(true);
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 400, 80));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 380));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 460));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -265,6 +305,10 @@ public class Create_user extends javax.swing.JDialog {
     private void name_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_userActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_name_userActionPerformed
+
+    private void name_user1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_user1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_name_user1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -313,6 +357,11 @@ public class Create_user extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Atras;
+    private javax.swing.JPanel JPanel_users;
+    private javax.swing.JPanel Jpanel_Contraseña;
+    private javax.swing.JLabel Jtext_contraseña;
+    private javax.swing.JLabel Jtext_espacio_nube;
+    private javax.swing.JLabel Jtext_nombre_user;
     private javax.swing.JButton btn_create;
     private LIB.JTexfieldPH_FielTex espacio_nube;
     private javax.swing.JLabel jLabel3;
@@ -320,10 +369,8 @@ public class Create_user extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel_espacio;
     private LIB.JTexfieldPH_FielTex name_user;
-    private javax.swing.JLabel nombre;
-    private javax.swing.JLabel nombre1;
+    private LIB.JTexfieldPH_FielTex name_user1;
     // End of variables declaration//GEN-END:variables
 }
