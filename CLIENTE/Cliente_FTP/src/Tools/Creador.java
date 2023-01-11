@@ -21,22 +21,9 @@ public class Creador {
     
     Buscador bus = new Buscador();
     
-    public ArrayList<Object[]> create_ArrayList_Table_Menu(){
-        FTPConnection nuevo = new FTPConnection(new FTPClient(), "192.168.0.104", "Angel", "redes");
-        nuevo.conectar();
-        //ArrayList de los Archivos en la nube
-        ArrayList<Object[]> lista_archivos = new ArrayList<Object[]>();
-            //Inserta Nombre y peso de los archivos en el arrayList
-            lista_archivos = nuevo.llenar_array_archivos_raiz();
-        
-        nuevo.desconectar();
-        
-        return lista_archivos;
-    }
-    
-    public void add_Info_Table_Menu(DefaultTableModel model,JTable Table, String nombre_Nube){
+    public void add_Info_Table_Menu(DefaultTableModel model,JTable Table, String nombre_Nube, String ip_number, String userName, String contrasena){
         model = (DefaultTableModel) Table.getModel();
-        Object[] newIdentifiers = new Object[]{"Nombre Archivo","Peso", "Type"};
+        Object[] newIdentifiers = new Object[]{"Id","Nombre Archivo","Peso (Kb)", "Tipo"};
         model.setColumnIdentifiers(newIdentifiers);
         Table.setFillsViewportHeight(true);
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -46,10 +33,11 @@ public class Creador {
         }        
         
         ArrayList<Object[]> archivos = new  ArrayList<Object[]>();
-        archivos = bus.create_ArrayList_Table_Menu(nombre_Nube);
-        
+        archivos = bus.create_ArrayList_Table_Menu(nombre_Nube, ip_number, userName, contrasena);
+        int numero = 0;
         for (Object []archivo : archivos) {
             model.addRow(archivo);
+            numero = numero + 1;
         }
        Table.setModel(model);
     }
@@ -57,7 +45,6 @@ public class Creador {
     public void llenando_JComboBox_Nubes(JComboBox jComboBoxNubes){
         ArrayList<String> lista_nubes = new ArrayList<String>();
 
-        //crea.add_Info_Table_Menu(model,jTable_Archivos);
         String info1 = new String("UCAB");             
         String info2 = new String("UCV");     
         String info3 = new String("UBV");     

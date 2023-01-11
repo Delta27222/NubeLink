@@ -20,6 +20,8 @@ public class Menu extends javax.swing.JFrame {
     Creador crea = new Creador();
     DefaultTableModel model;
     String nombre_nube;
+    Boolean tabla_llena = false;
+    String folder;
     
     /**
      * Creates new form Menu
@@ -29,11 +31,39 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         crea.llenando_JComboBox_Nubes(jComboBoxNubes);
+        jComboBoxNubes.setVisible(true);
+        Jlabel_Nombre_Carpeta.setVisible(false);
+        Atras.setVisible(true);
+        Atras1.setVisible(false);
+        btn_add_folder.setVisible(true);
+        btn_delete_folder.setVisible(false);
         
         //Info de lo que hace el boton
         btn_upload.setToolTipText("Cargar archivo");
         btn_add_folder.setToolTipText("Crear carpeta");
         Atras.setToolTipText("Cerrar sesión");
+    }
+    
+    public Menu(String nombre_carpeta) {
+        initComponents();
+        this.setLocationRelativeTo(null);
+        jComboBoxNubes.setVisible(false);
+        Jlabel_Nombre_Carpeta.setVisible(true);
+        Atras.setVisible(false);
+        Atras1.setVisible(true);
+        btn_add_folder.setVisible(false);
+        btn_delete_folder.setVisible(true);
+        
+        Jlabel_Nombre_Carpeta.setText(nombre_carpeta);
+        folder = nombre_carpeta;
+        
+        //Info de lo que hace el boton
+        btn_upload.setToolTipText("Cargar archivo");
+        btn_delete_folder.setToolTipText("Eliminar Carpeta");
+        Atras.setToolTipText("Cerrar sesión");
+        
+        // Aca llenamos la tabla, con los archivos que estan dentro de la carpeta
+        crea.add_Info_Table_Menu(model,jTable_Archivos, nombre_nube,"192.168.0.102", "Angel", "redes");
     }
     
     /**
@@ -50,6 +80,7 @@ public class Menu extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        Atras1 = new javax.swing.JButton();
         Logo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -59,6 +90,9 @@ public class Menu extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_Archivos = new javax.swing.JTable();
         jComboBoxNubes = new javax.swing.JComboBox<>();
+        Jlabel_Nombre_Carpeta = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        btn_delete_folder = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -98,12 +132,29 @@ public class Menu extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 660, 20));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Atras1.setBackground(new java.awt.Color(10, 144, 203));
+        Atras1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        Atras1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/back_icon.png"))); // NOI18N
+        Atras1.setBorder(null);
+        Atras1.setBorderPainted(false);
+        Atras1.setContentAreaFilled(false);
+        Atras1.setFocusPainted(false);
+        Atras1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/back_icon_G.png"))); // NOI18N
+        Atras1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/back_icon_G.png"))); // NOI18N
+        Atras1.setVerifyInputWhenFocusTarget(false);
+        Atras1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Atras1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(Atras1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 10, 30, 30));
 
         Logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Nube_Link.png"))); // NOI18N
@@ -164,11 +215,11 @@ public class Menu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre Archivo", "Peso"
+                "Id", "Nombre Archivo", "Peso (Kb)", "Tipo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -191,12 +242,32 @@ public class Menu extends javax.swing.JFrame {
                 jComboBoxNubesItemStateChanged(evt);
             }
         });
-        jComboBoxNubes.addActionListener(new java.awt.event.ActionListener() {
+        jPanel3.add(jComboBoxNubes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 160, -1));
+
+        Jlabel_Nombre_Carpeta.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        Jlabel_Nombre_Carpeta.setText(" ");
+        jPanel3.add(Jlabel_Nombre_Carpeta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 148, -1));
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel3.setText("Carpeta: ");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, -1, 20));
+
+        btn_delete_folder.setBackground(new java.awt.Color(10, 144, 203));
+        btn_delete_folder.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btn_delete_folder.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/delete_folder_icon.png"))); // NOI18N
+        btn_delete_folder.setBorder(null);
+        btn_delete_folder.setBorderPainted(false);
+        btn_delete_folder.setContentAreaFilled(false);
+        btn_delete_folder.setFocusPainted(false);
+        btn_delete_folder.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/delete_folder_icon_G.png"))); // NOI18N
+        btn_delete_folder.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/delete_folder_icon_G.png"))); // NOI18N
+        btn_delete_folder.setVerifyInputWhenFocusTarget(false);
+        btn_delete_folder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxNubesActionPerformed(evt);
+                btn_delete_folderActionPerformed(evt);
             }
         });
-        jPanel3.add(jComboBoxNubes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 160, -1));
+        jPanel3.add(btn_delete_folder, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, -10, 110, 70));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 660, 310));
 
@@ -244,40 +315,48 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_add_folderActionPerformed
 
     private void jTable_ArchivosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_ArchivosMouseClicked
-        StringHandling localFile = new StringHandling();
-        
         model = (DefaultTableModel) jTable_Archivos.getModel();
-        String nombre_file = model.getValueAt(jTable_Archivos.getSelectedRow(), 0).toString();
-        String peso_file = model.getValueAt(jTable_Archivos.getSelectedRow(), 1).toString();        
-        String type_file = model.getValueAt(jTable_Archivos.getSelectedRow(), 2).toString();
-
-//
-//        jTextFieldNube.setText(localFile.getFileName_OR_Type(nombre_file,1));           
-//        jTextFieldNube1.setText(type_file);
-//        
-        Modal_file_options open = null;
-        open = new Modal_file_options(this,true,nombre_file+type_file,nombre_nube);
-        open.setVisible(true);
+        String archivo_o_carpeta = model.getValueAt(jTable_Archivos.getSelectedRow(), 3).toString();
+        if (archivo_o_carpeta.equals("Archivo")){  //Aca se habre el Jframe de Modal_file_options
+            String nombre_file = model.getValueAt(jTable_Archivos.getSelectedRow(), 1).toString();
+            Modal_file_options open = null;
+            open = new Modal_file_options(this,true,nombre_file,nombre_nube);
+            open.setVisible(true);
+       }else{   //Aca se habre el Jframe de los archivos que estan dentro de la carpeta
+            String nombre_carpeta = model.getValueAt(jTable_Archivos.getSelectedRow(), 1).toString();
+            System.out.println(nombre_carpeta);
+            Menu open = null;
+            open = new Menu(nombre_carpeta);
+            open.setVisible(true);
+        }
     }//GEN-LAST:event_jTable_ArchivosMouseClicked
 
     private void jComboBoxNubesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxNubesItemStateChanged
         // TODO add your handling code here:
-        if (jComboBoxNubes.getSelectedIndex() > 0){
+        if (jComboBoxNubes.getSelectedIndex() > 0 && tabla_llena  != true){
             
             //Aca llanaremos la Tabla con los archivos de la nube que el usuario selecciono
             nombre_nube =  jComboBoxNubes.getSelectedItem().toString();
             
-            crea.add_Info_Table_Menu(model,jTable_Archivos, nombre_nube);
-            
+            crea.add_Info_Table_Menu(model,jTable_Archivos, nombre_nube,"192.168.0.102", "Angel", "redes");
+            tabla_llena = true;  //Por alguna razon si no coloco lo de tabla llena, se llena la tabla dos veces con lo que hay en el servidor
             
 //            jTextFieldNube.setText(obtener);
 //            System.out.println(jComboBoxNubes.getSelectedIndex());
         }
     }//GEN-LAST:event_jComboBoxNubesItemStateChanged
 
-    private void jComboBoxNubesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxNubesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBoxNubesActionPerformed
+    private void Atras1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Atras1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_Atras1ActionPerformed
+
+    private void btn_delete_folderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_delete_folderActionPerformed
+        int respuesta= JOptionPane.showConfirmDialog(null,"Seguro que quiere Eliminar la Carpeta '"+folder+"'?","Eliminar",JOptionPane.YES_NO_OPTION);
+        if (respuesta == 0){
+            this.dispose();
+            JOptionPane.showMessageDialog(null, "Ha sido eliminada la carpeta.", "Exito",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_delete_folderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -316,12 +395,16 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Atras;
+    private javax.swing.JButton Atras1;
+    private javax.swing.JLabel Jlabel_Nombre_Carpeta;
     private javax.swing.JLabel Logo;
     private javax.swing.JButton btn_add_folder;
+    private javax.swing.JButton btn_delete_folder;
     private javax.swing.JButton btn_upload;
     private javax.swing.JComboBox<String> jComboBoxNubes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

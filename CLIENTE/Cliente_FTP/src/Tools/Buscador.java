@@ -15,9 +15,9 @@ import org.apache.commons.net.ftp.FTPClient;
 public class Buscador {
     
         
-    public ArrayList<Object[]> create_ArrayList_Table_Menu(String nombre_Nube){
+    public ArrayList<Object[]> create_ArrayList_Table_Menu(String nombre_Nube, String ip_number, String userName, String contrasena){
         //El nombre de la nube puede ser el usuario como tal
-        FTPConnection nuevo = new FTPConnection(new FTPClient(), "192.168.0.104", "Angel", "redes");
+        FTPConnection nuevo = new FTPConnection(new FTPClient(), ip_number, userName, contrasena);
         nuevo.conectar();
         //ArrayList de los Archivos en la nube
         ArrayList<Object[]> lista_archivos = new ArrayList<Object[]>();
