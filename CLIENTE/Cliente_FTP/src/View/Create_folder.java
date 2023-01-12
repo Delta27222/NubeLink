@@ -95,7 +95,7 @@ public class Create_folder extends javax.swing.JDialog {
         name_folder.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         name_folder.setOpaque(false);
         name_folder.setPhColor(new java.awt.Color(10, 144, 203));
-        name_folder.setPlaceholder("Nombre carpeta");
+        name_folder.setPlaceholder("Nombre carpetal");
         name_folder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 name_folderActionPerformed(evt);
