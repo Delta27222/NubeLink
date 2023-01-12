@@ -5,11 +5,8 @@
  */
 package View;
 
-import Tools.FTPConnection;
 import java.awt.Color;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import org.apache.commons.net.ftp.FTPClient;
 
 /**
  *
