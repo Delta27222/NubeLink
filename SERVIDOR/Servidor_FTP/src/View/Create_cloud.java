@@ -200,7 +200,7 @@ public class Create_cloud extends javax.swing.JDialog {
             JPanel_usersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(JPanel_usersLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(name_cloud, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                .addComponent(name_cloud, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
         );
 
