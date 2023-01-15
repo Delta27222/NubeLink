@@ -34,6 +34,7 @@ public class Menu extends javax.swing.JFrame {
         btn_add_user.setToolTipText("Agregar User");
         
         crea.add_Info_Table_Menu(model, jTable_Users);
+        crea.add_Info_Table_Cloud(model, jTable_Clouds);
     }
     
     /**
@@ -59,7 +60,7 @@ public class Menu extends javax.swing.JFrame {
         btn_add_user = new javax.swing.JButton();
         AddNube = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable_Users1 = new javax.swing.JTable();
+        jTable_Clouds = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -151,7 +152,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTable_Users);
 
-        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 530, 140));
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 530, 140));
 
         btn_add_user.setBackground(new java.awt.Color(10, 144, 203));
         btn_add_user.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -178,7 +179,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jPanel3.add(AddNube, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 100, 40));
 
-        jTable_Users1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_Clouds.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -194,14 +195,14 @@ public class Menu extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable_Users1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTable_Clouds.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable_Users1MouseClicked(evt);
+                jTable_CloudsMouseClicked(evt);
             }
         });
-        jScrollPane4.setViewportView(jTable_Users1);
+        jScrollPane4.setViewportView(jTable_Clouds);
 
-        jPanel3.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 530, 140));
+        jPanel3.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 530, 140));
 
         jLabel3.setText("Servidores:");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, -1, -1));
@@ -265,9 +266,9 @@ public class Menu extends javax.swing.JFrame {
             open.setVisible(true);
     }//GEN-LAST:event_AddNubeActionPerformed
 
-    private void jTable_Users1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Users1MouseClicked
+    private void jTable_CloudsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_CloudsMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTable_Users1MouseClicked
+    }//GEN-LAST:event_jTable_CloudsMouseClicked
 
     /**
      * @param args the command line arguments
@@ -321,7 +322,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable jTable_Clouds;
     private javax.swing.JTable jTable_Users;
-    private javax.swing.JTable jTable_Users1;
     // End of variables declaration//GEN-END:variables
 }

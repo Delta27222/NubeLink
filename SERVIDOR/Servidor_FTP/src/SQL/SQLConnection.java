@@ -26,4 +26,13 @@ public class SQLConnection {
         return con;
     }
     
+    public void disconnect(){
+        try {
+            con.close();
+            //JOptionPane.showMessageDialog(null, "Desconexion exitosa", "conexion",JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Desconexion fallida", "conexion",JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    
 }

@@ -5,6 +5,8 @@
  */
 package Tools;
 
+import Model.Cloud;
+import SQL.Select;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -20,7 +22,7 @@ import org.apache.commons.net.ftp.FTPClient;
 public class Creador {
     
     Buscador bus = new Buscador();
-
+    
     public void add_Info_Table_Menu(DefaultTableModel model,JTable Table){
         model = (DefaultTableModel) Table.getModel();
         Object[] newIdentifiers = new Object[]{"Username","Ultima Conexión"};
@@ -47,6 +49,38 @@ public class Creador {
         
         for (Object []archivo : archivos) {
             model.addRow(archivo);
+        }
+       Table.setModel(model);
+    }
+    
+    
+    public void add_Info_Table_Cloud(DefaultTableModel model,JTable Table){
+        String [] datos = new String[3];
+        model = (DefaultTableModel) Table.getModel();
+        Object[] newIdentifiers = new Object[]{"Nombre","Direccion IP","Estatus"};
+        model.setColumnIdentifiers(newIdentifiers);
+        Table.setFillsViewportHeight(true);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for (int x = 0; x < Table.getColumnCount(); x++) {
+            Table.getColumnModel().getColumn(x).setCellRenderer(centerRenderer);            
+        }        
+        
+        Select sl = new Select();
+        
+        ArrayList<Cloud> clouds = new ArrayList<Cloud>();
+        
+        clouds= sl.Clouds();
+        
+       
+        for (Cloud cloud : clouds) {
+            
+            datos[0] = cloud.getName();
+            datos[1] = cloud.getIP_ADDRESS();
+            datos[2] = cloud.getSTATUS();
+            
+            model.addRow(datos);
+            
         }
        Table.setModel(model);
     }

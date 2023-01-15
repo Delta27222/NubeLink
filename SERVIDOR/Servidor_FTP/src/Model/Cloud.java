@@ -16,6 +16,57 @@ import org.apache.ftpserver.usermanager.impl.WritePermission;
 
 public class Cloud {
     
+    private Integer ID;
+    private String Name;
+    private String IP_ADDRESS;
+    private String USERNAME;
+    private String PASSWORD;
+    private String REMOTE_FILE_PATH;
+    private String STATUS;
+
+    public Cloud() {
+    }
+
+    public Cloud(Integer ID, String Name, String IP_ADDRESS, String USERNAME, String PASSWORD, String REMOTE_FILE_PATH, String STATUS) {
+        this.ID = ID;
+        this.Name = Name;
+        this.IP_ADDRESS = IP_ADDRESS;
+        this.USERNAME = USERNAME;
+        this.PASSWORD = PASSWORD;
+        this.REMOTE_FILE_PATH = REMOTE_FILE_PATH;
+        this.STATUS = STATUS;
+    }
+
+    public Integer getID() {
+        return ID;
+    }
+
+    public String getName() {
+        return Name;
+    }
+
+    public String getIP_ADDRESS() {
+        return IP_ADDRESS;
+    }
+
+    public String getUSERNAME() {
+        return USERNAME;
+    }
+
+    public String getPASSWORD() {
+        return PASSWORD;
+    }
+
+    public String getREMOTE_FILE_PATH() {
+        return REMOTE_FILE_PATH;
+    }
+
+    public String getSTATUS() {
+        return STATUS;
+    }
+
+ 
+
     public void activateServer(){
                 //            Login open = null;
           //            open = new Login();
