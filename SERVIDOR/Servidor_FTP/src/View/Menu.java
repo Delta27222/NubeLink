@@ -57,6 +57,11 @@ public class Menu extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_Users = new javax.swing.JTable();
         btn_add_user = new javax.swing.JButton();
+        AddNube = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable_Users1 = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -128,11 +133,11 @@ public class Menu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Username", "Ultima Conexion"
+                "Nombre", "IPServer", "Estatus"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -146,7 +151,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTable_Users);
 
-        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 530, 140));
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 530, 140));
 
         btn_add_user.setBackground(new java.awt.Color(10, 144, 203));
         btn_add_user.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -165,7 +170,46 @@ public class Menu extends javax.swing.JFrame {
         });
         jPanel3.add(btn_add_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 110, 90));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 660, 310));
+        AddNube.setText("Agregar Nube");
+        AddNube.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AddNubeActionPerformed(evt);
+            }
+        });
+        jPanel3.add(AddNube, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 100, 40));
+
+        jTable_Users1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Username", "Ultima Conexion"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable_Users1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_Users1MouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jTable_Users1);
+
+        jPanel3.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 530, 140));
+
+        jLabel3.setText("Servidores:");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, -1, -1));
+
+        jLabel4.setText("Usuarios:");
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 660, 520));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -215,6 +259,16 @@ public class Menu extends javax.swing.JFrame {
             open.setVisible(true);
     }//GEN-LAST:event_btn_add_userActionPerformed
 
+    private void AddNubeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNubeActionPerformed
+            Create_cloud open = null;
+            open = new Create_cloud(this,true);
+            open.setVisible(true);
+    }//GEN-LAST:event_AddNubeActionPerformed
+
+    private void jTable_Users1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Users1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable_Users1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -252,17 +306,22 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AddNube;
     private javax.swing.JButton Atras;
     private javax.swing.JLabel Logo;
     private javax.swing.JButton btn_add_user;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable_Users;
+    private javax.swing.JTable jTable_Users1;
     // End of variables declaration//GEN-END:variables
 }

@@ -75,7 +75,6 @@ public class Create_user extends javax.swing.JDialog {
 
         btn_create.setBackground(new java.awt.Color(10, 130, 203));
         btn_create.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btn_create.setForeground(new java.awt.Color(0, 0, 0));
         btn_create.setText("Crear");
         btn_create.setToolTipText("");
         btn_create.setBorderPainted(false);
@@ -335,6 +334,18 @@ public class Create_user extends javax.swing.JDialog {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Create_user.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
