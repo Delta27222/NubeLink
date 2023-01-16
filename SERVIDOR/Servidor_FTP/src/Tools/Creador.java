@@ -126,4 +126,12 @@ public class Creador {
             jComboBoxUser.addItem(lista_users.get(i));
         }
     }
+    
+    
+    public void limpiarTabla(JTable tabla){
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        for (int i = model.getRowCount()-1; i>=0;i--)
+            model.removeRow(i);
+    }
+    
 }

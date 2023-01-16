@@ -21,9 +21,10 @@ public class Insertar {
             st.execute(sql);
             st.close();
             con.close();
+            JOptionPane.showMessageDialog(null, "La nube se ha creado con exito", "Completado",JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             guardado = false;
-            JOptionPane.showMessageDialog(null, "Hubo un inconveniente con el manejo del servidor");
+            JOptionPane.showMessageDialog(null, "La direccion IP ya posee una nube creada.");
         }
         return guardado;
     }

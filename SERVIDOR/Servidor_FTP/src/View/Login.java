@@ -7,7 +7,10 @@ package View;
 
 import Tools.FTPConnection;
 import java.awt.Color;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.apache.commons.net.ftp.FTPClient;
 
@@ -284,7 +287,11 @@ public class Login extends javax.swing.JFrame {
 
         if (username_field_string.equals("Delta") && password_field_string.equals("1234")){
             Menu open = null;
-            open = new Menu();
+            try {
+                open = new Menu();
+            } catch (UnknownHostException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
             open.setVisible(true);
             this.dispose();
         }else{

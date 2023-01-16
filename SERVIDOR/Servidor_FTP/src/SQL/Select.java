@@ -28,5 +28,25 @@ public class Select {
         }
     }
     
+        public String getCloudName(String ip_address){
+        String cloudName="La IP no se encuentra registrada como nube.";
+        Statement st;
+        SQLConnection con = new SQLConnection();
+        
+        try {
+            st = con.connected().createStatement();
+            ResultSet rs = st.executeQuery("select NAME from CLOUD where IP_ADDRESS = '"+ip_address+"'");
+            if (rs.next()) {
+                cloudName = rs.getString(1);
+            }
+            st.close();
+            con.disconnect();
+            return cloudName;
+        } catch (Exception e) {
+            con.disconnect();
+            return cloudName;
+        }
+    }
+    
     
 }
