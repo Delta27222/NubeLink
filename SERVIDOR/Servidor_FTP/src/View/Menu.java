@@ -49,9 +49,26 @@ public class Menu extends javax.swing.JFrame {
 
         Atras.setToolTipText("Cerrar sesión");
         btn_add_user.setToolTipText("Agregar User");
+        btn_icon_OFF.setToolTipText("Activar Nube");          
+        btn_icon_ON.setToolTipText("Desactivar Nube");  
+        btn_add_server.setToolTipText("Agregar Nube"); 
+        btn_delete_server.setToolTipText("Eliminar Nube"); 
         
         crea.add_Info_Table_Menu(model, jTable_Users);
         crea.add_Info_Table_Cloud(model, jTable_Clouds);
+        
+        if(label_status.getText().toString().equals("")){
+            btn_icon_OFF.setVisible(false);            
+            btn_icon_ON.setVisible(false);
+        }
+        if(label_status.getText().toString().equals("ON")){
+            btn_icon_OFF.setVisible(false);            
+            btn_icon_ON.setVisible(true);
+        }
+        if(label_status.getText().toString().equals("OFF")){
+            btn_icon_OFF.setVisible(true);            
+            btn_icon_ON.setVisible(false);
+        }
     }
     
     /**
@@ -74,8 +91,6 @@ public class Menu extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable_Users = new javax.swing.JTable();
-        btn_add_user = new javax.swing.JButton();
-        AddNube = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable_Clouds = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
@@ -84,10 +99,14 @@ public class Menu extends javax.swing.JFrame {
         label_cloud_name = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         label_ip = new javax.swing.JLabel();
-        AddNube1 = new javax.swing.JButton();
-        AddNube2 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         label_status = new javax.swing.JLabel();
+        btn_icon_OFF = new javax.swing.JButton();
+        btn_icon_ON = new javax.swing.JButton();
+        btn_add_server = new javax.swing.JButton();
+        btn_add_user = new javax.swing.JButton();
+        btn_info_server = new javax.swing.JButton();
+        btn_delete_server = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -177,32 +196,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTable_Users);
 
-        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 110, 530, 140));
-
-        btn_add_user.setBackground(new java.awt.Color(10, 144, 203));
-        btn_add_user.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btn_add_user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/add_user.png"))); // NOI18N
-        btn_add_user.setBorder(null);
-        btn_add_user.setBorderPainted(false);
-        btn_add_user.setContentAreaFilled(false);
-        btn_add_user.setFocusPainted(false);
-        btn_add_user.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/add_user_G.png"))); // NOI18N
-        btn_add_user.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/add_user_G.png"))); // NOI18N
-        btn_add_user.setVerifyInputWhenFocusTarget(false);
-        btn_add_user.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_add_userActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btn_add_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, 110, 90));
-
-        AddNube.setText("Agregar Nube");
-        AddNube.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddNubeActionPerformed(evt);
-            }
-        });
-        jPanel3.add(AddNube, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 460, 140, 30));
+        jPanel3.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 530, 140));
 
         jTable_Clouds.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -220,62 +214,139 @@ public class Menu extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable_Clouds.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable_CloudsMouseClicked(evt);
-            }
-        });
         jScrollPane4.setViewportView(jTable_Clouds);
 
-        jPanel3.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 300, 530, 140));
+        jPanel3.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 390, 530, 140));
 
         jLabel3.setText("Servidores:");
-        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, -1, -1));
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, -1, -1));
 
         jLabel4.setText("Usuarios:");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 80, -1, -1));
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, -1, -1));
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel5.setText("Nombre de la nube:");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
 
         label_cloud_name.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        label_cloud_name.setText("La IP no se encuentra registrada como nube.");
-        jPanel3.add(label_cloud_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
+        label_cloud_name.setText("IP no asignada a un Servidor.");
+        jPanel3.add(label_cloud_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel7.setText("Estatus:");
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 40, -1, -1));
 
         label_ip.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         label_ip.setText("255.255.255.255");
-        jPanel3.add(label_ip, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
-
-        AddNube1.setText("Activar/Desactivar");
-        AddNube1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddNube1ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(AddNube1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 140, 30));
-
-        AddNube2.setText("Eliminar Nube");
-        AddNube2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AddNube2ActionPerformed(evt);
-            }
-        });
-        jPanel3.add(AddNube2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 460, 140, 30));
+        jPanel3.add(label_ip, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 40, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel8.setText("IP:");
-        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
 
         label_status.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         label_status.setText("OFF");
-        jPanel3.add(label_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
+        jPanel3.add(label_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 40, -1, -1));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 660, 520));
+        btn_icon_OFF.setBackground(new java.awt.Color(10, 144, 203));
+        btn_icon_OFF.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btn_icon_OFF.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/icons_OFF.png"))); // NOI18N
+        btn_icon_OFF.setBorder(null);
+        btn_icon_OFF.setBorderPainted(false);
+        btn_icon_OFF.setContentAreaFilled(false);
+        btn_icon_OFF.setFocusPainted(false);
+        btn_icon_OFF.setVerifyInputWhenFocusTarget(false);
+        btn_icon_OFF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_icon_OFFActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btn_icon_OFF, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, 110, 90));
+
+        btn_icon_ON.setBackground(new java.awt.Color(10, 144, 203));
+        btn_icon_ON.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btn_icon_ON.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/icons_ON.png"))); // NOI18N
+        btn_icon_ON.setBorder(null);
+        btn_icon_ON.setBorderPainted(false);
+        btn_icon_ON.setContentAreaFilled(false);
+        btn_icon_ON.setFocusPainted(false);
+        btn_icon_ON.setVerifyInputWhenFocusTarget(false);
+        btn_icon_ON.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_icon_ONActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btn_icon_ON, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 20, 110, 90));
+
+        btn_add_server.setBackground(new java.awt.Color(10, 144, 203));
+        btn_add_server.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btn_add_server.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/add_server.png"))); // NOI18N
+        btn_add_server.setBorder(null);
+        btn_add_server.setBorderPainted(false);
+        btn_add_server.setContentAreaFilled(false);
+        btn_add_server.setFocusPainted(false);
+        btn_add_server.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/add_server_G.png"))); // NOI18N
+        btn_add_server.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/add_server_G.png"))); // NOI18N
+        btn_add_server.setVerifyInputWhenFocusTarget(false);
+        btn_add_server.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_add_serverActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btn_add_server, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 310, 90, 70));
+
+        btn_add_user.setBackground(new java.awt.Color(10, 144, 203));
+        btn_add_user.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btn_add_user.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/add_user1.png"))); // NOI18N
+        btn_add_user.setBorder(null);
+        btn_add_user.setBorderPainted(false);
+        btn_add_user.setContentAreaFilled(false);
+        btn_add_user.setFocusPainted(false);
+        btn_add_user.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/add_user1_G.png"))); // NOI18N
+        btn_add_user.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/add_user1_G.png"))); // NOI18N
+        btn_add_user.setVerifyInputWhenFocusTarget(false);
+        btn_add_user.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_add_userActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btn_add_user, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 80, 90, 70));
+
+        btn_info_server.setBackground(new java.awt.Color(10, 144, 203));
+        btn_info_server.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btn_info_server.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/info_server.png"))); // NOI18N
+        btn_info_server.setBorder(null);
+        btn_info_server.setBorderPainted(false);
+        btn_info_server.setContentAreaFilled(false);
+        btn_info_server.setFocusPainted(false);
+        btn_info_server.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/info_server_G.png"))); // NOI18N
+        btn_info_server.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/info_server_G.png"))); // NOI18N
+        btn_info_server.setVerifyInputWhenFocusTarget(false);
+        btn_info_server.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_info_serverActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btn_info_server, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 310, 90, 70));
+
+        btn_delete_server.setBackground(new java.awt.Color(10, 144, 203));
+        btn_delete_server.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
+        btn_delete_server.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/delete_server.png"))); // NOI18N
+        btn_delete_server.setBorder(null);
+        btn_delete_server.setBorderPainted(false);
+        btn_delete_server.setContentAreaFilled(false);
+        btn_delete_server.setFocusPainted(false);
+        btn_delete_server.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/delete_server_G.png"))); // NOI18N
+        btn_delete_server.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/delete_server_G.png"))); // NOI18N
+        btn_delete_server.setVerifyInputWhenFocusTarget(false);
+        btn_delete_server.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_delete_serverActionPerformed(evt);
+            }
+        });
+        jPanel3.add(btn_delete_server, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 310, 90, 70));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 660, 560));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -314,24 +385,41 @@ public class Menu extends javax.swing.JFrame {
         String ultima_conexion = model.getValueAt(jTable_Users.getSelectedRow(), 1).toString();
 
         
-        System.out.println(username);
-        System.out.println(ultima_conexion);
-        
-        
-        
-        Modal_file_options open = null;
-        open = new Modal_file_options(this, true, username, ultima_conexion);
+        Modal_file_options_user open = null;
+        open = new Modal_file_options_user(this, true, username, ultima_conexion);
         open.setVisible(true);
 
     }//GEN-LAST:event_jTable_UsersMouseClicked
 
+    private void btn_icon_OFFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_icon_OFFActionPerformed
+        Cloud nube = new Cloud();
+
+            nube.activateServer();
+            is.onServer();
+            label_status.setText("ON");
+            btn_icon_OFF.setVisible(false);
+            btn_icon_ON.setVisible(true);
+
+    }//GEN-LAST:event_btn_icon_OFFActionPerformed
+
+    private void btn_icon_ONActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_icon_ONActionPerformed
+        Cloud nube = new Cloud();
+
+            nube.turnOffServer(nube.getServer());
+            is.offServer();
+            label_status.setText("OFF");
+            btn_icon_OFF.setVisible(true);
+            btn_icon_ON.setVisible(false);
+
+    }//GEN-LAST:event_btn_icon_ONActionPerformed
+
     private void btn_add_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_add_userActionPerformed
-            Create_user open = null;
-            open = new Create_user(this,true);
-            open.setVisible(true);
+        Create_user open = null;
+        open = new Create_user(this,true);
+        open.setVisible(true);
     }//GEN-LAST:event_btn_add_userActionPerformed
 
-    private void AddNubeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNubeActionPerformed
+    private void btn_add_serverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_add_serverActionPerformed
             Create_cloud open = null;
             open = new Create_cloud(this,true);
             open.setVisible(true);
@@ -345,33 +433,19 @@ public class Menu extends javax.swing.JFrame {
             crea.limpiarTabla(jTable_Clouds);
             label_status.setText(sl.getCloudStatus(label_ip.getText()));
             crea.add_Info_Table_Cloud(model, jTable_Clouds);
-    }//GEN-LAST:event_AddNubeActionPerformed
-
-    private void jTable_CloudsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_CloudsMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTable_CloudsMouseClicked
-
-    private void AddNube1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNube1ActionPerformed
-   
-            Cloud nube = new Cloud();
-
-            if(label_status.getText().toString().equals("OFF")){
-                nube.activateServer();
-                is.onServer();
-                label_status.setText("ON");
-            } else if (label_status.getText().toString().equals("ON")){
-                nube.turnOffServer(nube.getServer());
-                is.offServer();
-                 label_status.setText("OFF");
-            } else JOptionPane.showMessageDialog(null, "La nube no ha sido creada para esta direccion IP");
             
 
-   
-    }//GEN-LAST:event_AddNube1ActionPerformed
+        if(label_status.getText().toString().equals("ON")){
+            btn_icon_OFF.setVisible(false);            
+            btn_icon_ON.setVisible(true);
+        }
+        if(label_status.getText().toString().equals("OFF")){
+            btn_icon_OFF.setVisible(true);            
+            btn_icon_ON.setVisible(false);
+        }
+    }//GEN-LAST:event_btn_add_serverActionPerformed
 
-    private void AddNube2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNube2ActionPerformed
-        
-        
+    private void btn_delete_serverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_delete_serverActionPerformed
         try {
             model = (DefaultTableModel) jTable_Clouds.getModel();
             Eliminar eli = new Eliminar();
@@ -383,15 +457,26 @@ public class Menu extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Nube eliminada exitosamente","Aviso",INFORMATION_MESSAGE);
                 crea.limpiarTabla(jTable_Clouds);
                 crea.add_Info_Table_Cloud(model, jTable_Clouds);
+                btn_icon_OFF.setVisible(false);            
+                btn_icon_ON.setVisible(false);
             }else JOptionPane.showMessageDialog(null, "Debe seleccionar una nube para ser elimianda","Aviso",INFORMATION_MESSAGE);
             //JOptionPane.showMessageDialog(null, "Nube eliminada exitosamente","Aviso",INFORMATION_MESSAGE);
             
         } catch (UnknownHostException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-        
-    }//GEN-LAST:event_AddNube2ActionPerformed
+    }//GEN-LAST:event_btn_delete_serverActionPerformed
+
+    private void btn_info_serverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_info_serverActionPerformed
+
+        if (jTable_Clouds.getSelectedRow() != -1){
+            Modal_server_options open = null;
+            open = new Modal_server_options(this,true,label_cloud_name.getText(), label_ip.getText());
+            open.setVisible(true);
+        }else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una nube para ver los resportes","Aviso",INFORMATION_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_info_serverActionPerformed
 
     /**
      * @param args the command line arguments
@@ -434,12 +519,14 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AddNube;
-    private javax.swing.JButton AddNube1;
-    private javax.swing.JButton AddNube2;
     private javax.swing.JButton Atras;
     private javax.swing.JLabel Logo;
+    private javax.swing.JButton btn_add_server;
     private javax.swing.JButton btn_add_user;
+    private javax.swing.JButton btn_delete_server;
+    private javax.swing.JButton btn_icon_OFF;
+    private javax.swing.JButton btn_icon_ON;
+    private javax.swing.JButton btn_info_server;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -34,18 +34,16 @@ public class Create_cloud extends javax.swing.JDialog {
     public Create_cloud(JFrame padre, boolean modo) {
         super(padre, modo);
         initComponents();
+        this.setLocationRelativeTo(null);
+
     }
     
     public Create_cloud(JDialog padre, boolean modo, String fileName, String nubeName) {
         super(padre, modo);
         initComponents();
-        this.setLocationRelativeTo(null);
-        
         this.file_Name = fileName;
         this.nube_Name = nubeName;
-        
-        jLabel_NameFile.setText("Archivo: "+file_Name);        
-        jLabel_NameNube.setText("Nube: "+nube_Name);
+
     }
 
     /**
@@ -69,8 +67,6 @@ public class Create_cloud extends javax.swing.JDialog {
         Jtext_nombre_user1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         Atras = new javax.swing.JButton();
-        jLabel_NameFile = new javax.swing.JLabel();
-        jLabel_NameNube = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -212,7 +208,7 @@ public class Create_cloud extends javax.swing.JDialog {
         Jtext_nombre_user1.setText("Nombre de la nube:");
         jPanel3.add(Jtext_nombre_user1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 400, 230));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 400, 230));
 
         jPanel4.setBackground(new java.awt.Color(205, 205, 205));
 
@@ -227,7 +223,7 @@ public class Create_cloud extends javax.swing.JDialog {
             .addGap(0, 20, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 400, 20));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 400, 20));
 
         Atras.setBackground(new java.awt.Color(10, 144, 203));
         Atras.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -246,16 +242,6 @@ public class Create_cloud extends javax.swing.JDialog {
         });
         jPanel1.add(Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 30, 30));
 
-        jLabel_NameFile.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabel_NameFile.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel_NameFile.setText("NubeFTP");
-        jPanel1.add(jLabel_NameFile, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 210, -1));
-
-        jLabel_NameNube.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabel_NameNube.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel_NameNube.setText("NubeName");
-        jPanel1.add(jLabel_NameNube, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 210, -1));
-
         jLabel4.setBackground(new java.awt.Color(10, 144, 203));
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -270,9 +256,9 @@ public class Create_cloud extends javax.swing.JDialog {
         jLabel3.setText("    Crear nube:");
         jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel3.setOpaque(true);
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 400, 80));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 400, 40));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 360));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 320));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -411,8 +397,6 @@ public class Create_cloud extends javax.swing.JDialog {
     private javax.swing.JButton btn_descargar;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel_NameFile;
-    private javax.swing.JLabel jLabel_NameNube;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;

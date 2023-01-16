@@ -2,6 +2,7 @@
 package SQL;
 
 import Tools.Buscador;
+import View.cargando;
 import java.sql.Connection;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -32,6 +33,10 @@ public class Insertar {
     
     
     public void onServer(){
+                                                        //Timer para mostrar cargasion
+                                                        cargando open = null;
+                                                        open = new cargando(5);
+                                                        open.setVisible(true);
         Buscador bs = new Buscador();
         try {
             SQLConnection conexion= new SQLConnection();
@@ -50,6 +55,10 @@ public class Insertar {
     }
     
     public void offServer(){
+                                                        //Timer para mostrar cargasion
+                                                        cargando open = null;
+                                                        open = new cargando(5);
+                                                        open.setVisible(true);        
         Buscador bs = new Buscador();
         try {
             SQLConnection conexion= new SQLConnection();

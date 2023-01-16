@@ -6,31 +6,33 @@
 package View;
 
 import java.awt.Color;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Angel
  */
-public class Modal_file_options extends javax.swing.JDialog {
+public class Modal_files_Users extends javax.swing.JDialog {
     
     String username;
     String ultima_conexion;
+    DefaultTableModel model;
 
     /**
      * Creates new form 
      */
     
-    public Modal_file_options(JFrame padre, boolean modo) {
+    public Modal_files_Users(JDialog padre, boolean modo) {
         super(padre,modo);
         initComponents();
         this.setLocationRelativeTo(null);
                 
-        btn_delete.setToolTipText("Eliminar");
     }
     
-    public Modal_file_options(JFrame padre, boolean modo, String username, String ultima_conexion) {
+    public Modal_files_Users(JDialog padre, boolean modo, String username) {
         super(padre,modo);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -40,13 +42,8 @@ public class Modal_file_options extends javax.swing.JDialog {
         
         //Colocamos el nombre del Archivo y de la Nube
         jLabel_Username.setText("Username: "+username);
-        jLabel_ultima_conexion.setText("Última conexión: "+ultima_conexion);
-        
-        //Info de lo que hace el boton
-        btn_delete.setToolTipText("Eliminar");
-        btn_edit.setToolTipText("Editar");
-        Atras.setToolTipText("Volver");
 
+        Atras.setToolTipText("Volver");
     }
 
     /**
@@ -60,9 +57,8 @@ public class Modal_file_options extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        btn_delete = new javax.swing.JButton();
-        btn_edit = new javax.swing.JButton();
-        jLabel_ultima_conexion = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable_Archivos1 = new javax.swing.JTable();
         jLabel_Username = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         Atras = new javax.swing.JButton();
@@ -78,65 +74,47 @@ public class Modal_file_options extends javax.swing.JDialog {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        btn_delete.setBackground(new java.awt.Color(10, 144, 203));
-        btn_delete.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btn_delete.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/delete_icon.png"))); // NOI18N
-        btn_delete.setBorder(null);
-        btn_delete.setBorderPainted(false);
-        btn_delete.setContentAreaFilled(false);
-        btn_delete.setFocusPainted(false);
-        btn_delete.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/delete_icon_G.png"))); // NOI18N
-        btn_delete.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/delete_icon_G.png"))); // NOI18N
-        btn_delete.setVerifyInputWhenFocusTarget(false);
-        btn_delete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_deleteActionPerformed(evt);
-            }
-        });
+        jTable_Archivos1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        btn_edit.setBackground(new java.awt.Color(10, 144, 203));
-        btn_edit.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        btn_edit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/edit_user.png"))); // NOI18N
-        btn_edit.setBorder(null);
-        btn_edit.setBorderPainted(false);
-        btn_edit.setContentAreaFilled(false);
-        btn_edit.setFocusPainted(false);
-        btn_edit.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/edit_user_G.png"))); // NOI18N
-        btn_edit.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/edit_user_G.png"))); // NOI18N
-        btn_edit.setVerifyInputWhenFocusTarget(false);
-        btn_edit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_editActionPerformed(evt);
+            },
+            new String [] {
+                "Id", "Nombre Archivo", "Peso (Kb)", "Tipo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
+        jTable_Archivos1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable_Archivos1MouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(jTable_Archivos1);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(95, 95, 95)
-                .addComponent(btn_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(104, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(56, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 530, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_edit, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_delete, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(46, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 400, 110));
-
-        jLabel_ultima_conexion.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabel_ultima_conexion.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel_ultima_conexion.setText("ultima_conexion");
-        jPanel1.add(jLabel_ultima_conexion, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 210, -1));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 640, 230));
 
         jLabel_Username.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel_Username.setForeground(new java.awt.Color(255, 255, 255));
@@ -149,14 +127,14 @@ public class Modal_file_options extends javax.swing.JDialog {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 640, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 20, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 400, 20));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 640, 20));
 
         Atras.setBackground(new java.awt.Color(10, 144, 203));
         Atras.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
@@ -173,25 +151,25 @@ public class Modal_file_options extends javax.swing.JDialog {
                 AtrasActionPerformed(evt);
             }
         });
-        jPanel1.add(Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 30, 30));
+        jPanel1.add(Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 20, 30, 30));
 
         jLabel3.setBackground(new java.awt.Color(10, 144, 203));
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setText("    Opciones de Archivo:");
+        jLabel3.setText("    Archivos del Usuario:");
         jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jLabel3.setOpaque(true);
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 400, 80));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 640, 80));
 
         jLabel4.setBackground(new java.awt.Color(10, 144, 203));
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setOpaque(true);
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 400, 10));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 640, 10));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 420, 240));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 360));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -200,21 +178,15 @@ public class Modal_file_options extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_AtrasActionPerformed
 
-    private void btn_deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_deleteActionPerformed
-        int respuesta= JOptionPane.showConfirmDialog(null,"Seguro desea borrar a el usuario de nombre '"+username+" para no dar mas acceso a la nube?","Borrar archivo",JOptionPane.YES_NO_OPTION);
-        if (respuesta == 0){
+    private void btn_users_filesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_delete1ActionPerformed
+        //No se porque no se eleiminar esto, pero no esta dando problemas...por lo tanto no lo toquemos
+    }//GEN-LAST:event_btn_delete1ActionPerformed
 
-            //Aca va la logica para eliminar el archivo, y luego se cierra esta pantalla
-            
-            this.dispose();
-        }
-    }//GEN-LAST:event_btn_deleteActionPerformed
-
-    private void btn_editActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_editActionPerformed
-        Edit_user open = null;
-        open = new Edit_user(this,true,username);
-        open.setVisible(true);
-    }//GEN-LAST:event_btn_editActionPerformed
+    private void jTable_Archivos1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_Archivos1MouseClicked
+        model = (DefaultTableModel) jTable_Archivos.getModel();
+        String archivo_o_carpeta = model.getValueAt(jTable_Archivos.getSelectedRow(), 3).toString();
+       
+    }//GEN-LAST:event_jTable_Archivos1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -233,14 +205,26 @@ public class Modal_file_options extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Modal_file_options.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modal_files_Users.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Modal_file_options.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modal_files_Users.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Modal_file_options.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modal_files_Users.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Modal_file_options.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Modal_files_Users.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -249,7 +233,7 @@ public class Modal_file_options extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Modal_file_options dialog = new Modal_file_options(new javax.swing.JFrame(), true);
+                Modal_files_Users dialog = new Modal_files_Users(new javax.swing.JDialog(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -263,14 +247,15 @@ public class Modal_file_options extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Atras;
-    private javax.swing.JButton btn_delete;
-    private javax.swing.JButton btn_edit;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel_Username;
-    private javax.swing.JLabel jLabel_ultima_conexion;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable jTable_Archivos;
+    private javax.swing.JTable jTable_Archivos1;
     // End of variables declaration//GEN-END:variables
 }

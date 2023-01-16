@@ -3,6 +3,7 @@ package Model;
 
 import SQL.Insertar;
 import SQL.SQLConnection;
+import View.Create_cloud;
 import View.Login;
 import java.io.IOException;
 
@@ -33,7 +34,11 @@ public class Servidor_FTP {
         is.onServer();
         nube.turnOffServer(nube.getServer());
 
-
+            Login open = null;
+            open = new Login();
+            open.setVisible(true);
+        
+        
         
         System.out.println("Se activo esa mielda");
     }

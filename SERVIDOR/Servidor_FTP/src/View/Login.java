@@ -284,7 +284,7 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username_field_string = this.Username_field.getText();
         String password_field_string = this.Password_field.getText();
-
+        
         if (username_field_string.equals("Delta") && password_field_string.equals("1234")){
             Menu open = null;
             try {
