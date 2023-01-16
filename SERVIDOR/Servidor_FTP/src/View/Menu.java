@@ -5,7 +5,9 @@
  */
 package View;
 
+import Model.Cloud;
 import SQL.Eliminar;
+import SQL.Insertar;
 import SQL.Select;
 import Tools.Buscador;
 import Tools.Creador;
@@ -31,6 +33,7 @@ public class Menu extends javax.swing.JFrame {
     String nombre_nube;
     Buscador bs = new Buscador();
         Select sl = new Select();
+        Insertar is = new Insertar();
     
     /**
      * Creates new form Menu
@@ -293,8 +296,14 @@ public class Menu extends javax.swing.JFrame {
         if (respuesta == 0){
             Login open = null;
             open = new Login();
+            if (label_status.getText().toString().equals("ON")){
+                Cloud nube = new Cloud();
+                nube.turnOffServer(nube.getServer());
+                is.offServer();
+            }
             open.setVisible(true);
             this.dispose();
+            
         }
     }//GEN-LAST:event_AtrasActionPerformed
 
@@ -343,14 +352,21 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable_CloudsMouseClicked
 
     private void AddNube1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNube1ActionPerformed
-        try {
-            label_ip.setText(bs.getIP());
-            label_cloud_name.setText(sl.getCloudName(label_ip.getText()));
-            crea.limpiarTabla(jTable_Clouds);
-            crea.add_Info_Table_Cloud(model, jTable_Clouds);
-        } catch (UnknownHostException ex) {
-            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
-        }
+   
+            Cloud nube = new Cloud();
+
+            if(label_status.getText().toString().equals("OFF")){
+                nube.activateServer();
+                is.onServer();
+                label_status.setText("ON");
+            } else if (label_status.getText().toString().equals("ON")){
+                nube.turnOffServer(nube.getServer());
+                is.offServer();
+                 label_status.setText("OFF");
+            } else JOptionPane.showMessageDialog(null, "La nube no ha sido creada para esta direccion IP");
+            
+
+   
     }//GEN-LAST:event_AddNube1ActionPerformed
 
     private void AddNube2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddNube2ActionPerformed
@@ -361,15 +377,15 @@ public class Menu extends javax.swing.JFrame {
             Eliminar eli = new Eliminar();
             if (jTable_Clouds.getSelectedRow() != -1){
                 eli.deleteCloud(model.getValueAt(jTable_Clouds.getSelectedRow(),1).toString());
-
+                label_ip.setText(bs.getIP());
+                label_cloud_name.setText(sl.getCloudName(label_ip.getText()));
+                 label_status.setText(sl.getCloudStatus(label_ip.getText()));
+                JOptionPane.showMessageDialog(null, "Nube eliminada exitosamente","Aviso",INFORMATION_MESSAGE);
+                crea.limpiarTabla(jTable_Clouds);
+                crea.add_Info_Table_Cloud(model, jTable_Clouds);
             }else JOptionPane.showMessageDialog(null, "Debe seleccionar una nube para ser elimianda","Aviso",INFORMATION_MESSAGE);
             //JOptionPane.showMessageDialog(null, "Nube eliminada exitosamente","Aviso",INFORMATION_MESSAGE);
-            label_ip.setText(bs.getIP());
-            label_cloud_name.setText(sl.getCloudName(label_ip.getText()));
-             label_status.setText(sl.getCloudStatus(label_ip.getText()));
-            JOptionPane.showMessageDialog(null, "Nube eliminada exitosamente","Aviso",INFORMATION_MESSAGE);
-            crea.limpiarTabla(jTable_Clouds);
-            crea.add_Info_Table_Cloud(model, jTable_Clouds);
+            
         } catch (UnknownHostException ex) {
             Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
         }

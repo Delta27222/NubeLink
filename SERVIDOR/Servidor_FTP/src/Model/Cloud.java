@@ -23,6 +23,7 @@ public class Cloud {
     private String PASSWORD;
     private String REMOTE_FILE_PATH;
     private String STATUS;
+    static private FtpServer server;    
 
     public Cloud() {
     }
@@ -65,6 +66,10 @@ public class Cloud {
         return STATUS;
     }
 
+    public static FtpServer getServer() {
+        return server;
+    }
+
  
 
     public void activateServer(){
@@ -84,7 +89,7 @@ public class Cloud {
            //    PropertyConfigurator.configure(log4jConfPath);
            org.apache.log4j.BasicConfigurator.configure();
            // start the server
-           FtpServer server = serverFactory.createServer();    
+           this.server = serverFactory.createServer();    
 
 
                BaseUser user = new BaseUser();
@@ -115,6 +120,13 @@ public class Cloud {
        //            Logger.getLogger(ApacheFTP.class.getName()).log(Level.SEVERE, null, ex);
                }
 
+    }
+    
+    public void turnOffServer(FtpServer server){
+        
+        if (server != null) {
+            server.stop();
+  }
     }
     
     public String addServer(String username, String password, String directiva_path, String name) throws UnknownHostException{

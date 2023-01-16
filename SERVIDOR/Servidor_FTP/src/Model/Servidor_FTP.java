@@ -1,6 +1,7 @@
 
 package Model;
 
+import SQL.Insertar;
 import SQL.SQLConnection;
 import View.Login;
 import java.io.IOException;
@@ -22,8 +23,19 @@ import org.apache.log4j.PropertyConfigurator;
 public class Servidor_FTP {
 
     public static void main(String[] args) {
-       SQLConnection con = new SQLConnection();
-       con.connected();
+//       SQLConnection con = new SQLConnection();
+//       con.connected();
+
+        Cloud nube = new Cloud();
+        
+                Insertar is = new Insertar();
+        nube.activateServer();
+        is.onServer();
+        nube.turnOffServer(nube.getServer());
+
+
+        
+        System.out.println("Se activo esa mielda");
     }
 }
     
