@@ -10,7 +10,7 @@ public class Insertar {
     
     
     
-    public boolean guardadoPersona(String value){            
+    public boolean insertCloud(String value){            
         boolean guardado = true;
         try {
             SQLConnection conexion= new SQLConnection();

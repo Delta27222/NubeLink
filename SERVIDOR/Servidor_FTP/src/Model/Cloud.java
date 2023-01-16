@@ -132,6 +132,6 @@ public class Cloud {
          }
          System.out.println(numero);
          
-         return "'"+name+"',"+"'"+numero+"',"+"'test',"+"'test',"+"'"+directiva_path+"',"+"'off'";
+         return "'"+name+"',"+"'"+numero+"',"+"'test',"+"'test',"+"'"+directiva_path+"',"+"'OFF'";
     }
 }

@@ -47,6 +47,26 @@ public class Select {
             return cloudName;
         }
     }
+        
+         public String getCloudStatus(String ip_address){
+        String cloudName="";
+        Statement st;
+        SQLConnection con = new SQLConnection();
+        
+        try {
+            st = con.connected().createStatement();
+            ResultSet rs = st.executeQuery("select t_status from CLOUD where IP_ADDRESS = '"+ip_address+"'");
+            if (rs.next()) {
+                cloudName = rs.getString(1);
+            }
+            st.close();
+            con.disconnect();
+            return cloudName;
+        } catch (Exception e) {
+            con.disconnect();
+            return cloudName;
+        }
+    }
     
     
 }

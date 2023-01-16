@@ -42,6 +42,7 @@ public class Menu extends javax.swing.JFrame {
         
         label_ip.setText(bs.getIP());
         label_cloud_name.setText(sl.getCloudName(label_ip.getText()));
+        label_status.setText(sl.getCloudStatus(label_ip.getText()));
 
         Atras.setToolTipText("Cerrar sesión");
         btn_add_user.setToolTipText("Agregar User");
@@ -82,6 +83,8 @@ public class Menu extends javax.swing.JFrame {
         label_ip = new javax.swing.JLabel();
         AddNube1 = new javax.swing.JButton();
         AddNube2 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        label_status = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -196,7 +199,7 @@ public class Menu extends javax.swing.JFrame {
                 AddNubeActionPerformed(evt);
             }
         });
-        jPanel3.add(AddNube, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 460, 140, 30));
+        jPanel3.add(AddNube, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 460, 140, 30));
 
         jTable_Clouds.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -231,15 +234,15 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel5.setText("Nombre de la nube:");
-        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, -1, -1));
+        jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, -1, -1));
 
         label_cloud_name.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         label_cloud_name.setText("La IP no se encuentra registrada como nube.");
-        jPanel3.add(label_cloud_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, -1, -1));
+        jPanel3.add(label_cloud_name, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel7.setText("IP:");
-        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+        jLabel7.setText("Estatus:");
+        jPanel3.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 10, -1, -1));
 
         label_ip.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         label_ip.setText("255.255.255.255");
@@ -251,7 +254,7 @@ public class Menu extends javax.swing.JFrame {
                 AddNube1ActionPerformed(evt);
             }
         });
-        jPanel3.add(AddNube1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 460, 140, 30));
+        jPanel3.add(AddNube1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 140, 30));
 
         AddNube2.setText("Eliminar Nube");
         AddNube2.addActionListener(new java.awt.event.ActionListener() {
@@ -259,7 +262,15 @@ public class Menu extends javax.swing.JFrame {
                 AddNube2ActionPerformed(evt);
             }
         });
-        jPanel3.add(AddNube2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 460, 140, 30));
+        jPanel3.add(AddNube2, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 460, 140, 30));
+
+        jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel8.setText("IP:");
+        jPanel3.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, -1));
+
+        label_status.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        label_status.setText("OFF");
+        jPanel3.add(label_status, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, -1, -1));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 660, 520));
 
@@ -323,6 +334,7 @@ public class Menu extends javax.swing.JFrame {
         }
             label_cloud_name.setText(sl.getCloudName(label_ip.getText()));
             crea.limpiarTabla(jTable_Clouds);
+            label_status.setText(sl.getCloudStatus(label_ip.getText()));
             crea.add_Info_Table_Cloud(model, jTable_Clouds);
     }//GEN-LAST:event_AddNubeActionPerformed
 
@@ -354,6 +366,7 @@ public class Menu extends javax.swing.JFrame {
             //JOptionPane.showMessageDialog(null, "Nube eliminada exitosamente","Aviso",INFORMATION_MESSAGE);
             label_ip.setText(bs.getIP());
             label_cloud_name.setText(sl.getCloudName(label_ip.getText()));
+             label_status.setText(sl.getCloudStatus(label_ip.getText()));
             JOptionPane.showMessageDialog(null, "Nube eliminada exitosamente","Aviso",INFORMATION_MESSAGE);
             crea.limpiarTabla(jTable_Clouds);
             crea.add_Info_Table_Cloud(model, jTable_Clouds);
@@ -417,6 +430,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -428,5 +442,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JTable jTable_Users;
     private javax.swing.JLabel label_cloud_name;
     private javax.swing.JLabel label_ip;
+    private javax.swing.JLabel label_status;
     // End of variables declaration//GEN-END:variables
 }

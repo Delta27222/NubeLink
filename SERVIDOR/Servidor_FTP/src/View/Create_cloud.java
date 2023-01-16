@@ -337,7 +337,7 @@ public class Create_cloud extends javax.swing.JDialog {
                 try {
                     String file_path = file_dir.replace("\\", "/");
                     String value = nube.addServer("test","test",file_path,name_cloud.getText());
-                    insert.guardadoPersona(value);
+                    insert.insertCloud(value);
                     
                 } catch (UnknownHostException ex) {
                     Logger.getLogger(Create_cloud.class.getName()).log(Level.SEVERE, null, ex);
