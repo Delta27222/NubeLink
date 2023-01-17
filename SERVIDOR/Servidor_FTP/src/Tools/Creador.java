@@ -7,6 +7,8 @@ package Tools;
 
 import Model.Cloud;
 import SQL.Select;
+import java.io.File;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -132,6 +134,30 @@ public class Creador {
         DefaultTableModel model = (DefaultTableModel) tabla.getModel();
         for (int i = model.getRowCount()-1; i>=0;i--)
             model.removeRow(i);
+    }
+    
+    public void addUsersFolder() throws UnknownHostException{ //Al crear una nube, se debe crear para todos los usuarios, una carpeta con su nombre
+        String ip = new Buscador().getIP(); //Obtengo la ip para buscar la ruta de la nube de la ip
+        String ruta = new Select().searchRuta(ip); //Obtengo la ruta de la ip
+        
+        ArrayList<String> users = new ArrayList<String>();
+        users = new Select().searchUsers(); //Obtengo todos los usuarios creados del sistema
+        
+        for(String username:users){
+            File directorio = new File(ruta+"\\"+username);
+            //System.out.println(ruta+"/"+username)
+            if (!directorio.exists()) {
+                if (directorio.mkdirs()) {
+                    System.out.println("Directorio creado");
+                } else {
+                    System.out.println("Error al crear directorio");
+            }
+        }
+        }
+        
+        System.out.println("Se crearon todos los directorios.");
+        
+        
     }
     
 }

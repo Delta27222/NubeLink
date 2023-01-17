@@ -21,6 +21,8 @@ public class cargando extends javax.swing.JFrame {
     public cargando() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.setVisible(true);
+        this.setAlwaysOnTop( true );
     }
     
     public cargando(int tiempo) {
@@ -48,6 +50,8 @@ public class cargando extends javax.swing.JFrame {
     }
 
 
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -58,12 +62,14 @@ public class cargando extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/1.gif"))); // NOI18N
         getContentPane().add(jLabel2, java.awt.BorderLayout.CENTER);
+        getContentPane().add(jPanel1, java.awt.BorderLayout.PAGE_END);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -105,5 +111,6 @@ public class cargando extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

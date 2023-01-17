@@ -399,6 +399,8 @@ public class Menu extends javax.swing.JFrame {
             label_status.setText("ON");
             btn_icon_OFF.setVisible(false);
             btn_icon_ON.setVisible(true);
+            crea.limpiarTabla(jTable_Clouds);
+            crea.add_Info_Table_Cloud(model, jTable_Clouds);
 
     }//GEN-LAST:event_btn_icon_OFFActionPerformed
 
@@ -410,6 +412,8 @@ public class Menu extends javax.swing.JFrame {
             label_status.setText("OFF");
             btn_icon_OFF.setVisible(true);
             btn_icon_ON.setVisible(false);
+            crea.limpiarTabla(jTable_Clouds);
+            crea.add_Info_Table_Cloud(model, jTable_Clouds);
 
     }//GEN-LAST:event_btn_icon_ONActionPerformed
 
@@ -423,7 +427,6 @@ public class Menu extends javax.swing.JFrame {
             Create_cloud open = null;
             open = new Create_cloud(this,true);
             open.setVisible(true);
-            
         try {
             label_ip.setText(bs.getIP());
         } catch (UnknownHostException ex) {

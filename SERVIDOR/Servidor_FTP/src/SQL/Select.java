@@ -48,7 +48,7 @@ public class Select {
         }
     }
         
-         public String getCloudStatus(String ip_address){
+        public String getCloudStatus(String ip_address){
         String cloudName="";
         Statement st;
         SQLConnection con = new SQLConnection();
@@ -67,6 +67,45 @@ public class Select {
             return cloudName;
         }
     }
-    
-    
+        public ArrayList<String> searchUsers(){
+            ArrayList<String> users = new ArrayList<String>();
+            Statement st;
+            SQLConnection con = new SQLConnection();
+            try {
+                st = con.connected().createStatement();
+                ResultSet rs = st.executeQuery("select username from USERS");
+                while (rs.next()) {
+                    users.add(rs.getString(1));
+                }
+
+                st.close();
+                con.disconnect();
+                return users;
+            } catch (Exception e) {
+                con.disconnect();
+                return users;
+            }
+        }
+        
+        public String searchRuta(String direccion_ip){
+            String file_path="";
+            Statement st;
+            SQLConnection con = new SQLConnection();
+            try {
+                st = con.connected().createStatement();
+                ResultSet rs = st.executeQuery("select REMOTE_FILE_PATH from CLOUD "
+                                                                        + "WHERE IP_ADDRESS = '"+direccion_ip+"'");
+                if (rs.next()) {
+                    file_path=rs.getString(1);
+                }
+                st.close();
+                con.disconnect();
+                file_path.replace("/","\\");
+                return file_path;
+            } catch (Exception e) {
+                con.disconnect();
+                return file_path;
+            }
+        }
+   
 }

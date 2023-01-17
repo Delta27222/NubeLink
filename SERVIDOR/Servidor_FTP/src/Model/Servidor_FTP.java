@@ -5,6 +5,7 @@ import SQL.Insertar;
 import SQL.SQLConnection;
 import View.Create_cloud;
 import View.Login;
+import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
@@ -26,21 +27,30 @@ public class Servidor_FTP {
     public static void main(String[] args) {
 //       SQLConnection con = new SQLConnection();
 //       con.connected();
+//
+//        Cloud nube = new Cloud();
+//        
+//                Insertar is = new Insertar();
+//        nube.activateServer();
+//        is.onServer();
+//        nube.turnOffServer(nube.getServer());
+//
+//            Login open = null;
+//            open = new Login();
+//            open.setVisible(true);
+//        
+//        
+//        
+//        System.out.println("Se activo esa mielda");
 
-        Cloud nube = new Cloud();
-        
-                Insertar is = new Insertar();
-        nube.activateServer();
-        is.onServer();
-        nube.turnOffServer(nube.getServer());
-
-            Login open = null;
-            open = new Login();
-            open.setVisible(true);
-        
-        
-        
-        System.out.println("Se activo esa mielda");
+File directorio = new File("C:\\Users\\Ricardo Fanghella\\Documents\\Arduino\\Javier");
+        if (!directorio.exists()) {
+            if (directorio.mkdirs()) {
+                System.out.println("Directorio creado");
+            } else {
+                System.out.println("Error al crear directorio");
+            }
+        }
     }
 }
     

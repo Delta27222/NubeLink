@@ -7,6 +7,7 @@ package View;
 
 import Model.Cloud;
 import SQL.Insertar;
+import Tools.Creador;
 import Tools.StringHandling;
 import Tools.Verificador;
 import java.awt.Color;
@@ -27,6 +28,7 @@ public class Create_cloud extends javax.swing.JDialog {
     
     String file_Name;
     String nube_Name;
+    Creador crea = new Creador();
 
     /**
      * Creates new form Download_file
@@ -324,6 +326,8 @@ public class Create_cloud extends javax.swing.JDialog {
                     String file_path = file_dir.replace("\\", "/");
                     String value = nube.addServer("test","test",file_path,name_cloud.getText());
                     insert.insertCloud(value);
+                    
+                    crea.addUsersFolder();
                     
                 } catch (UnknownHostException ex) {
                     Logger.getLogger(Create_cloud.class.getName()).log(Level.SEVERE, null, ex);
