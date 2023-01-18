@@ -2,6 +2,7 @@
 package SQL;
 
 import Model.Cloud;
+import Model.Users;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -28,6 +29,26 @@ public class Select {
         }
     }
     
+    public ArrayList<Users> Users() {
+        Statement st;
+        ArrayList<Users> users = new ArrayList<Users>();
+        SQLConnection con = new SQLConnection();
+
+        try {
+            st = con.connected().createStatement();
+            ResultSet rs = st.executeQuery("select * from USERS");
+            while (rs.next()) {
+                users.add(new Users(rs.getInt(1), rs.getString(2)+" GB",rs.getString(3),rs.getString(4),rs.getString(5)));
+            }
+            st.close();
+            con.disconnect();
+            return users;
+        } catch (Exception e) {
+            con.disconnect();
+            return null;
+        }
+    }
+    
         public String getCloudName(String ip_address){
         String cloudName="La IP no se encuentra registrada como nube.";
         Statement st;
@@ -47,6 +68,26 @@ public class Select {
             return cloudName;
         }
     }
+        
+        public ArrayList<String> getStorages(){
+        Statement st;
+        SQLConnection con = new SQLConnection();
+        ArrayList<String> storages = new ArrayList<String>();
+        
+        try {
+            st = con.connected().createStatement();
+            ResultSet rs = st.executeQuery("select * from STORAGE_SIZE");
+            while (rs.next()) {
+                storages.add(rs.getString(1)+" GB");
+            }
+            st.close();
+            con.disconnect();
+            return storages;
+        } catch (Exception e) {
+            con.disconnect();
+            return storages;
+            }
+        }
         
         public String getCloudStatus(String ip_address){
         String cloudName="";

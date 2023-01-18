@@ -10,7 +10,24 @@ import javax.swing.JTextField;
 
 public class Insertar {
     
-    
+    public boolean insertUser(String value){            
+        boolean guardado = true;
+        try {
+            SQLConnection conexion= new SQLConnection();
+            Connection con = conexion.connected();  
+            java.sql.Statement st = con.createStatement();
+            String sql = "INSERT INTO `USERS` (`ID_STORAGE`, `ROL`, `USERNAME`, `PASSWORD`) VALUES("+value+")";       
+            
+            st.execute(sql);
+            st.close();
+            con.close();
+            //JOptionPane.showMessageDialog(null, "La nube se ha creado con exito", "Completado",JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            guardado = false;
+            JOptionPane.showMessageDialog(null, "La direccion IP ya posee una nube creada.");
+        }
+        return guardado;
+    }
     
     public boolean insertCloud(String value){            
         boolean guardado = true;

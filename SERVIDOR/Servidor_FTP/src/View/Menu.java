@@ -54,7 +54,7 @@ public class Menu extends javax.swing.JFrame {
         btn_add_server.setToolTipText("Agregar Nube"); 
         btn_delete_server.setToolTipText("Eliminar Nube"); 
         
-        crea.add_Info_Table_Menu(model, jTable_Users);
+        crea.add_Info_Table_Users(model, jTable_Users);
         crea.add_Info_Table_Cloud(model, jTable_Clouds);
         
         if(label_status.getText().toString().equals("")){

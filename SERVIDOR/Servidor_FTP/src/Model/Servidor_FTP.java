@@ -25,8 +25,8 @@ import org.apache.log4j.PropertyConfigurator;
 public class Servidor_FTP {
 
     public static void main(String[] args) {
-//       SQLConnection con = new SQLConnection();
-//       con.connected();
+       SQLConnection con = new SQLConnection();
+       con.connected();
 //
 //        Cloud nube = new Cloud();
 //        
@@ -43,14 +43,14 @@ public class Servidor_FTP {
 //        
 //        System.out.println("Se activo esa mielda");
 
-File directorio = new File("C:\\Users\\Ricardo Fanghella\\Documents\\Arduino\\Javier");
-        if (!directorio.exists()) {
-            if (directorio.mkdirs()) {
-                System.out.println("Directorio creado");
-            } else {
-                System.out.println("Error al crear directorio");
-            }
-        }
+//File directorio = new File("C:\\Users\\Ricardo Fanghella\\Documents\\Arduino\\Javier");
+//        if (!directorio.exists()) {
+//            if (directorio.mkdirs()) {
+//                System.out.println("Directorio creado");
+//            } else {
+//                System.out.println("Error al crear directorio");
+//            }
+//        }
     }
 }
     

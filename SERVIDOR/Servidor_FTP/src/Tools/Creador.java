@@ -6,6 +6,7 @@
 package Tools;
 
 import Model.Cloud;
+import Model.Users;
 import SQL.Select;
 import java.io.File;
 import java.net.UnknownHostException;
@@ -87,6 +88,37 @@ public class Creador {
        Table.setModel(model);
     }
     
+    public void add_Info_Table_Users(DefaultTableModel model,JTable Table){
+        String [] datos = new String[3];
+        model = (DefaultTableModel) Table.getModel();
+        Object[] newIdentifiers = new Object[]{"Nombre de usuario","Espacio asignado","Ultima conexion"};
+        model.setColumnIdentifiers(newIdentifiers);
+        Table.setFillsViewportHeight(true);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for (int x = 0; x < Table.getColumnCount(); x++) {
+            Table.getColumnModel().getColumn(x).setCellRenderer(centerRenderer);            
+        }        
+        
+        Select sl = new Select();
+        
+        ArrayList<Users> users = new ArrayList<Users>();
+        
+        users= sl.Users();
+        
+       
+        for (Users user : users) {
+            
+            datos[0] = user.getUSERNAME();
+            datos[1] = user.getID_STORAGE();
+            datos[2] = "HOY";
+            
+            model.addRow(datos);
+            
+        }
+       Table.setModel(model);
+    }
+    
     public void llenando_JComboBox_Nubes(JComboBox jComboBoxNubes){
         ArrayList<String> lista_nubes = new ArrayList<String>();
 
@@ -105,6 +137,17 @@ public class Creador {
         //Para poder hacer el llenado del combo box
         for (int i=0; i<lista_nubes.size();i++){            
             jComboBoxNubes.addItem(lista_nubes.get(i));
+        }
+    }
+    
+    public void llenando_JComboBox_Storage(JComboBox jComboBoxNubes){
+        Select sl = new Select();
+        ArrayList<String> lista_storages = new ArrayList<String>();
+        lista_storages = sl.getStorages();
+        
+        //Para poder hacer el llenado del combo box
+        for (int i=0; i<lista_storages.size();i++){            
+            jComboBoxNubes.addItem(lista_storages.get(i));
         }
     }
     

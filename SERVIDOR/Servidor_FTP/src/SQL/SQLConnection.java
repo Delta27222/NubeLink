@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 public class SQLConnection {
     Connection con = null;
     String url = "jdbc:mysql://uakxgv7fr3ipyteh:xI4bsiKvF0a6hFX7njcw@b9zucnm8znqjogrqynqh-mysql.services.clever-cloud.com:3306/b9zucnm8znqjogrqynqh";
+    //String url = "b9zucnm8znqjogrqynqh-mysql.services.clever-cloud.com";
     String user = "uakxgv7fr3ipyteh";
     String pass = "xI4bsiKvF0a6hFX7njcw";
     

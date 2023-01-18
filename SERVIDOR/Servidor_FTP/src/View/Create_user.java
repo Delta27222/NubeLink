@@ -5,6 +5,8 @@
  */
 package View;
 
+import SQL.Insertar;
+import Tools.Creador;
 import java.awt.Color;
 import java.io.File;
 import java.util.Scanner;
@@ -21,10 +23,13 @@ public class Create_user extends javax.swing.JDialog {
     /**
      * Creates new form Create_folder
      */
+    
+    Creador crea = new Creador();
     public Create_user(JFrame padre, boolean modo){
         super(padre, modo);
         initComponents();
         this.setLocationRelativeTo(null);
+        crea.llenando_JComboBox_Storage(espacio_nube);
     }
     
     private static boolean isNumeric(String cadena){
@@ -56,8 +61,7 @@ public class Create_user extends javax.swing.JDialog {
         Jpanel_Contraseña = new javax.swing.JPanel();
         name_user1 = new LIB.JTexfieldPH_FielTex();
         Jtext_espacio_nube = new javax.swing.JLabel();
-        jPanel_espacio = new javax.swing.JPanel();
-        espacio_nube = new LIB.JTexfieldPH_FielTex();
+        espacio_nube = new javax.swing.JComboBox<>();
         jPanel4 = new javax.swing.JPanel();
         Atras = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -168,7 +172,7 @@ public class Create_user extends javax.swing.JDialog {
             Jpanel_ContraseñaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(Jpanel_ContraseñaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(name_user1, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addComponent(name_user1, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
         );
 
@@ -177,39 +181,13 @@ public class Create_user extends javax.swing.JDialog {
         Jtext_espacio_nube.setText("Espacio en nube");
         jPanel3.add(Jtext_espacio_nube, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, -1, -1));
 
-        jPanel_espacio.setBackground(new java.awt.Color(230, 230, 230));
-
-        espacio_nube.setBackground(new java.awt.Color(230, 230, 230));
-        espacio_nube.setBorder(null);
-        espacio_nube.setToolTipText("");
-        espacio_nube.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        espacio_nube.setOpaque(false);
-        espacio_nube.setPhColor(new java.awt.Color(10, 144, 203));
-        espacio_nube.setPlaceholder("Espacio en nube");
+        espacio_nube.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         espacio_nube.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 espacio_nubeActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout jPanel_espacioLayout = new javax.swing.GroupLayout(jPanel_espacio);
-        jPanel_espacio.setLayout(jPanel_espacioLayout);
-        jPanel_espacioLayout.setHorizontalGroup(
-            jPanel_espacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_espacioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(espacio_nube, javax.swing.GroupLayout.DEFAULT_SIZE, 308, Short.MAX_VALUE)
-                .addGap(16, 16, 16))
-        );
-        jPanel_espacioLayout.setVerticalGroup(
-            jPanel_espacioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel_espacioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(espacio_nube, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
-        );
-
-        jPanel3.add(jPanel_espacio, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 330, -1));
+        jPanel3.add(espacio_nube, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 330, 40));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 400, 330));
 
@@ -274,20 +252,17 @@ public class Create_user extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_createMouseExited
 
     private void btn_createActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_createActionPerformed
-        String username1 = this.name_user.getText();
-        String espacio_nube1 = this.espacio_nube.getText();
-        if (username1.length()>=5){
-            if (this.isNumeric(espacio_nube1)){
-            
-                //Aca va la logica para agregar a los usuarios
-
-
-                JOptionPane.showMessageDialog(null, "Se ha agregado el usuario en el sistema", "mensaje",JOptionPane.INFORMATION_MESSAGE);
+        Insertar is = new Insertar();
+        String username = this.name_user.getText();
+        String password = this.name_user1.getText();
+        String espacio = this.espacio_nube.getSelectedItem().toString();
+        if (username.length()>=5){
+                
+                if (is.insertUser("'"+espacio.replaceAll(" GB", "")+"','NORMAL','"+username+"','"+password+"'")){
+                    JOptionPane.showMessageDialog(null, "El usuario se ha creado con exito", "Completado",JOptionPane.INFORMATION_MESSAGE);
+                } else JOptionPane.showMessageDialog(null, "Ha ocurrido un error al intentar registrar el usuario", "ERROR",JOptionPane.ERROR_MESSAGE);
                 this.dispose();
-            }else{
-                JOptionPane.showMessageDialog(null, "El espacio en la nube debe ser un NUMERO", "mensaje",JOptionPane.INFORMATION_MESSAGE);
-                espacio_nube.setText("");
-            }
+       
         }else{
             JOptionPane.showMessageDialog(null, "El username debe contener al menos 5 caracteres", "mensaje",JOptionPane.INFORMATION_MESSAGE);
         }
@@ -297,10 +272,6 @@ public class Create_user extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_AtrasActionPerformed
 
-    private void espacio_nubeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_espacio_nubeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_espacio_nubeActionPerformed
-
     private void name_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_userActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_name_userActionPerformed
@@ -308,6 +279,10 @@ public class Create_user extends javax.swing.JDialog {
     private void name_user1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_user1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_name_user1ActionPerformed
+
+    private void espacio_nubeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_espacio_nubeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_espacio_nubeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -374,13 +349,12 @@ public class Create_user extends javax.swing.JDialog {
     private javax.swing.JLabel Jtext_espacio_nube;
     private javax.swing.JLabel Jtext_nombre_user;
     private javax.swing.JButton btn_create;
-    private LIB.JTexfieldPH_FielTex espacio_nube;
+    private javax.swing.JComboBox<String> espacio_nube;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel_espacio;
     private LIB.JTexfieldPH_FielTex name_user;
     private LIB.JTexfieldPH_FielTex name_user1;
     // End of variables declaration//GEN-END:variables
