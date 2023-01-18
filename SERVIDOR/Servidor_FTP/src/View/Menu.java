@@ -393,8 +393,14 @@ public class Menu extends javax.swing.JFrame {
 
     private void btn_icon_OFFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_icon_OFFActionPerformed
         Cloud nube = new Cloud();
-
-            nube.activateServer();
+            Buscador bus = new Buscador();
+            String path = "";
+        try {
+            path = sl.searchRuta(bus.getIP());
+        } catch (UnknownHostException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            nube.activateServer(path);
             is.onServer();
             label_status.setText("ON");
             btn_icon_OFF.setVisible(false);

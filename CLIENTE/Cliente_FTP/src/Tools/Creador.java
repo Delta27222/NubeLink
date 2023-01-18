@@ -8,6 +8,7 @@ package Tools;
 import SQL.Select;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -74,5 +75,12 @@ public class Creador {
         for (int i=0; i<lista_users.size();i++){            
             jComboBoxUser.addItem(lista_users.get(i));
         }
+    }
+    
+        public void Interfaz( JFrame nueva, int ancho, int largo){
+        nueva.setResizable(false); 
+        nueva.setVisible(true);
+        nueva.setSize(ancho,largo);     
+        nueva.setLocationRelativeTo(null); 
     }
 }

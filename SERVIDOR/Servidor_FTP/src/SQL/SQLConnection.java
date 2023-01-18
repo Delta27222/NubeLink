@@ -20,6 +20,8 @@ public class SQLConnection {
             //JOptionPane.showMessageDialog(null, "Conexion exitosa", "conexion",JOptionPane.INFORMATION_MESSAGE);
             
        }catch(SQLException e){
+           JOptionPane.showMessageDialog(null, "No hubo conexion exitosa", "conexion",JOptionPane.INFORMATION_MESSAGE);
+            
            System.out.println("Error sql: "+e.getMessage());
        }catch (Exception e){
            System.out.println("Error: "+e.getMessage());

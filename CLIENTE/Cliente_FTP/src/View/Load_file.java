@@ -270,7 +270,7 @@ public class Load_file extends javax.swing.JDialog {
             //JOptionPane.showMessageDialog(null, file_dir, "mensaje",JOptionPane.INFORMATION_MESSAGE);
             //JOptionPane.showMessageDialog(null, file_name, "mensaje",JOptionPane.INFORMATION_MESSAGE);
 
-             FTPConnection nuevo = new FTPConnection(new FTPClient(), ip_address, "test", "redes");
+             FTPConnection nuevo = new FTPConnection(new FTPClient(), ip_address, "test", "test");
         nuevo.conectar();
         nuevo.subirArchivo(file_dir, file_name, remote_file_path.replace("/", "\\"));
         }else{

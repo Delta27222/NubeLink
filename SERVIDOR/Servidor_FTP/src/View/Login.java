@@ -5,6 +5,7 @@
  */
 package View;
 
+import Tools.Creador;
 import Tools.FTPConnection;
 import java.awt.Color;
 import java.net.UnknownHostException;
@@ -24,10 +25,12 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
+    
+    Creador crea = new Creador();
     public Login() {
         initComponents();
-        this.setLocationRelativeTo(null);
-                
+        //this.setLocationRelativeTo(null);
+                crea.Interfaz(this, 340, 390);
         //Info de lo que hace el boton
         Atras.setToolTipText("Cerrar aplicación");
     }
@@ -159,7 +162,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Password_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,7 +216,6 @@ public class Login extends javax.swing.JFrame {
 
         btn_login.setBackground(new java.awt.Color(10, 130, 203));
         btn_login.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btn_login.setForeground(new java.awt.Color(0, 0, 0));
         btn_login.setText("LOGIN");
         btn_login.setToolTipText("");
         btn_login.setBorderPainted(false);

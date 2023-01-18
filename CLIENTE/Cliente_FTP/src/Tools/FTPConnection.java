@@ -35,7 +35,7 @@ public class FTPConnection {
     public boolean conectar(){
         try {
             // Conactando al servidor
-            client.connect(ftp);
+            client.connect(ftp, 2221);
             System.out.println(client.getReplyString());
 
             // Logueado un usuario (true = pudo conectarse, false = no pudo

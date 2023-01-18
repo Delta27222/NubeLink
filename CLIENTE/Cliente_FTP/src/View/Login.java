@@ -6,6 +6,7 @@
 package View;
 
 import SQL.Select;
+import Tools.Creador;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -16,12 +17,26 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
 
     Select sl = new Select();
+    Creador crea = new Creador();
     /**
      * Creates new form Login
      */
     public Login() {
+        
+        try{
+            //JOptionPane.showMessageDialog(null, "Se va a abrir ventana en constructor", "conexion",JOptionPane.INFORMATION_MESSAGE);
+        
         initComponents();
-        this.setLocationRelativeTo(null);
+        //this.setLocationRelativeTo(null);
+        crea.Interfaz(this, 340, 390);
+            //JOptionPane.showMessageDialog(null, "Se abrio ventana en constructor", "conexion",JOptionPane.INFORMATION_MESSAGE);
+        
+        }catch(Exception e){
+           // JOptionPane.showMessageDialog(null, e, "conexion",JOptionPane.INFORMATION_MESSAGE);
+        
+        }
+        
+          
                 
         //Info de lo que hace el boton
         Atras.setToolTipText("Cerrar aplicación");

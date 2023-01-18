@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.apache.ftpserver.FtpServer;
 import org.apache.ftpserver.FtpServerFactory;
 import org.apache.ftpserver.ftplet.Authority;
@@ -25,8 +26,11 @@ import org.apache.log4j.PropertyConfigurator;
 public class Servidor_FTP {
 
     public static void main(String[] args) {
-       SQLConnection con = new SQLConnection();
-       con.connected();
+        JOptionPane.showMessageDialog(null, "Se va a abrir ventana", "conexion",JOptionPane.INFORMATION_MESSAGE);
+        new Login().setVisible(true);
+        JOptionPane.showMessageDialog(null, "Se abrio ventana", "conexion",JOptionPane.INFORMATION_MESSAGE);
+//       SQLConnection con = new SQLConnection();
+//       con.connected();
 //
 //        Cloud nube = new Cloud();
 //        

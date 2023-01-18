@@ -72,7 +72,7 @@ public class Cloud {
 
  
 
-    public void activateServer(){
+    public void activateServer(String host_path){
                 //            Login open = null;
           //            open = new Login();
           //            open.setVisible(true);
@@ -95,7 +95,7 @@ public class Cloud {
                BaseUser user = new BaseUser();
                user.setName("test");
                user.setPassword("test");
-               user.setHomeDirectory("C:/Users/Angel/Desktop/nube");
+               user.setHomeDirectory(host_path);
                ArrayList<Authority> authorities = new ArrayList<Authority>();
                authorities.add(new WritePermission());
                user.setAuthorities(authorities);

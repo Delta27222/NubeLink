@@ -12,6 +12,7 @@ import java.io.File;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -25,6 +26,13 @@ import org.apache.commons.net.ftp.FTPClient;
 public class Creador {
     
     Buscador bus = new Buscador();
+    
+    public void Interfaz( JFrame nueva, int ancho, int largo){
+        nueva.setResizable(false); 
+        nueva.setVisible(true);
+        nueva.setSize(ancho,largo);     
+        nueva.setLocationRelativeTo(null); 
+    }
     
     public void add_Info_Table_Menu(DefaultTableModel model,JTable Table){
         model = (DefaultTableModel) Table.getModel();
