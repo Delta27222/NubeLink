@@ -5,6 +5,7 @@
  */
 package View;
 
+import SQL.Select;
 import Tools.Creador;
 import Tools.StringHandling;
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class Menu extends javax.swing.JFrame {
     String nombre_nube;
     Boolean tabla_llena = false;
     String folder;
+    Select sl = new Select();
     
     /**
      * Creates new form Menu
@@ -242,6 +244,11 @@ public class Menu extends javax.swing.JFrame {
                 jComboBoxNubesItemStateChanged(evt);
             }
         });
+        jComboBoxNubes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxNubesActionPerformed(evt);
+            }
+        });
         jPanel3.add(jComboBoxNubes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 50, 160, -1));
 
         Jlabel_Nombre_Carpeta.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -299,7 +306,9 @@ public class Menu extends javax.swing.JFrame {
         
         if (jComboBoxNubes.getSelectedIndex() != 0){
             Load_file open = null;
-            open = new Load_file(this,true);
+            String info[]= new String[2];
+            info = sl.getCloudInfo(jComboBoxNubes.getSelectedItem().toString());
+            open = new Load_file(this,true,info[0],info[1]);
             open.setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Para poder CARGAR, primero debe seleccionar la nube.", "Precaución 👀",JOptionPane.WARNING_MESSAGE);
@@ -334,15 +343,15 @@ public class Menu extends javax.swing.JFrame {
     private void jComboBoxNubesItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxNubesItemStateChanged
         // TODO add your handling code here:
         if (jComboBoxNubes.getSelectedIndex() > 0 && tabla_llena  != true){
-            
-            //Aca llanaremos la Tabla con los archivos de la nube que el usuario selecciono
-            nombre_nube =  jComboBoxNubes.getSelectedItem().toString();
-            
-            crea.add_Info_Table_Menu(model,jTable_Archivos, nombre_nube,"192.168.0.102", "Angel", "redes");
-            tabla_llena = true;  //Por alguna razon si no coloco lo de tabla llena, se llena la tabla dos veces con lo que hay en el servidor
-            
-//            jTextFieldNube.setText(obtener);
-//            System.out.println(jComboBoxNubes.getSelectedIndex());
+//            
+//            //Aca llanaremos la Tabla con los archivos de la nube que el usuario selecciono
+//            nombre_nube =  jComboBoxNubes.getSelectedItem().toString();
+//            
+//            crea.add_Info_Table_Menu(model,jTable_Archivos, nombre_nube,"192.168.0.102", "Angel", "redes");
+//            tabla_llena = true;  //Por alguna razon si no coloco lo de tabla llena, se llena la tabla dos veces con lo que hay en el servidor
+//            
+////            jTextFieldNube.setText(obtener);
+////            System.out.println(jComboBoxNubes.getSelectedIndex());
         }
     }//GEN-LAST:event_jComboBoxNubesItemStateChanged
 
@@ -357,6 +366,10 @@ public class Menu extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ha sido eliminada la carpeta.", "Exito",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_btn_delete_folderActionPerformed
+
+    private void jComboBoxNubesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxNubesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxNubesActionPerformed
 
     /**
      * @param args the command line arguments

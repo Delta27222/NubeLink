@@ -421,6 +421,8 @@ public class Menu extends javax.swing.JFrame {
         Create_user open = null;
         open = new Create_user(this,true);
         open.setVisible(true);
+        crea.limpiarTabla(jTable_Users);
+        crea.add_Info_Table_Users(model, jTable_Users);
     }//GEN-LAST:event_btn_add_userActionPerformed
 
     private void btn_add_serverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_add_serverActionPerformed

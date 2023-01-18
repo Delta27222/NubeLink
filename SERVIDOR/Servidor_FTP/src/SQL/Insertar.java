@@ -24,7 +24,7 @@ public class Insertar {
             //JOptionPane.showMessageDialog(null, "La nube se ha creado con exito", "Completado",JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             guardado = false;
-            JOptionPane.showMessageDialog(null, "La direccion IP ya posee una nube creada.");
+            JOptionPane.showMessageDialog(null, "El nombre de usuario ya se encuentra registrado en el sistema", "ERROR",JOptionPane.ERROR_MESSAGE);
         }
         return guardado;
     }

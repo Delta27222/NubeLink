@@ -22,7 +22,6 @@ public class FTPConnection {
     static String ftp; 
     static String user;
     static String password;
-    static String nombre = "";
 
     public FTPConnection(FTPClient client, String ftp, String user, String password) {
         FTPConnection.client = client;
@@ -69,8 +68,8 @@ public class FTPConnection {
         }
     }
 
-    public void subirArchivo(String local_filepath, String remote_filename){
-        String remote_working_dir_path = "C:\\Users\\Maria\\Documents\\carpetaftp";
+    public void subirArchivo(String local_filepath, String remote_filename, String remote_working_dir_path){
+        //String remote_working_dir_path = "C:\\Users\\Maria\\Documents\\carpetaftp";
 
         try {
             FileInputStream fis = new FileInputStream(local_filepath);

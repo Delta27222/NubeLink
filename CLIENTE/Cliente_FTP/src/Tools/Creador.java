@@ -5,6 +5,7 @@
  */
 package Tools;
 
+import SQL.Select;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -44,17 +45,9 @@ public class Creador {
     
     public void llenando_JComboBox_Nubes(JComboBox jComboBoxNubes){
         ArrayList<String> lista_nubes = new ArrayList<String>();
-
-        String info1 = new String("UCAB");             
-        String info2 = new String("UCV");     
-        String info3 = new String("UBV");     
-        String info4 = new String("UNIMET");     
-              
-        //Sacar de algun lugar los nombres de las nubes que se encuentran disponibles
-        lista_nubes.add(info1);        
-        lista_nubes.add(info2);
-        lista_nubes.add(info3);
-        lista_nubes.add(info4);
+        Select ls = new Select();
+        
+        lista_nubes = ls.Clouds();
         
         //Para poder hacer el llenado del combo box
         for (int i=0; i<lista_nubes.size();i++){            

@@ -111,7 +111,7 @@ public class Creador {
             
             datos[0] = user.getUSERNAME();
             datos[1] = user.getID_STORAGE();
-            datos[2] = "HOY";
+            datos[2] = user.getLast_log();
             
             model.addRow(datos);
             

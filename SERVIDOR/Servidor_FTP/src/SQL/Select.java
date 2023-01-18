@@ -36,9 +36,9 @@ public class Select {
 
         try {
             st = con.connected().createStatement();
-            ResultSet rs = st.executeQuery("select * from USERS");
+            ResultSet rs = st.executeQuery("SELECT U.*, L.FECHA FROM USERS U LEFT JOIN ( SELECT ID_USER, MAX(F_INIT) FECHA FROM LOG GROUP BY ID_USER ) L ON L.ID_USER = U.ID ORDER BY L.FECHA DESC");
             while (rs.next()) {
-                users.add(new Users(rs.getInt(1), rs.getString(2)+" GB",rs.getString(3),rs.getString(4),rs.getString(5)));
+                users.add(new Users(rs.getInt(1), rs.getString(2)+" GB",rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6)));
             }
             st.close();
             con.disconnect();

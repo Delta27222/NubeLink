@@ -12,6 +12,7 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import org.apache.commons.net.ftp.FTPClient;
 
 /**
  *
@@ -19,14 +20,17 @@ import javax.swing.JOptionPane;
  */
 public class Load_file extends javax.swing.JDialog {
 
-    /**
-     * Creates new form Load_file
-     */
-    public Load_file(JFrame padre, boolean modo) {
+    String ip_address;
+    String remote_file_path;
+    public Load_file(JFrame padre, boolean modo, String ip, String remote) {
         super(padre, modo);
         initComponents();
         this.setLocationRelativeTo(null);
         
+        this.ip_address = ip;
+        this.remote_file_path = remote;
+        System.out.println(ip);
+        System.out.println(remote);
         
         btn_abrir.setToolTipText("Explorador de archivos");
         btn_cargar.setToolTipText("Cargar archivo");
@@ -266,9 +270,9 @@ public class Load_file extends javax.swing.JDialog {
             //JOptionPane.showMessageDialog(null, file_dir, "mensaje",JOptionPane.INFORMATION_MESSAGE);
             //JOptionPane.showMessageDialog(null, file_name, "mensaje",JOptionPane.INFORMATION_MESSAGE);
 
-            FTPConnection nuevo = new FTPConnection();
-
-            nuevo.subirArchivo(file_dir, file_name);
+             FTPConnection nuevo = new FTPConnection(new FTPClient(), ip_address, "test", "redes");
+        nuevo.conectar();
+        nuevo.subirArchivo(file_dir, file_name, remote_file_path.replace("/", "\\"));
         }else{
             this.ruta.setText("");
              JOptionPane.showMessageDialog(null, "Esta ruta no existe, intentelo de nuevo.", "Error",JOptionPane.WARNING_MESSAGE);
@@ -320,7 +324,7 @@ public class Load_file extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Load_file dialog = new Load_file(new javax.swing.JFrame(), true);
+                Load_file dialog = new Load_file(new javax.swing.JFrame(), true,"","");
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
