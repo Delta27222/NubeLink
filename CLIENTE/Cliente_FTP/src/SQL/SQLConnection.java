@@ -16,7 +16,7 @@ public class SQLConnection {
         try{
         Class.forName("com.mysql.cj.jdbc.Driver");
             con =(Connection) DriverManager.getConnection(url,user,pass);
-            JOptionPane.showMessageDialog(null, "Conexion exitosa", "conexion",JOptionPane.INFORMATION_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "Conexion exitosa", "conexion",JOptionPane.INFORMATION_MESSAGE);
             
        }catch(SQLException e){
            System.out.println("Error sql: "+e.getMessage());
@@ -24,6 +24,15 @@ public class SQLConnection {
            System.out.println("Error: "+e.getMessage());
        }
         return con;
+    }
+    
+    public void disconnect(){
+        try {
+            con.close();
+            //JOptionPane.showMessageDialog(null, "Desconexion exitosa", "conexion",JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Desconexion fallida", "conexion",JOptionPane.INFORMATION_MESSAGE);
+        }
     }
     
 }

@@ -5,6 +5,7 @@
  */
 package View;
 
+import SQL.Select;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -14,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
 
-
+    Select sl = new Select();
     /**
      * Creates new form Login
      */
@@ -99,7 +100,6 @@ public class Login extends javax.swing.JFrame {
 
         Username_field.setBackground(new java.awt.Color(230, 230, 230));
         Username_field.setBorder(null);
-        Username_field.setText("Delta");
         Username_field.setToolTipText("");
         Username_field.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         Username_field.setOpaque(false);
@@ -134,7 +134,6 @@ public class Login extends javax.swing.JFrame {
 
         Password_field.setBackground(new java.awt.Color(230, 230, 230));
         Password_field.setBorder(null);
-        Password_field.setText("1234");
         Password_field.setToolTipText("");
         Password_field.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         Password_field.setOpaque(false);
@@ -153,7 +152,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(Password_field, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,7 +206,6 @@ public class Login extends javax.swing.JFrame {
 
         btn_login.setBackground(new java.awt.Color(10, 130, 203));
         btn_login.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        btn_login.setForeground(new java.awt.Color(0, 0, 0));
         btn_login.setText("LOGIN");
         btn_login.setToolTipText("");
         btn_login.setBorderPainted(false);
@@ -279,7 +277,7 @@ public class Login extends javax.swing.JFrame {
         String username_field_string = this.Username_field.getText();
         String password_field_string = this.Password_field.getText();
 
-        if (username_field_string.equals("Delta") && password_field_string.equals("1234")){
+        if (sl.Login(username_field_string, password_field_string)){
             Menu open = null;
             open = new Menu();
             open.setVisible(true);
