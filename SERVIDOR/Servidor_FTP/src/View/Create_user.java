@@ -62,8 +62,8 @@ public class Create_user extends javax.swing.JDialog {
         name_user1 = new LIB.JTexfieldPH_FielTex();
         Jtext_espacio_nube = new javax.swing.JLabel();
         espacio_nube = new javax.swing.JComboBox<>();
-        jPanel4 = new javax.swing.JPanel();
         Atras = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -191,21 +191,6 @@ public class Create_user extends javax.swing.JDialog {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 400, 330));
 
-        jPanel4.setBackground(new java.awt.Color(205, 205, 205));
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 400, 20));
-
         Atras.setBackground(new java.awt.Color(10, 144, 203));
         Atras.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         Atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/back_icon.png"))); // NOI18N
@@ -221,7 +206,22 @@ public class Create_user extends javax.swing.JDialog {
                 AtrasActionPerformed(evt);
             }
         });
-        jPanel1.add(Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 30, 30));
+        jPanel1.add(Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, 50, 40));
+
+        jPanel4.setBackground(new java.awt.Color(205, 205, 205));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 20, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 400, 20));
 
         jLabel4.setBackground(new java.awt.Color(10, 144, 203));
         jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -268,10 +268,6 @@ public class Create_user extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btn_createActionPerformed
 
-    private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_AtrasActionPerformed
-
     private void name_userActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_name_userActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_name_userActionPerformed
@@ -283,6 +279,10 @@ public class Create_user extends javax.swing.JDialog {
     private void espacio_nubeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_espacio_nubeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_espacio_nubeActionPerformed
+
+    private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_AtrasActionPerformed
 
     /**
      * @param args the command line arguments
