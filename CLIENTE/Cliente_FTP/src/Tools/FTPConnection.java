@@ -35,7 +35,7 @@ public class FTPConnection {
     public boolean conectar(){
         try {
             // Conactando al servidor
-            client.connect(ftp, 2221);
+            client.connect(ftp);
             System.out.println(client.getReplyString());
 
             // Logueado un usuario (true = pudo conectarse, false = no pudo
@@ -80,9 +80,6 @@ public class FTPConnection {
 
             if ( uploadFile == false ) {
                 throw new Exception("Error al subir el fichero");
-            }else{
-                 JOptionPane.showMessageDialog(null,"El archivo "+remote_filename+" fue cargado con exito", "Mensaje",JOptionPane.INFORMATION_MESSAGE);
-       
             }
             fis.close();
         } catch (Exception eFTPClient) {

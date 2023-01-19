@@ -16,7 +16,7 @@ public class Users {
         Users.PASSWORD = PASSWORD;
     }
 
-    public int getID() {
+    public static int getID() {
         return ID;
     }
 
@@ -28,7 +28,7 @@ public class Users {
         return ROL;
     }
 
-    public String getUSERNAME() {
+    public static String getUSERNAME() {
         return USERNAME;
     }
 

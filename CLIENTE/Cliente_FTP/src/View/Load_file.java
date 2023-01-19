@@ -5,6 +5,9 @@
  */
 package View;
 
+import Model.Users;
+import SQL.Insertar;
+import SQL.Select;
 import Tools.FTPConnection;
 import Tools.StringHandling;
 import java.awt.Color;
@@ -259,7 +262,7 @@ public class Load_file extends javax.swing.JDialog {
         StringHandling localFile = new StringHandling();
         String file_dir = this.ruta.getText();
         File fRuta = new File(file_dir);
-        
+        Insertar is = new Insertar();
         //Verifica que es un directorio
         //if(fRuta.isDirectory()){
         if(fRuta.exists()){    
@@ -270,13 +273,16 @@ public class Load_file extends javax.swing.JDialog {
             //JOptionPane.showMessageDialog(null, file_dir, "mensaje",JOptionPane.INFORMATION_MESSAGE);
             //JOptionPane.showMessageDialog(null, file_name, "mensaje",JOptionPane.INFORMATION_MESSAGE);
 
-             FTPConnection nuevo = new FTPConnection(new FTPClient(), ip_address, "test", "test");
-        nuevo.conectar();
-        nuevo.subirArchivo(file_dir, file_name, remote_file_path.replace("/", "\\"));
-        }else{
-            this.ruta.setText("");
-             JOptionPane.showMessageDialog(null, "Esta ruta no existe, intentelo de nuevo.", "Error",JOptionPane.WARNING_MESSAGE);
-        }
+             FTPConnection nuevo = new FTPConnection(new FTPClient(), ip_address, "test", "test123");
+            nuevo.conectar();
+            nuevo.subirArchivo(file_dir, Users.getUSERNAME()+"/"+file_name, remote_file_path);
+            is.insertFile(Users.getUSERNAME()+"/"+file_name, ip_address);
+            JOptionPane.showMessageDialog(null,"El archivo "+file_name+" fue cargado con exito", "Mensaje",JOptionPane.INFORMATION_MESSAGE);
+       
+            }else{
+                this.ruta.setText("");
+                 JOptionPane.showMessageDialog(null, "Esta ruta no existe, intentelo de nuevo.", "Error",JOptionPane.WARNING_MESSAGE);
+            }
     }//GEN-LAST:event_btn_cargarActionPerformed
 
     private void btn_abrirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_abrirMouseEntered
