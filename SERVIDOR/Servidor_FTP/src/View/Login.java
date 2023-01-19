@@ -5,6 +5,7 @@
  */
 package View;
 
+import SQL.Select;
 import Tools.Creador;
 import Tools.FTPConnection;
 import java.awt.Color;
@@ -27,6 +28,7 @@ public class Login extends javax.swing.JFrame {
      */
     
     Creador crea = new Creador();
+    Select sl = new Select();
     public Login() {
         initComponents();
         //this.setLocationRelativeTo(null);
@@ -286,18 +288,18 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username_field_string = this.Username_field.getText();
         String password_field_string = this.Password_field.getText();
-        
-        if (username_field_string.equals("Delta") && password_field_string.equals("1234")){
+        int response = sl.Login(username_field_string, password_field_string);
+        if (response>0){
             Menu open = null;
             try {
-                open = new Menu();
+                open = new Menu(response);
             } catch (UnknownHostException ex) {
                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             }
             open.setVisible(true);
             this.dispose();
         }else{
-            JOptionPane.showMessageDialog(null, "No se encuentra registrado en el sistema", "mensaje",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "El usuario no se encuentra registrado en el sistema como Administrador", "mensaje",JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btn_loginActionPerformed
 

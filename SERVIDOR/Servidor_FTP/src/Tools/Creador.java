@@ -6,6 +6,8 @@
 package Tools;
 
 import Model.Cloud;
+import Model.FilesFolder;
+import Model.LogConnection;
 import Model.Users;
 import SQL.Select;
 import java.io.File;
@@ -26,12 +28,39 @@ import org.apache.commons.net.ftp.FTPClient;
 public class Creador {
     
     Buscador bus = new Buscador();
+    Select sl = new Select();
     
     public void Interfaz( JFrame nueva, int ancho, int largo){
         nueva.setResizable(false); 
         nueva.setVisible(true);
         nueva.setSize(ancho,largo);     
         nueva.setLocationRelativeTo(null); 
+    }
+    
+    public void add_Info_File_User(DefaultTableModel model,JTable Table, String nombre_Nube, String username){
+         String [] datos = new String[3];
+        model = (DefaultTableModel) Table.getModel();
+        Object[] newIdentifiers = new Object[]{"Nombre Archivo","Peso (Kb)", "Tipo"};
+        model.setColumnIdentifiers(newIdentifiers);
+        Table.setFillsViewportHeight(true);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for (int x = 0; x < Table.getColumnCount(); x++) {
+            Table.getColumnModel().getColumn(x).setCellRenderer(centerRenderer);            
+        }        
+        
+        ArrayList<FilesFolder> archivos = new  ArrayList<FilesFolder>();
+        archivos = sl.filesFolder(username, nombre_Nube);
+        int numero = 0;
+        for (FilesFolder archivo : archivos) {
+            datos[0] = archivo.getNAME();
+            datos[1] = archivo.getSIZE();
+            datos[2] = "Archivo";
+            
+            model.addRow(datos);
+            numero = numero + 1;
+        }
+       Table.setModel(model);
     }
     
     public void add_Info_Table_Menu(DefaultTableModel model,JTable Table){
@@ -89,6 +118,70 @@ public class Creador {
             datos[0] = cloud.getName();
             datos[1] = cloud.getIP_ADDRESS();
             datos[2] = cloud.getSTATUS();
+            
+            model.addRow(datos);
+            
+        }
+       Table.setModel(model);
+    }
+    
+    public void add_Info_Table_Reporte2(DefaultTableModel model,JTable Table){
+        String [] datos = new String[4];
+        model = (DefaultTableModel) Table.getModel();
+        Object[] newIdentifiers = new Object[]{"Nombre de usuario","Fecha Inicio","Fecha Fin","Tiempo conectado"};
+        model.setColumnIdentifiers(newIdentifiers);
+        Table.setFillsViewportHeight(true);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for (int x = 0; x < Table.getColumnCount(); x++) {
+            Table.getColumnModel().getColumn(x).setCellRenderer(centerRenderer);            
+        }        
+        
+        Select sl = new Select();
+        
+        ArrayList<LogConnection> logs = new ArrayList<LogConnection>();
+        
+        logs= sl.reporteNormalUsers();
+        
+       
+        for (LogConnection log : logs) {
+            
+            datos[0] = log.getUSERNAME();
+            datos[1] = log.getF_INIT();
+            datos[2] = log.getF_FIN();
+            datos[3] = log.getDIFF();
+            
+            model.addRow(datos);
+            
+        }
+       Table.setModel(model);
+    }
+    
+    public void add_Info_Table_Reporte1(DefaultTableModel model,JTable Table){
+        String [] datos = new String[4];
+        model = (DefaultTableModel) Table.getModel();
+        Object[] newIdentifiers = new Object[]{"Nombre de usuario","Fecha Inicio","Fecha Fin","Tiempo conectado"};
+        model.setColumnIdentifiers(newIdentifiers);
+        Table.setFillsViewportHeight(true);
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+        for (int x = 0; x < Table.getColumnCount(); x++) {
+            Table.getColumnModel().getColumn(x).setCellRenderer(centerRenderer);            
+        }        
+        
+        Select sl = new Select();
+        
+        ArrayList<LogConnection> logs = new ArrayList<LogConnection>();
+        
+        logs= sl.reporteAdminUsers();
+        
+       
+        for (LogConnection log : logs) {
+            
+            datos[0] = log.getUSERNAME();
+            datos[1] = log.getF_INIT();
+            datos[2] = log.getF_FIN();
+            datos[3] = log.getDIFF();
             
             model.addRow(datos);
             

@@ -17,6 +17,7 @@ public class Modal_file_options_user extends javax.swing.JDialog {
     
     String username;
     String ultima_conexion;
+    String nombre_nube;
 
     /**
      * Creates new form 
@@ -30,13 +31,14 @@ public class Modal_file_options_user extends javax.swing.JDialog {
         btn_delete.setToolTipText("Eliminar");
     }
     
-    public Modal_file_options_user(JFrame padre, boolean modo, String username, String ultima_conexion) {
+    public Modal_file_options_user(JFrame padre, boolean modo, String username, String ultima_conexion, String nombre_nube) {
         super(padre,modo);
         initComponents();
         this.setLocationRelativeTo(null);
         
         this.username = username;
         this.ultima_conexion = ultima_conexion;
+        this.nombre_nube = nombre_nube;
         
         //Colocamos el nombre del Archivo y de la Nube
         jLabel_Username.setText("Username: "+username);
@@ -242,7 +244,7 @@ public class Modal_file_options_user extends javax.swing.JDialog {
 
     private void btn_users_files1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_users_files1ActionPerformed
         Modal_files_Users open = null;
-        open = new Modal_files_Users(this,true,username);
+        open = new Modal_files_Users(this,true,username,nombre_nube);
         open.setVisible(true);
     }//GEN-LAST:event_btn_users_files1ActionPerformed
 

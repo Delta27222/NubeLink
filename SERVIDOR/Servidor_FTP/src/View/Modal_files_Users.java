@@ -5,6 +5,7 @@
  */
 package View;
 
+import Tools.Creador;
 import java.awt.Color;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -19,7 +20,9 @@ public class Modal_files_Users extends javax.swing.JDialog {
     
     String username;
     String ultima_conexion;
+    String nombre_nube;
     DefaultTableModel model;
+    Creador crea = new Creador();
 
     /**
      * Creates new form 
@@ -32,13 +35,16 @@ public class Modal_files_Users extends javax.swing.JDialog {
                 
     }
     
-    public Modal_files_Users(JDialog padre, boolean modo, String username) {
+    public Modal_files_Users(JDialog padre, boolean modo, String username, String nombre_nube) {
         super(padre,modo);
         initComponents();
         this.setLocationRelativeTo(null);
         
         this.username = username;
         this.ultima_conexion = ultima_conexion;
+        this.nombre_nube = nombre_nube;
+        
+        crea.add_Info_File_User(model, jTable_Archivos1, nombre_nube, username);
         
         //Colocamos el nombre del Archivo y de la Nube
         jLabel_Username.setText("Username: "+username);

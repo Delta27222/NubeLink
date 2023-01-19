@@ -8,6 +8,9 @@ public class Users {
     private static String USERNAME;
     private static String PASSWORD;
 
+    public Users() {
+    }
+
     public Users(int ID, String ID_STORAGE, String ROL, String USERNAME, String PASSWORD) {
         Users.ID = ID;
         Users.ID_STORAGE = ID_STORAGE;

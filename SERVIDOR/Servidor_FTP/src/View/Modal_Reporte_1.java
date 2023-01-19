@@ -5,6 +5,7 @@
  */
 package View;
 
+import Tools.Creador;
 import java.awt.Color;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -18,6 +19,7 @@ import javax.swing.table.DefaultTableModel;
 public class Modal_Reporte_1 extends javax.swing.JDialog {
     
     DefaultTableModel model;
+    Creador crea = new Creador();
 
     /**
      * Creates new form 
@@ -37,6 +39,7 @@ public class Modal_Reporte_1 extends javax.swing.JDialog {
         
 
         jLabel_Username.setText("Username: "+username);
+        crea.add_Info_Table_Reporte1(model, jTable_Archivos1);
 
         Atras.setToolTipText("Volver");
     }

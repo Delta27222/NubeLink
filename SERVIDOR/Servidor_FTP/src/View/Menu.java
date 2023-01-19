@@ -34,14 +34,17 @@ public class Menu extends javax.swing.JFrame {
     Buscador bs = new Buscador();
         Select sl = new Select();
         Insertar is = new Insertar();
+        int ID_ADMIN;
     
     /**
      * Creates new form Menu
      */
  
-    public Menu() throws UnknownHostException {
+    public Menu(int ID_ADMIN) throws UnknownHostException {
         initComponents();
         this.setLocationRelativeTo(null);
+        
+        this.ID_ADMIN = ID_ADMIN;
         
         label_ip.setText(bs.getIP());
         label_cloud_name.setText(sl.getCloudName(label_ip.getText()));
@@ -364,21 +367,26 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTable_UsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_UsersMouseClicked
-
+        if ((jTable_Clouds.getSelectedRow() != -1)&& (jTable_Users.getSelectedRow() != -1)){
         model = (DefaultTableModel) jTable_Users.getModel();
+        DefaultTableModel model2 = (DefaultTableModel) jTable_Clouds.getModel();;
+        
         String username = model.getValueAt(jTable_Users.getSelectedRow(), 0).toString();
         String ultima_conexion = model.getValueAt(jTable_Users.getSelectedRow(), 1).toString();
-
+        String nombre_nube = model2.getValueAt(jTable_Clouds.getSelectedRow(), 0).toString();
         
         Modal_file_options_user open = null;
-        open = new Modal_file_options_user(this, true, username, ultima_conexion);
+        open = new Modal_file_options_user(this, true, username, ultima_conexion, nombre_nube);
         open.setVisible(true);
+        }else JOptionPane.showMessageDialog(null, "Debe seleccionar una nube y un usuario","Aviso",INFORMATION_MESSAGE);
+       
 
     }//GEN-LAST:event_jTable_UsersMouseClicked
 
     private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
         int respuesta= JOptionPane.showConfirmDialog(null,"Seguro quiere salir cerrar sesión?","Salir",JOptionPane.YES_NO_OPTION);
         if (respuesta == 0){
+            is.insertF_fin(this.ID_ADMIN);
             Login open = null;
             open = new Login();
             if (label_status.getText().toString().equals("ON")){
@@ -521,7 +529,7 @@ public class Menu extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new Menu().setVisible(true);
+                    new Menu(1).setVisible(true);
                 } catch (UnknownHostException ex) {
                     Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
                 }

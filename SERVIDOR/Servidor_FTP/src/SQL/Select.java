@@ -2,6 +2,8 @@
 package SQL;
 
 import Model.Cloud;
+import Model.FilesFolder;
+import Model.LogConnection;
 import Model.Users;
 import Tools.Buscador;
 import java.net.UnknownHostException;
@@ -10,6 +12,55 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 public class Select {
+    
+    public ArrayList<FilesFolder> filesFolder(String username, String NOMBRE_NUBE){
+        ArrayList<FilesFolder> lista = new ArrayList<FilesFolder>();
+        Statement st;
+        SQLConnection con = new SQLConnection();
+        try {
+            st = con.connected().createStatement();
+            String sql = "SELECT * FROM `FILE` WHERE ID_USER = (SELECT ID FROM USERS WHERE username='"+username+"') AND ID_CLOUD = (SELECT ID FROM CLOUD WHERE NAME = '"+NOMBRE_NUBE+"')";
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                lista.add(new FilesFolder(Integer.parseInt(rs.getString(1)),Integer.parseInt(rs.getString(2)),
+                        Integer.parseInt(rs.getString(3)),rs.getString(4),rs.getString(5),rs.getString(6)));
+            }
+            st.close();
+            con.disconnect();
+
+            
+        } catch (Exception e) {
+            con.disconnect();
+            
+        }
+        return lista;
+    }
+    
+    public int Login(String username, String password){
+        Insertar in = new Insertar();
+        Statement st;
+        SQLConnection con = new SQLConnection();
+        int response = 0;
+        try {
+            st = con.connected().createStatement();
+            String sql = "select * from USERS WHERE USERNAME ='"+username.toUpperCase()+"' AND PASSWORD = '"+password+"' and ROL = 'admin'";
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+               new Users(rs.getInt(1), rs.getString(2)+" GB",rs.getString(3),rs.getString(4),rs.getString(5));
+               response = rs.getInt(1);
+               in.insertLog(String.valueOf(rs.getInt(1)));
+            }else response = 0;
+            
+            st.close();
+            con.disconnect();
+
+            
+        } catch (Exception e) {
+            con.disconnect();
+            
+        }
+        return response;
+    }
     
     public ArrayList<Cloud> Clouds() {
         Statement st;
@@ -25,6 +76,46 @@ public class Select {
             st.close();
             con.disconnect();
             return clouds;
+        } catch (Exception e) {
+            con.disconnect();
+            return null;
+        }
+    }
+    
+    public ArrayList<LogConnection> reporteNormalUsers() {
+        Statement st;
+        ArrayList<LogConnection> logs = new ArrayList<LogConnection>();
+        SQLConnection con = new SQLConnection();
+
+        try {
+            st = con.connected().createStatement();
+            ResultSet rs = st.executeQuery("SELECT L.ID, S.USERNAME, L.F_INIT, L.F_FIN, L.DIFF FROM LOG L JOIN USERS S ON S.ID = L.ID_USER WHERE S.ROL = 'normal'");
+            while (rs.next()) {
+                logs.add(new LogConnection(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+            }
+            st.close();
+            con.disconnect();
+            return logs;
+        } catch (Exception e) {
+            con.disconnect();
+            return null;
+        }
+    }
+    
+    public ArrayList<LogConnection> reporteAdminUsers() {
+        Statement st;
+        ArrayList<LogConnection> logs = new ArrayList<LogConnection>();
+        SQLConnection con = new SQLConnection();
+
+        try {
+            st = con.connected().createStatement();
+            ResultSet rs = st.executeQuery("SELECT L.ID, S.USERNAME, L.F_INIT, L.F_FIN, L.DIFF FROM LOG L JOIN USERS S ON S.ID = L.ID_USER WHERE S.ROL = 'admin'");
+            while (rs.next()) {
+                logs.add(new LogConnection(rs.getInt(1), rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)));
+            }
+            st.close();
+            con.disconnect();
+            return logs;
         } catch (Exception e) {
             con.disconnect();
             return null;

@@ -5,6 +5,7 @@
  */
 package View;
 
+import Tools.Creador;
 import java.awt.Color;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -20,6 +21,7 @@ public class Modal_Reporte_2 extends javax.swing.JDialog {
     String username;
     String ultima_conexion;
     DefaultTableModel model;
+    Creador crea = new Creador();
 
     /**
      * Creates new form 
@@ -39,7 +41,7 @@ public class Modal_Reporte_2 extends javax.swing.JDialog {
         
         
         jLabel_ServerName.setText("Nombre Servidor: "+serverName);
-
+        crea.add_Info_Table_Reporte2(model, jTable_Archivos1);
         Atras.setToolTipText("Volver");
     }
 

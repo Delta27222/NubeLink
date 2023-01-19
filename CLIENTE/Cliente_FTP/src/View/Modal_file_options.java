@@ -239,7 +239,7 @@ public class Modal_file_options extends javax.swing.JDialog {
 
     private void btn_shareActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_shareActionPerformed
         Share_file open = null;
-        open = new Share_file(this,true,this.file_Name,this.nube_Name);
+        open = new Share_file(this,true,this.file_Name,this.nube_Name, this.ip_nube);
         open.setVisible(true);
     }//GEN-LAST:event_btn_shareActionPerformed
 

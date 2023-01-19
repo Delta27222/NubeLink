@@ -5,6 +5,8 @@
  */
 package View;
 
+import Model.Users;
+import SQL.Insertar;
 import SQL.Select;
 import Tools.Creador;
 import Tools.StringHandling;
@@ -24,7 +26,7 @@ public class Menu extends javax.swing.JFrame {
     Boolean tabla_llena = false;
     String folder;
     Select sl = new Select();
-    
+    Insertar is = new Insertar();
     /**
      * Creates new form Menu
      */
@@ -344,6 +346,7 @@ public class Menu extends javax.swing.JFrame {
     private void Atras1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Atras1ActionPerformed
         int respuesta= JOptionPane.showConfirmDialog(null,"Seguro quiere salir cerrar sesión?","Salir",JOptionPane.YES_NO_OPTION);
         if (respuesta == 0){
+            is.insertF_fin(new Users().getID());
             Login open = null;
             open = new Login();
             open.setVisible(true);

@@ -20,6 +20,7 @@ public class Share_file extends javax.swing.JDialog {
     String file_Name;
     String nube_Name;
     String user_name;
+    String ip_address;
 
     /**
      * Creates new form Share_file
@@ -30,13 +31,14 @@ public class Share_file extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
     }
     
-    public Share_file(JDialog padre, boolean modo, String fileName, String nubeName) {
+    public Share_file(JDialog padre, boolean modo, String fileName, String nubeName, String ip_address) {
         super(padre, modo);
         initComponents();
         this.setLocationRelativeTo(null);
         
         this.file_Name = fileName;
         this.nube_Name = nubeName;
+        this.ip_address = ip_address;
         
         jLabel_NameFile.setText("Archivo: "+file_Name);        
         jLabel_NameNube.setText("Nube: "+nube_Name);
