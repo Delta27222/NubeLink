@@ -104,5 +104,28 @@ public class Select {
         }
         return lista;
     }
+    
+    public String getRouteRemoteFile(String ip_address, String filename){
+        String ruta = "";
+        Statement st;
+        SQLConnection con = new SQLConnection();
+        try {
+            st = con.connected().createStatement();
+            String sql = "SELECT REMOTE_PATH FROM FILE WHERE ID_CLOUD = (SELECT ID FROM CLOUD WHERE IP_ADDRESS = '"+ip_address+"') AND NAME = '"+filename+"'";
+            ResultSet rs = st.executeQuery(sql);
+            if (rs.next()) {
+                ruta = rs.getString(1);
+            }
+            st.close();
+            con.disconnect();
+
+            
+        } catch (Exception e) {
+            con.disconnect();
+            
+        }
+        return ruta;
+        
+    }
             
 }

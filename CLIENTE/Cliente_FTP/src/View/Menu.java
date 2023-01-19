@@ -274,14 +274,16 @@ public class Menu extends javax.swing.JFrame {
 
     private void jTable_ArchivosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable_ArchivosMouseClicked
         model = (DefaultTableModel) jTable_Archivos.getModel();
-        String archivo_o_carpeta = model.getValueAt(jTable_Archivos.getSelectedRow(), 3).toString();
+        String archivo_o_carpeta = model.getValueAt(jTable_Archivos.getSelectedRow(), 2).toString();
         if (archivo_o_carpeta.equals("Archivo")){  //Aca se habre el Jframe de Modal_file_options
-            String nombre_file = model.getValueAt(jTable_Archivos.getSelectedRow(), 1).toString();
+            String nombre_file = model.getValueAt(jTable_Archivos.getSelectedRow(), 0).toString();
             Modal_file_options open = null;
-            open = new Modal_file_options(this,true,nombre_file,nombre_nube);
+            String info[]= new String[2];
+            info = sl.getCloudInfo(jComboBoxNubes.getSelectedItem().toString());
+            open = new Modal_file_options(this,true,nombre_file,info[0],nombre_nube);
             open.setVisible(true);
        }else{   //Aca se habre el Jframe de los archivos que estan dentro de la carpeta
-            String nombre_carpeta = model.getValueAt(jTable_Archivos.getSelectedRow(), 1).toString();
+            String nombre_carpeta = model.getValueAt(jTable_Archivos.getSelectedRow(), 0).toString();
             System.out.println(nombre_carpeta);
             Menu open = null;
             open = new Menu(nombre_carpeta);

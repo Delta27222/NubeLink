@@ -44,7 +44,7 @@ public class Creador {
         for (FilesFolder archivo : archivos) {
             datos[0] = archivo.getNAME();
             datos[1] = archivo.getSIZE();
-            datos[2] = "ARCHIVO";
+            datos[2] = "Archivo";
             
             model.addRow(datos);
             numero = numero + 1;

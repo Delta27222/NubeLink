@@ -5,12 +5,15 @@
  */
 package View;
 
+import SQL.Select;
+import Tools.FTPConnection;
 import java.awt.Color;
 import java.io.File;
 import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import org.apache.commons.net.ftp.FTPClient;
 
 /**
  *
@@ -19,6 +22,7 @@ import javax.swing.JOptionPane;
 public class Download_file extends javax.swing.JDialog {
     
     String file_Name;
+    String ip_nube;
     String nube_Name;
 
     /**
@@ -29,13 +33,14 @@ public class Download_file extends javax.swing.JDialog {
         initComponents();
     }
     
-    public Download_file(JDialog padre, boolean modo, String fileName, String nubeName) {
+    public Download_file(JDialog padre, boolean modo, String fileName, String nubeName, String ip_nube) {
         super(padre, modo);
         initComponents();
         this.setLocationRelativeTo(null);
         
         this.file_Name = fileName;
         this.nube_Name = nubeName;
+        this.ip_nube = ip_nube;
         
         jLabel_NameFile.setText("Archivo: "+file_Name);        
         jLabel_NameNube.setText("Nube: "+nube_Name);
@@ -274,14 +279,18 @@ public class Download_file extends javax.swing.JDialog {
     private void btn_descargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_descargarActionPerformed
         String file_dir = this.ruta.getText();
         File fRuta = new File(file_dir);
+        Select sl = new Select();
+        String remote_route="";
         
         //Verifica que es un directorio
         //if(fRuta.isDirectory()){
         if(fRuta.exists()){   
             int respuesta= JOptionPane.showConfirmDialog(null,"Seguro quere descargar el archivo de nombre"+file_Name+"?","Descargar",JOptionPane.YES_NO_OPTION);
             if (respuesta == 0){
-
-                //Aca vala logica para hacer la descarga del archivo
+                remote_route = sl.getRouteRemoteFile(ip_nube, file_Name);
+                FTPConnection nuevo = new FTPConnection(new FTPClient(), ip_nube, "test", "test123");
+                nuevo.conectar();
+                nuevo.descargarArchivo(remote_route, file_dir+"\\"+file_Name);
 
                 this.dispose();
             }   

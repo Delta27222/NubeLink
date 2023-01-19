@@ -17,6 +17,7 @@ public class Modal_file_options extends javax.swing.JDialog {
     
     String file_Name;
     String nube_Name;
+    String ip_nube;
 
     /**
      * Creates new form 
@@ -32,13 +33,14 @@ public class Modal_file_options extends javax.swing.JDialog {
         btn_share.setToolTipText("Compartir");
     }
     
-    public Modal_file_options(JFrame padre, boolean modo, String fileName, String nubeName) {
+    public Modal_file_options(JFrame padre, boolean modo, String fileName, String ip_nube, String nube_Name) {
         super(padre,modo);
         initComponents();
         this.setLocationRelativeTo(null);
         
         this.file_Name = fileName;
-        this.nube_Name = nubeName;
+        this.nube_Name = nube_Name;
+        this.ip_nube = ip_nube;
         
         //Colocamos el nombre del Archivo y de la Nube
         jLabel_NameFile.setText("Archivo: "+file_Name);
@@ -243,7 +245,7 @@ public class Modal_file_options extends javax.swing.JDialog {
 
     private void btn_downloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_downloadActionPerformed
         Download_file open = null;
-        open = new Download_file(this,true,this.file_Name,this.nube_Name);
+        open = new Download_file(this,true,this.file_Name,this.nube_Name, this.ip_nube);
         open.setVisible(true);
     }//GEN-LAST:event_btn_downloadActionPerformed
 
