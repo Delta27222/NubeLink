@@ -22,22 +22,10 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     public Login() {
-        
-        try{
-            //JOptionPane.showMessageDialog(null, "Se va a abrir ventana en constructor", "conexion",JOptionPane.INFORMATION_MESSAGE);
-        
         initComponents();
-        //this.setLocationRelativeTo(null);
+
         crea.Interfaz(this, 340, 390);
-            //JOptionPane.showMessageDialog(null, "Se abrio ventana en constructor", "conexion",JOptionPane.INFORMATION_MESSAGE);
-        
-        }catch(Exception e){
-           // JOptionPane.showMessageDialog(null, e, "conexion",JOptionPane.INFORMATION_MESSAGE);
-        
-        }
-        
-          
-                
+      
         //Info de lo que hace el boton
         Atras.setToolTipText("Cerrar aplicación");
     }
@@ -62,9 +50,9 @@ public class Login extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         Password_field = new LIB.JTexfieldPH_FielTex();
         jPanel7 = new javax.swing.JPanel();
-        Salir = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        Salir2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         btn_login = new javax.swing.JButton();
         Atras = new javax.swing.JButton();
 
@@ -115,6 +103,7 @@ public class Login extends javax.swing.JFrame {
 
         Username_field.setBackground(new java.awt.Color(230, 230, 230));
         Username_field.setBorder(null);
+        Username_field.setText("Javier");
         Username_field.setToolTipText("");
         Username_field.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         Username_field.setOpaque(false);
@@ -149,6 +138,7 @@ public class Login extends javax.swing.JFrame {
 
         Password_field.setBackground(new java.awt.Color(230, 230, 230));
         Password_field.setBorder(null);
+        Password_field.setText("santi12");
         Password_field.setToolTipText("");
         Password_field.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
         Password_field.setOpaque(false);
@@ -181,40 +171,40 @@ public class Login extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(10, 144, 230));
 
-        Salir.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user_icon.png"))); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/user_icon.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Salir, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
         jPanel2.add(jPanel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 40, 40));
 
         jPanel8.setBackground(new java.awt.Color(10, 144, 230));
 
-        Salir2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Salir2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/password_icon.png"))); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/password_icon.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(Salir2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Salir2, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
 
         jPanel2.add(jPanel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 40, 40));
@@ -248,20 +238,20 @@ public class Login extends javax.swing.JFrame {
 
         Atras.setBackground(new java.awt.Color(10, 144, 203));
         Atras.setFont(new java.awt.Font("Segoe UI Semibold", 0, 14)); // NOI18N
-        Atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/close_icon.png"))); // NOI18N
+        Atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/close_icon.png"))); // NOI18N
         Atras.setBorder(null);
         Atras.setBorderPainted(false);
         Atras.setContentAreaFilled(false);
         Atras.setFocusPainted(false);
-        Atras.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/close_icon_G.png"))); // NOI18N
-        Atras.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/close_icon_G.png"))); // NOI18N
+        Atras.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/close_icon_G.png"))); // NOI18N
+        Atras.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Img/close_icon_G.png"))); // NOI18N
         Atras.setVerifyInputWhenFocusTarget(false);
         Atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AtrasActionPerformed(evt);
             }
         });
-        jPanel2.add(Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 40, 50));
+        jPanel2.add(Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 80, 40, 40));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 340, 390));
 
@@ -302,13 +292,6 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btn_loginActionPerformed
 
-    private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
-        int respuesta= JOptionPane.showConfirmDialog(null,"Seguro quiere salir del sistema?","Salir",JOptionPane.YES_NO_OPTION);
-        if (respuesta == 0){
-            System.exit(0);
-        }
-    }//GEN-LAST:event_AtrasActionPerformed
-
     private void btn_loginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_loginMouseEntered
         btn_login.setBackground(new Color(8,105,165));
     }//GEN-LAST:event_btn_loginMouseEntered
@@ -316,6 +299,13 @@ public class Login extends javax.swing.JFrame {
     private void btn_loginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_loginMouseExited
         btn_login.setBackground(new Color(10,130,203));
     }//GEN-LAST:event_btn_loginMouseExited
+
+    private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
+        int respuesta= JOptionPane.showConfirmDialog(null,"Seguro quiere salir del sistema?","Salir",JOptionPane.YES_NO_OPTION);
+        if (respuesta == 0){
+            System.exit(0);
+        }
+    }//GEN-LAST:event_AtrasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -355,12 +345,12 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Atras;
     private LIB.JTexfieldPH_FielTex Password_field;
-    private javax.swing.JLabel Salir;
-    private javax.swing.JLabel Salir2;
     private LIB.JTexfieldPH_FielTex Username_field;
     private javax.swing.JButton btn_login;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

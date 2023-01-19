@@ -14,6 +14,10 @@ import javax.swing.JOptionPane;
 
 public class main {
     public static void main(String[] args) throws IOException {
+        
+        JOptionPane.showMessageDialog(null, "Se va a abrir ventana", "conexion",JOptionPane.INFORMATION_MESSAGE);
+        new Login().setVisible(true);
+        JOptionPane.showMessageDialog(null, "Se abrio ventana", "conexion",JOptionPane.INFORMATION_MESSAGE);
 
 //           SQLConnection con = new SQLConnection();
 //           con.connected();
