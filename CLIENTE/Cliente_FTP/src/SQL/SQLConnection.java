@@ -16,15 +16,15 @@ public class SQLConnection {
         try{
         Class.forName("com.mysql.cj.jdbc.Driver");
             con =(Connection) DriverManager.getConnection(url,user,pass);
-            JOptionPane.showMessageDialog(null, "Conexion exitosa", "conexion",JOptionPane.INFORMATION_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "Conexion exitosa", "conexion",JOptionPane.INFORMATION_MESSAGE);
             
        }catch(SQLException e){
            System.out.println("Error sql: "+e.getMessage());
-            JOptionPane.showMessageDialog(null, "Conexion no exitosa", "conexion",JOptionPane.INFORMATION_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "Conexion no exitosa", "conexion",JOptionPane.INFORMATION_MESSAGE);
             
        }catch (Exception e){
            System.out.println("Error: "+e.getMessage());
-           JOptionPane.showMessageDialog(null, "Conexion no exitosa 2", "conexion",JOptionPane.INFORMATION_MESSAGE);
+           //JOptionPane.showMessageDialog(null, "Conexion no exitosa 2", "conexion",JOptionPane.INFORMATION_MESSAGE);
             
        }
         return con;
@@ -35,7 +35,7 @@ public class SQLConnection {
             con.close();
             //JOptionPane.showMessageDialog(null, "Desconexion exitosa", "conexion",JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Desconexion fallida", "conexion",JOptionPane.INFORMATION_MESSAGE);
+            //JOptionPane.showMessageDialog(null, "Desconexion fallida", "conexion",JOptionPane.INFORMATION_MESSAGE);
         }
     }
     

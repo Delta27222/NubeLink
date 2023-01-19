@@ -1,6 +1,7 @@
 
 package SQL;
 
+import Model.FilesFolder;
 import Model.Users;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -79,6 +80,29 @@ public class Select {
             
         }
         return info;
+    }
+    
+    public ArrayList<FilesFolder> filesFolder(int ID_USER, String NOMBRE_NUBE){
+        ArrayList<FilesFolder> lista = new ArrayList<FilesFolder>();
+        Statement st;
+        SQLConnection con = new SQLConnection();
+        try {
+            st = con.connected().createStatement();
+            String sql = "SELECT * FROM `FILE` WHERE ID_USER ="+ID_USER+" AND ID_CLOUD = (SELECT ID FROM CLOUD WHERE NAME = '"+NOMBRE_NUBE+"')";
+            ResultSet rs = st.executeQuery(sql);
+            while (rs.next()) {
+                lista.add(new FilesFolder(Integer.parseInt(rs.getString(1)),Integer.parseInt(rs.getString(2)),
+                        Integer.parseInt(rs.getString(3)),rs.getString(4),rs.getString(5),rs.getString(6)));
+            }
+            st.close();
+            con.disconnect();
+
+            
+        } catch (Exception e) {
+            con.disconnect();
+            
+        }
+        return lista;
     }
             
 }

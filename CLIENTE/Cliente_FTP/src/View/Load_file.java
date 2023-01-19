@@ -276,7 +276,7 @@ public class Load_file extends javax.swing.JDialog {
              FTPConnection nuevo = new FTPConnection(new FTPClient(), ip_address, "test", "test123");
             nuevo.conectar();
             nuevo.subirArchivo(file_dir, Users.getUSERNAME()+"/"+file_name, remote_file_path);
-            is.insertFile(Users.getUSERNAME()+"/"+file_name, ip_address);
+            is.insertFile(Users.getUSERNAME()+"/"+file_name, ip_address,file_name);
             JOptionPane.showMessageDialog(null,"El archivo "+file_name+" fue cargado con exito", "Mensaje",JOptionPane.INFORMATION_MESSAGE);
        
             }else{

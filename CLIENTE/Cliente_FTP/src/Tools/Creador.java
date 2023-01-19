@@ -5,6 +5,8 @@
  */
 package Tools;
 
+import Model.FilesFolder;
+import Model.Users;
 import SQL.Select;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
@@ -22,10 +24,12 @@ import org.apache.commons.net.ftp.FTPClient;
 public class Creador {
     
     Buscador bus = new Buscador();
+    Select sl = new Select();
     
-    public void add_Info_Table_Menu(DefaultTableModel model,JTable Table, String nombre_Nube, String ip_number, String userName, String contrasena){
+    public void add_Info_Table_Menu(DefaultTableModel model,JTable Table, String nombre_Nube){
+         String [] datos = new String[3];
         model = (DefaultTableModel) Table.getModel();
-        Object[] newIdentifiers = new Object[]{"Id","Nombre Archivo","Peso (Kb)", "Tipo"};
+        Object[] newIdentifiers = new Object[]{"Nombre Archivo","Peso (Kb)", "Tipo"};
         model.setColumnIdentifiers(newIdentifiers);
         Table.setFillsViewportHeight(true);
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -34,15 +38,40 @@ public class Creador {
             Table.getColumnModel().getColumn(x).setCellRenderer(centerRenderer);            
         }        
         
-        ArrayList<Object[]> archivos = new  ArrayList<Object[]>();
-        archivos = bus.create_ArrayList_Table_Menu(nombre_Nube, ip_number, userName, contrasena);
+        ArrayList<FilesFolder> archivos = new  ArrayList<FilesFolder>();
+        archivos = sl.filesFolder(Users.getID(), nombre_Nube);
         int numero = 0;
-        for (Object []archivo : archivos) {
-            model.addRow(archivo);
+        for (FilesFolder archivo : archivos) {
+            datos[0] = archivo.getNAME();
+            datos[1] = archivo.getSIZE();
+            datos[2] = "ARCHIVO";
+            
+            model.addRow(datos);
             numero = numero + 1;
         }
        Table.setModel(model);
     }
+    
+//    public void add_Info_Table_Files(DefaultTableModel model,JTable Table){
+//        model = (DefaultTableModel) Table.getModel();
+//        Object[] newIdentifiers = new Object[]{"Nombre Archivo","Peso", "Tipo"};
+//        model.setColumnIdentifiers(newIdentifiers);
+//        Table.setFillsViewportHeight(true);
+//        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+//        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
+//        for (int x = 0; x < Table.getColumnCount(); x++) {
+//            Table.getColumnModel().getColumn(x).setCellRenderer(centerRenderer);            
+//        }        
+//        
+//        ArrayList<Object[]> archivos = new  ArrayList<Object[]>();
+//        archivos = bus.create_ArrayList_Table_Menu(nombre_Nube, ip_number, userName, contrasena);
+//        int numero = 0;
+//        for (Object []archivo : archivos) {
+//            model.addRow(archivo);
+//            numero = numero + 1;
+//        }
+//       Table.setModel(model);
+//    }
     
     public void llenando_JComboBox_Nubes(JComboBox jComboBoxNubes){
         ArrayList<String> lista_nubes = new ArrayList<String>();
@@ -82,5 +111,11 @@ public class Creador {
         nueva.setVisible(true);
         nueva.setSize(ancho,largo);     
         nueva.setLocationRelativeTo(null); 
+    }
+        
+        public void limpiarTabla(JTable tabla){
+        DefaultTableModel model = (DefaultTableModel) tabla.getModel();
+        for (int i = model.getRowCount()-1; i>=0;i--)
+            model.removeRow(i);
     }
 }

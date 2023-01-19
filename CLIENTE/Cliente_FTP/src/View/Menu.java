@@ -63,7 +63,7 @@ public class Menu extends javax.swing.JFrame {
         Atras1.setToolTipText("Cerrar sesión");
         
         // Aca llenamos la tabla, con los archivos que estan dentro de la carpeta
-        crea.add_Info_Table_Menu(model,jTable_Archivos, nombre_nube,"192.168.0.102", "Angel", "redes");
+        //crea.add_Info_Table_Menu(model,jTable_Archivos, nombre_nube);
     }
     
     /**
@@ -214,11 +214,11 @@ public class Menu extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id", "Nombre Archivo", "Peso (Kb)", "Tipo"
+                "Nombre Archivo", "Peso (Kb)", "Tipo"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -305,7 +305,11 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxNubesItemStateChanged
 
     private void jComboBoxNubesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxNubesActionPerformed
-        // TODO add your handling code here:
+        crea.limpiarTabla(jTable_Archivos);
+        if (jComboBoxNubes.getSelectedIndex() != 0){
+        crea.limpiarTabla(jTable_Archivos);
+        crea.add_Info_Table_Menu(model, jTable_Archivos, jComboBoxNubes.getSelectedItem().toString());
+        }
     }//GEN-LAST:event_jComboBoxNubesActionPerformed
 
     private void btn_uploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_uploadActionPerformed

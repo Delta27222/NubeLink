@@ -26,13 +26,13 @@ public class Insertar {
         return guardado;
     }
     
-    public boolean insertFile(String file_path, String ip){            
+    public boolean insertFile(String file_path, String ip, String filename){            
         boolean guardado = true;
         try {
             SQLConnection conexion= new SQLConnection();
             Connection con = conexion.connected();  
             java.sql.Statement st = con.createStatement();
-            String sql = "INSERT INTO `FILE`(`ID_USER`, `ID_CLOUD`, `NAME`, `SIZE`, `REMOTE_PATH`) VALUES ("+Users.getID()+",(SELECT ID FROM CLOUD WHERE IP_ADDRESS = '"+ip+"'),'"+file_path+"',10,'"+file_path+"')";       
+            String sql = "INSERT INTO `FILE`(`ID_USER`, `ID_CLOUD`, `NAME`, `SIZE`, `REMOTE_PATH`) VALUES ("+Users.getID()+",(SELECT ID FROM CLOUD WHERE IP_ADDRESS = '"+ip+"'),'"+filename+"',10,'"+file_path+"')";       
             
             st.execute(sql);
             st.close();

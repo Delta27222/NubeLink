@@ -5,6 +5,7 @@
  */
 package Tools;
 
+import Model.FilesFolder;
 import java.util.ArrayList;
 import org.apache.commons.net.ftp.FTPClient;
 
@@ -15,17 +16,4 @@ import org.apache.commons.net.ftp.FTPClient;
 public class Buscador {
     
         
-    public ArrayList<Object[]> create_ArrayList_Table_Menu(String nombre_Nube, String ip_number, String userName, String contrasena){
-        //El nombre de la nube puede ser el usuario como tal
-        FTPConnection nuevo = new FTPConnection(new FTPClient(), ip_number, userName, contrasena);
-        nuevo.conectar();
-        //ArrayList de los Archivos en la nube
-        ArrayList<Object[]> lista_archivos = new ArrayList<Object[]>();
-            //Inserta Nombre y peso de los archivos en el arrayList
-            lista_archivos = nuevo.llenar_array_archivos_raiz();
-        
-        nuevo.desconectar();
-        
-        return lista_archivos;
-    }
 }
